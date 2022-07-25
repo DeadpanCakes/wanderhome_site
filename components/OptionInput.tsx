@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { v4 as uuid } from "uuid"
+import styles from "../styles/OptionInput.module.css"
 
 const OptionInput = ({ name, submittedData, setSubmitted }) => {
     const [newData, setNewData] = useState("")
     return (
         <>
+            <input name={name} value={JSON.stringify(submittedData)} className={styles.hiddenField} readOnly={true}></input>
             <label htmlFor={name}>{name}</label>
             <ul>
                 {submittedData.map((i) => {
