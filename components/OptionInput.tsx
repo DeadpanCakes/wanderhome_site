@@ -10,15 +10,15 @@ const OptionInput = ({ name, submittedData, setSubmitted }) => {
                 {submittedData.map((i) => {
                     return <li key={uuid()}>{i}</li>
                 })}
-                <div>
-                    <input id={name} value={newData} onChange={(e) => setNewData(e.target.value)}></input>
-                    <button onClick={(e) => {
-                        e.preventDefault()
-                        setSubmitted(prevState => prevState.concat(newData))
-                        setNewData("")
-                    }}>+</button>
-                </div>
             </ul>
+            <div>
+                <input id={name} value={newData} onChange={(e) => setNewData(e.target.value)}></input>
+                <button onClick={(e) => {
+                    e.preventDefault()
+                    setSubmitted(prevState => prevState.concat(newData))
+                    setNewData("")
+                }}>+</button>
+            </div>
         </>
     )
 }
