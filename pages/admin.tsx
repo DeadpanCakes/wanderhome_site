@@ -4,19 +4,23 @@ const Admin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSubmit = async () => {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
     <form
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
-        const res = await fetch("/api/login", {
-          method: "POST",
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        });
-        const data = await res.json();
-        console.log(data);
+        handleSubmit;
       }}
     >
       <label htmlFor="username">Username</label>
