@@ -1,7 +1,7 @@
 const handler = async (req, res) => {
     if (req.method === "POST") {
-        const body = await postLogin(req.body)
-        return res.json(body)
+        const authTokens = await postLogin(req.body)
+        return res.json(authTokens)
     }
 }
 
