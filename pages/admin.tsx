@@ -20,7 +20,7 @@ const Admin = () => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit;
+        handleSubmit();
       }}
     >
       <label htmlFor="username">Username</label>
