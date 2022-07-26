@@ -5,7 +5,7 @@ const Admin = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
-    const res = await fetch("/api/login", {
+    const res = await fetch("/api/auth/login", {
       method: "POST",
       body: JSON.stringify({
         username,
