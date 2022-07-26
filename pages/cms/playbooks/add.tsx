@@ -1,5 +1,5 @@
 import { useState } from "react";
-import OptionInput from "../../components/OptionInput"
+import OptionInput from "../../../components/OptionInput"
 
 const Playbooks = () => {
     const [animals, setAnimals] = useState([])
