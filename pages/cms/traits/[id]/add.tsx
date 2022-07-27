@@ -1,5 +1,5 @@
 import { useState } from "react";
-import OptionInput from "../../../components/OptionInput";
+import OptionInput from "../../../../components/OptionInput";
 
 const Add = () => {
   const [moves, setMoves] = useState([]);
