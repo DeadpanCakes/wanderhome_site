@@ -9,7 +9,7 @@ const Add = () => {
     <form>
       <label htmlFor="name">Name</label>
       <input id="name" name="name"></input>
-      <label htmlFor="description"></label>
+      <label htmlFor="description">Description</label>
       <input id="description" name="description"></input>
       <OptionInput name="moves" submittedData={moves} setSubmitted={setMoves} />
       <OptionInput
