@@ -1,18 +1,14 @@
 import Link from "next/link";
+import TraitForm from "../../../../components/TraitForm";
 
 const id = (props) => {
   const category = JSON.parse(props.category);
-  console.log(category.trait_set[1]);
   return (
     <>
       <h1>{category.name}</h1>
       <div>
         <h2>Traits</h2>
-        <Link href={`/cms/traits/${category.name}/add`}>
-          <a>
-            <button>+</button>
-          </a>
-        </Link>
+        <TraitForm category={category} />
       </div>
       <ul>
         {category.trait_set.map((trait) => {
