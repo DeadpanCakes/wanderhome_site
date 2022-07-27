@@ -8,7 +8,7 @@ const Traits = (props) => {
       {categories.map((category) => {
         return (
           <li key={category.id}>
-            <Link href={`/cms/traits/${category.id}`}>
+            <Link href={`/cms/traits/${category.name}`}>
               <a>{category.name}</a>
             </Link>
           </li>
