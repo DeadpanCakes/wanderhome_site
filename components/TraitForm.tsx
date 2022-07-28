@@ -14,7 +14,7 @@ const TraitForm = ({ category }) => {
   const router = useRouter();
 
   const submitTrait = async (info) => {
-    const url = "/api/traits";
+    const url = "/api/traits/trait";
     const options = {
       body: JSON.stringify(info),
       headers: { Authorization: "Bearer " + localStorage.getItem("jwt") },
