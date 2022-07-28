@@ -1,12 +1,14 @@
 const InputField = ({ name, value, changeHandler }) => {
   return (
     <>
-      <label htmlFor={name}>{name}</label>
+      <label htmlFor={name}>{name.toUpperCase()}</label>
       <input
         id={name}
         name={name}
         value={value}
-        onChange={changeHandler}
+        onChange={(e) => {
+          changeHandler(e.target.value);
+        }}
       ></input>
     </>
   );
