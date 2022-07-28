@@ -9,7 +9,12 @@ const TraitForm = ({ category }) => {
 
   const submitTrait = async (info) => {
     const body = JSON.stringify(info);
-    const response = await fetch("/api/traits/", { method: "POST", body });
+    const headers = { Authorization: "Bearer " + localStorage.getItem("jwt") };
+    const response = await fetch("/api/traits/", {
+      method: "POST",
+      body,
+      headers,
+    });
     const data = await response.json();
     if (checkIfFailed(data)) {
       setError(data);
