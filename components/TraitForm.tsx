@@ -19,11 +19,11 @@ const TraitForm = ({ category }) => {
       body,
       headers,
     });
-    if (checkIfFailed(response)) {
+    if (await checkIfFailed(response)) {
       setError(await response.json());
     } else {
       const data = await response.json();
-      if (data.detal) {
+      if (data.detail) {
         return setError(data);
       }
       router.reload();
@@ -74,5 +74,6 @@ const checkIfFailed = async (res) => {
   if (res.status === 400) {
     return await res.json();
   }
+  return false;
 };
 export default TraitForm;
