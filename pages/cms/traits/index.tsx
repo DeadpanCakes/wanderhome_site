@@ -4,17 +4,25 @@ const Traits = (props) => {
   const categories = JSON.parse(props.categories);
   console.log(categories);
   return (
-    <ul>
-      {categories.map((category) => {
-        return (
-          <li key={category.id}>
-            <Link href={`/cms/traits/${category.name}`}>
-              <a>{category.name}</a>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h1>Trait Categories</h1>
+      <form>
+        <label htmlFor="name">Name</label>
+        <input id="name" name="name"></input>
+        <button>Submit</button>
+      </form>
+      <ul>
+        {categories.map((category) => {
+          return (
+            <li key={category.id}>
+              <Link href={`/cms/traits/${category.name}`}>
+                <a>{category.name}</a>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 };
 
