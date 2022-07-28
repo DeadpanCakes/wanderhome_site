@@ -14,7 +14,11 @@ const id = (props) => {
         {category.trait_set.map((trait) => {
           return (
             <li key={trait.id}>
-              <h2>{trait.name}</h2>
+              <Link href={`/cms/traits/${category.name + "/" + trait.name}`}>
+                <a>
+                  <h2>{trait.name}</h2>
+                </a>
+              </Link>
               <p>{trait.description}</p>
             </li>
           );
