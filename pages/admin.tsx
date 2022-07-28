@@ -1,8 +1,10 @@
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Admin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setJWT, setRefreshToken } = useAuth();
 
   const handleSubmit = async () => {
     const res = await fetch("/api/auth/login", {
@@ -13,7 +15,8 @@ const Admin = () => {
       }),
     });
     const data = await res.json();
-    console.log(data);
+    setJWT(data.access);
+    setRefreshToken(data.refresh);
   };
 
   return (
