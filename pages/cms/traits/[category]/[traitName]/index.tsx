@@ -1,8 +1,23 @@
 const traitName = (props) => {
   const trait = JSON.parse(props.trait);
+  console.log(trait);
   return (
     <>
       <h1>{trait.name}</h1>
+      <div>
+        <p>{trait.is_magic ? "Is Magical" : "Is Not Magical"}</p>
+        <button>Toggle</button>
+      </div>
+      <h2>Moves</h2>
+      <form>
+        <input id="text" name="text"></input>
+        <button>Submit</button>
+      </form>
+      <ul>
+        {trait.move_set.map((move) => {
+          return <li>{move.text}</li>;
+        })}
+      </ul>
     </>
   );
 };
