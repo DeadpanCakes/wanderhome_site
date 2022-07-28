@@ -3,6 +3,13 @@ const traitName = (props) => {
   console.log(trait);
   return (
     <>
+      <button
+        onClick={() => {
+          deleteTrait(trait.id);
+        }}
+      >
+        DELETE
+      </button>
       <h1>{trait.name}</h1>
       <div>
         <p>{trait.is_magic ? "Is Magical" : "Is Not Magical"}</p>
@@ -20,6 +27,17 @@ const traitName = (props) => {
       </ul>
     </>
   );
+};
+
+const deleteTrait = async (id) => {
+  const body = JSON.stringify({ id });
+  const headers = { Authorization: "Bearer " + localStorage.getItem("jwt") };
+  const response = await fetch("/api/traits", {
+    method: "DELETE",
+    headers,
+    body,
+  });
+  console.log(response, "Here!");
 };
 
 export const getServerSideProps = async (context) => {
