@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
-import useError from "../hooks/useError";
-import Error from "../components/layouts/Error";
 import InputField from "./InputField";
 import APIForm from "./APIForm";
+import BooleanField from "./BooleanField";
 
 const TraitForm = ({ category }) => {
   const [isMagic, setIsMagic] = useState(false);
@@ -22,14 +20,8 @@ const TraitForm = ({ category }) => {
       url="/api/traits/trait"
       method="POST"
     >
-      <label htmlFor="isMagic">Is Magical</label>
-      <input
-        id="isMagic"
-        name="isMagic"
-        type="checkbox"
-        defaultChecked={isMagic}
-        onChange={toggleIsMagic}
-      ></input>
+      <p>{isMagic.toString()}</p>
+      <BooleanField name="isMagic" boolean={isMagic} toggler={toggleIsMagic} />
       <InputField name="name" value={name} changeHandler={setName} />
       <InputField
         name="description"
