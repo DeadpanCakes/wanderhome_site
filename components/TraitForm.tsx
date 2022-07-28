@@ -10,24 +10,27 @@ const TraitForm = ({ category }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const { error, setError, clearError } = useError();
+  const handleErrors = (error) => setError(error);
   const router = useRouter();
 
   const submitTrait = async (info) => {
-    const body = JSON.stringify(info);
-    const headers = { Authorization: "Bearer " + localStorage.getItem("jwt") };
-    const response = await fetch("/api/traits/", {
+    const url = "/api/traits";
+    const options = {
+      body: JSON.stringify(info),
+      headers: { Authorization: "Bearer " + localStorage.getItem("jwt") },
       method: "POST",
-      body,
-      headers,
-    });
-    if (await checkIfFailed(response)) {
-      setError(await response.json());
+    };
+    const response = await fetch(url, options);
+    if (networkFailure(response)) {
+      const error = await response.json();
+      handleErrors(error);
     } else {
-      const data = await response.json();
-      if (data.detail) {
-        return setError(data);
-      }
-      router.reload();
+      return response.json().then((data) => {
+        if (authFailure(data)) {
+          return handleErrors(data);
+        }
+        return router.reload();
+      });
     }
   };
 
@@ -63,10 +66,7 @@ const TraitForm = ({ category }) => {
   );
 };
 
-const checkIfFailed = async (res) => {
-  if (res.status === 400) {
-    return await res.json();
-  }
-  return false;
-};
+const networkFailure = (res) => res.status === 400;
+const authFailure = (data) => data.detail;
+
 export default TraitForm;
