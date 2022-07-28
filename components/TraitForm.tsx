@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import useError from "../hooks/useError";
 import Error from "../components/layouts/Error";
+import InputField from "./InputField";
 
 const TraitForm = ({ category }) => {
   const [isMagic, setIsMagic] = useState(false);
@@ -51,20 +52,12 @@ const TraitForm = ({ category }) => {
         defaultChecked={isMagic}
         onChange={toggleIsMagic}
       ></input>
-      <label htmlFor="name">Name</label>
-      <input
-        id="name"
-        name="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      ></input>
-      <label htmlFor="description">Description</label>
-      <input
-        id="description"
+      <InputField name="name" value={name} changeHandler={setName} />
+      <InputField
         name="description"
         value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      ></input>
+        changeHandler={setDescription}
+      />
       <button>Submit</button>
     </form>
   );
