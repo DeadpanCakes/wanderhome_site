@@ -1,15 +1,31 @@
 import { useState } from "react";
-import OptionInput from "./OptionInput";
+import useError from "../hooks/useError";
+import Error from "../components/layouts/Error";
 
 const TraitForm = ({ category }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const { error, setError, clearError } = useError();
+
+  const submitTrait = async (info) => {
+    const body = JSON.stringify(info);
+    const response = await fetch("/api/traits/", { method: "POST", body });
+    const data = await response.json();
+    if (checkIfFailed(data)) {
+      setError(data);
+    } else {
+      //reload page
+    }
+  };
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        submitTrait({ name, description, category: category.id });
       }}
     >
+      <Error error={error} clearError={clearError} />
       <label htmlFor="name">Name</label>
       <input
         id="name"
@@ -29,4 +45,5 @@ const TraitForm = ({ category }) => {
   );
 };
 
+const checkIfFailed = (body) => body.detail;
 export default TraitForm;
