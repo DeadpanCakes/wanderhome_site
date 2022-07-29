@@ -1,15 +1,17 @@
 import Link from "next/link";
 import ChildList from "../../../../components/ChildList";
+import NatureForm from "../../../../components/forms/natures/NatureForm";
 
 const Nature = (props) => {
   const category = JSON.parse(props.category);
   return (
     <>
       <h1>{category.name}</h1>
+      <NatureForm category={category} />
       <ChildList
         childArray={category.nature_set}
         category="Natures"
-        baseURL={`/cms/natures/${category.name}/`}
+        baseURL={`/cms/natures/${category.name}`}
       />
     </>
   );

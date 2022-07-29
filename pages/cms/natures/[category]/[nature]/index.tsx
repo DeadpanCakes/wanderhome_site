@@ -1,10 +1,12 @@
 import ChildList from "../../../../../components/ChildList";
+import NatureMoveForm from "../../../../../components/forms/natures/NatureMoveForm";
 
 const NatureDetail = (props) => {
   const nature = JSON.parse(props.nature);
   return (
     <>
       <h1>{nature.name}</h1>
+      <NatureMoveForm nature={nature} />
       <ChildList
         childArray={nature.move_set}
         category="Moves"

@@ -1,10 +1,12 @@
 import Link from "next/link";
+import NatureCategoryForm from "../../../components/forms/natures/NatureCategoryForm";
 
 const Natures = (props) => {
   const categories = JSON.parse(props.categories);
   return (
     <>
       <h1>Nature Categories</h1>
+      <NatureCategoryForm />
       <h2>Natures</h2>
       <ul>
         {categories.map((category) => {
