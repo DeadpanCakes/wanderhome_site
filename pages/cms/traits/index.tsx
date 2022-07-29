@@ -1,16 +1,12 @@
 import Link from "next/link";
+import TraitCategoryForm from "../../../components/TraitCategoryForm";
 
 const Traits = (props) => {
   const categories = JSON.parse(props.categories);
-  console.log(categories);
   return (
     <>
       <h1>Trait Categories</h1>
-      <form>
-        <label htmlFor="name">Name</label>
-        <input id="name" name="name"></input>
-        <button>Submit</button>
-      </form>
+      <TraitCategoryForm />
       <ul>
         {categories.map((category) => {
           return (
