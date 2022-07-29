@@ -9,7 +9,7 @@ const ChildList = ({ category, childArray, baseURL }) => {
         {childArray.map((child) => {
           return (
             <li key={child.id}>
-              <Link href={`${baseURL}/${getText(child)}`}>
+              <Link href={`${baseURL}/${child.id}`}>
                 <a>{getText(child)}</a>
               </Link>
             </li>
