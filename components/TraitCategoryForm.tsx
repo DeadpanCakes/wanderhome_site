@@ -8,7 +8,7 @@ const TraitCategoryForm = () => {
   const [isTraumatized, setIsTraumatized] = useState(false);
   const toggleIsTraumatized = setIsTraumatized((prevState) => !prevState);
   return (
-    <APIForm payload={{ name }} url="/api/trait-category" method="POST">
+    <APIForm payload={{ name }} url="/api/traits/categories" method="POST">
       <BooleanField
         name="isTraumatized"
         boolean={isTraumatized}
