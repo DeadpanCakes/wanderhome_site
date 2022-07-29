@@ -47,7 +47,6 @@ const TraitMoveForm = ({ trait }) => {
           changeHandler={setNonTraumaNonMagicText}
         />
       ) : null}
-      <button>Submit</button>
     </APIForm>
   );
 };

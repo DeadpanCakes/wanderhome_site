@@ -28,7 +28,6 @@ const TraitForm = ({ category }) => {
         value={description}
         changeHandler={setDescription}
       />
-      <button>Submit</button>
     </APIForm>
   );
 };
