@@ -1,3 +1,5 @@
+import TraitMoveForm from "../../../../../components/TraitMoveForm";
+
 const traitName = (props) => {
   const trait = JSON.parse(props.trait);
   console.log(trait);
@@ -16,10 +18,7 @@ const traitName = (props) => {
         <button>Toggle</button>
       </div>
       <h2>Moves</h2>
-      <form>
-        <input id="text" name="text"></input>
-        <button>Submit</button>
-      </form>
+      <TraitMoveForm trait={trait} />
       <ul>
         {trait.move_set.map((move) => {
           return <li>{move.text}</li>;
