@@ -24,6 +24,7 @@ const Playbook = (props) => {
         baseURL={baseURL + "/appearance"}
         childArray={playbook.appearance_set}
       />
+      <h2>History</h2>
       {playbook.history_set.map((history) => {
         return (
           <>
