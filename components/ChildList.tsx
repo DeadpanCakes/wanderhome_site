@@ -1,15 +1,16 @@
 import Link from "next/link";
 
 const ChildList = ({ category, childArray, baseURL }) => {
+  const getText = (child) => (child.name ? child.name : child.text);
   return (
     <>
       <h2>{category}</h2>
       <ul>
         {childArray.map((child) => {
           return (
-            <li>
-              <Link href={`${baseURL}/${child.name}`}>
-                <a>{child.name}</a>
+            <li key={child.id}>
+              <Link href={`${baseURL}/${getText(child)}`}>
+                <a>{getText(child)}</a>
               </Link>
             </li>
           );
