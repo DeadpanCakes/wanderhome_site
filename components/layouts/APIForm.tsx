@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import useError from "../hooks/useError";
-import Error from "./layouts/Error";
+import useError from "../../hooks/useError";
+import Error from "./Error";
 
 const APIForm = ({ payload, url, method, children }) => {
   const { error, setError: handleError, clearError } = useError();

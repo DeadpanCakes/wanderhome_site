@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TraitCategoryForm from "../../../components/TraitCategoryForm";
+import TraitCategoryForm from "../../../components/forms/traits/TraitCategoryForm";
 
 const Traits = (props) => {
   const categories = JSON.parse(props.categories);

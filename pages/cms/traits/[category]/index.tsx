@@ -1,5 +1,5 @@
 import Link from "next/link";
-import TraitForm from "../../../../components/TraitForm";
+import TraitForm from "../../../../components/forms/traits/TraitForm";
 
 const id = (props) => {
   const category = JSON.parse(props.category);

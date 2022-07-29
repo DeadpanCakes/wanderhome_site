@@ -1,4 +1,4 @@
-import TraitMoveForm from "../../../../../components/TraitMoveForm";
+import TraitMoveForm from "../../../../../components/forms/traits/TraitMoveForm";
 
 const traitName = (props) => {
   const trait = JSON.parse(props.trait);

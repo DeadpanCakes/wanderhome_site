@@ -1,7 +1,7 @@
 import { useState } from "react";
-import APIForm from "./APIForm";
-import BooleanField from "./BooleanField";
-import InputField from "./InputField";
+import APIForm from "../../layouts/APIForm";
+import BooleanField from "../../BooleanField";
+import InputField from "../../InputField";
 
 const TraitMoveForm = ({ trait }) => {
   const [text, setText] = useState("");
