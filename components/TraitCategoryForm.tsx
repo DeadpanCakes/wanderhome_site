@@ -6,7 +6,7 @@ import InputField from "./InputField";
 const TraitCategoryForm = () => {
   const [name, setName] = useState("");
   const [isTraumatized, setIsTraumatized] = useState(false);
-  const toggleIsTraumatized = setIsTraumatized((prevState) => !prevState);
+  const toggleIsTraumatized = () => setIsTraumatized((prevState) => !prevState);
   return (
     <APIForm payload={{ name }} url="/api/traits/categories" method="POST">
       <BooleanField
