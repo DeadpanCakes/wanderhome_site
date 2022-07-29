@@ -1,15 +1,25 @@
-const Playbooks = () => {
-    return <>
-        <ul>
-            <li>Playbook 1</li>
-            <li>Playbook 2
-                <div>
-                    <button>+</button>
-                    <button>X</button>
-                </div>
-            </li>
-        </ul>
-    </>
-}
+import ChildList from "../../../components/ChildList";
+import PlaybookForm from "../../../components/forms/playbooks/PlaybookForm";
 
-export default Playbooks
+const Playbooks = (props) => {
+  const playbooks = JSON.parse(props.playbooks);
+  return (
+    <>
+      <ChildList
+        category="Playbooks"
+        childArray={playbooks}
+        baseURL="/cms/playbooks"
+      />
+      <PlaybookForm />
+    </>
+  );
+};
+
+export const getServerSideProps = async () => {
+  const response = await fetch(process.env.API + "playbooks/");
+  const data = await response.json();
+  const playbooks = JSON.stringify(data);
+  return { props: { playbooks } };
+};
+
+export default Playbooks;
