@@ -17,7 +17,15 @@ const TraitMoveForm = ({ trait }) => {
     <APIForm
       url="/api/traits/moves"
       method="POST"
-      payload={{ text, trait: trait.id }}
+      payload={{
+        text,
+        trait: trait.id,
+        is_magic: isMagic,
+        is_traumatized: isTraumatized,
+        non_magic_text: nonMagicText,
+        non_traumatized_text: nonTraumatizedText,
+        non_traumatized_or_magic_text: nonTraumaNonMagicText,
+      }}
     >
       <BooleanField name="isMagic" boolean={isMagic} toggler={toggleIsMagic} />
       <BooleanField
