@@ -11,19 +11,19 @@ const NatureDetail = (props) => {
       <ChildList
         childArray={nature.move_set}
         category="Moves"
-        baseURL="/cms/natures/Comfortable/Farm"
+        baseURL={`/cms/natures/Comfortable/${nature.name}`}
       />
       <NatureMoveForm nature={nature} />
       <ChildList
         childArray={nature.aesthetic_set}
         category="Aesthetics"
-        baseURL="/cms/natures/Comfortabele/Farm"
+        baseURL={`/cms/natures/Comfortabele/)${nature.name}`}
       />
       <NatureAestheticForm nature={nature} />
       <ChildList
         childArray={nature.lore_set}
         category="Lore"
-        baseURL="/cms/natures/Comfortable/Farm"
+        baseURL={`/cms/natures/Comfortable/${nature.name}`}
       />
       <NatureLoreForm nature={nature} />
     </>
