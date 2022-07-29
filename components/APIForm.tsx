@@ -34,6 +34,7 @@ const APIForm = ({ payload, url, method, children }) => {
     >
       <Error error={error} clearError={clearError} />
       {children}
+      <button>Submit</button>
     </form>
   );
 };
