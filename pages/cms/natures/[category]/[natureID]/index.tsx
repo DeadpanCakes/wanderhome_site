@@ -31,11 +31,11 @@ const NatureDetail = (props) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const { nature: target } = context.params;
+  const { natureID: targetID } = context.params;
   const url = process.env.API + `natures/`;
   const response = await fetch(url);
   const data = await response.json();
-  const nature = data.find((nature) => nature.name === target);
+  const nature = data.find((nature) => nature.id.toString() === targetID);
   return { props: { nature: JSON.stringify(nature) } };
 };
 
