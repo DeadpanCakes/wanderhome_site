@@ -27,4 +27,21 @@ const APIHandler = (baseURL, body, auth) => {
     }
 }
 
-export default APIHandler
+const makeHandler = (endpoint) => {
+    return async (req, res) => {
+        const { authorization } = req.headers;
+        const baseURL = process.env.API + endpoint;
+        const apiMethods = APIHandler(baseURL, req.body, authorization);
+        console.log(req.body);
+        if (req.method === "POST") {
+            const data = await apiMethods.post();
+            return res.json(data);
+        }
+        if (req.method === "DELETE") {
+            const data = await apiMethods.delete();
+            return res.json(data);
+        }
+    };
+};
+
+export default makeHandler
