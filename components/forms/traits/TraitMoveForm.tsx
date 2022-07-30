@@ -1,5 +1,5 @@
 import { useState } from "react";
-import APIForm from "../../layouts/APIForm";
+import APIForm from "../../layouts/FormLayout";
 import BooleanField from "../../BooleanField";
 import InputField from "../../InputField";
 

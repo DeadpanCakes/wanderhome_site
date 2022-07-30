@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputField from "../../InputField";
 import BooleanField from "../../BooleanField";
-import APIForm from "../../layouts/APIForm";
+import APIForm from "../../layouts/FormLayout";
 
 const NatureLoreForm = ({ nature }) => {
   const [text, setText] = useState("");

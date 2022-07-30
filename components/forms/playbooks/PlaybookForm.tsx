@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputField from "../../InputField";
-import APIForm from "../../layouts/APIForm";
+import APIForm from "../../layouts/FormLayout";
 
 const PlaybookForm = () => {
   const [name, setName] = useState("");

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import InputField from "../../InputField";
-import APIForm from "../../layouts/APIForm";
+import APIForm from "../../layouts/FormLayout";
 import BooleanField from "../../BooleanField";
 
 const TraitForm = ({ category }) => {
