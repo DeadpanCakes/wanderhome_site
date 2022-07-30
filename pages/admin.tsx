@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 
@@ -5,6 +6,7 @@ const Admin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setJWT, setRefreshToken } = useAuth();
+  const router = useRouter();
 
   const handleSubmit = async () => {
     const res = await fetch("/api/auth/login", {
@@ -17,6 +19,7 @@ const Admin = () => {
     const data = await res.json();
     setJWT(data.access);
     setRefreshToken(data.refresh);
+    router.push("/cms");
   };
 
   return (
