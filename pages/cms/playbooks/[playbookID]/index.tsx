@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { v4 as uuid } from "uuid";
 import ChildList from "../../../../components/ChildList";
 import APIForm from "../../../../components/forms/APIForm";
@@ -49,13 +50,20 @@ const Playbook = (props) => {
         url="/api/playbooks/animals"
         changeHandler={setAnimal}
       />
-      <p>Prompt: {playbook.personality.prompt}</p>
-      {playbook.personality.option_set.length > 0 ? (
-        <ChildList
-          category="personality"
-          baseURL={baseURL + "/personality"}
-          childArray={playbook.personality.option_set}
-        />
+      <h2>Personality</h2>
+      {playbook.personality ? (
+        <Link href={`/cms/playbooks/${playbook.id}/personality/`}>
+          <p>Prompt: {playbook.personality.prompt}</p>
+        </Link>
+      ) : null}
+      {playbook.personality ? (
+        playbook.personality.option_set > 0 ? (
+          <ChildList
+            category="options"
+            baseURL={baseURL + "/personality"}
+            childArray={playbook.personality.option_set}
+          />
+        ) : null
       ) : null}
       {playbook.personality ? null : (
         <APIForm
