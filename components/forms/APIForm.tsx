@@ -1,5 +1,6 @@
 import FormLayout from "../layouts/FormLayout";
 import InputField from "../InputField";
+import { v4 as uuid } from "uuid";
 
 const APIForm = ({ payload, method, url, changeHandler }) => {
   const fields = generateFields(payload);
@@ -19,6 +20,7 @@ const APIForm = ({ payload, method, url, changeHandler }) => {
         });
         return (
           <InputField
+            key={uuid()}
             name={field.name}
             value={field.value}
             changeHandler={handler.setState}
