@@ -49,18 +49,22 @@ const Playbook = (props) => {
         url="/api/playbooks/animals"
         changeHandler={setAnimal}
       />
-      <p>{playbook.personality.prompt}</p>
-      <ChildList
-        category="personality"
-        baseURL={baseURL + "/personality"}
-        childArray={playbook.personality.option_set}
-      />
-      <APIForm
-        payload={personality}
-        method="POST"
-        url="/api/playbooks/animals"
-        changeHandler={setPersonality}
-      />
+      <p>Prompt: {playbook.personality.prompt}</p>
+      {playbook.personality.option_set.length > 0 ? (
+        <ChildList
+          category="personality"
+          baseURL={baseURL + "/personality"}
+          childArray={playbook.personality.option_set}
+        />
+      ) : null}
+      {playbook.personality ? null : (
+        <APIForm
+          payload={personality}
+          method="POST"
+          url="/api/playbooks/personalities"
+          changeHandler={setPersonality}
+        />
+      )}
       <ChildList
         category="Appearance"
         baseURL={baseURL + "/appearance"}
@@ -69,7 +73,7 @@ const Playbook = (props) => {
       <APIForm
         payload={appearance}
         method="POST"
-        url="/api/playbooks/animals"
+        url="/api/playbooks/appearances"
         changeHandler={setAppearance}
       />
       <h2>History</h2>
@@ -88,7 +92,7 @@ const Playbook = (props) => {
       <APIForm
         payload={history}
         method="POST"
-        url="/api/playbooks/animals"
+        url="/api/playbooks/histories"
         changeHandler={setHistory}
       />
       <ChildList
@@ -99,7 +103,7 @@ const Playbook = (props) => {
       <APIForm
         payload={relationship}
         method="POST"
-        url="/api/playbooks/animals"
+        url="/api/playbooks/relationships"
         changeHandler={setRelationship}
       />
       <ChildList
@@ -110,7 +114,7 @@ const Playbook = (props) => {
       <APIForm
         payload={signatureMove}
         method="POST"
-        url="/api/playbooks/animals"
+        url="/api/playbooks/signature-moves"
         changeHandler={setSignatureMove}
       />
       <ChildList
@@ -121,7 +125,7 @@ const Playbook = (props) => {
       <APIForm
         payload={seasonalMove}
         method="POST"
-        url="/api/playbooks/animals"
+        url="/api/playbooks/seasonal-moves"
         changeHandler={setSeasonalMove}
       />
     </>
