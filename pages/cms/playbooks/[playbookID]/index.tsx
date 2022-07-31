@@ -57,7 +57,7 @@ const Playbook = (props) => {
         </Link>
       ) : null}
       {playbook.personality ? (
-        playbook.personality.option_set > 0 ? (
+        playbook.personality.option_set.length > 0 ? (
           <ChildList
             category="options"
             baseURL={baseURL + "/personality"}
