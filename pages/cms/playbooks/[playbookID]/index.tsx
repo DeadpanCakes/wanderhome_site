@@ -88,9 +88,13 @@ const Playbook = (props) => {
       {playbook.history_set.map((history) => {
         return (
           <>
-            <h2>{history.prompt}</h2>
+            <Link
+              href={`/cms/playbooks/${playbook.id}/histories/${history.id}`}
+            >
+              <h2>{history.prompt}</h2>
+            </Link>
             <ChildList
-              category={uuid()}
+              category="history"
               baseURL={baseURL + "/history"}
               childArray={history.option_set}
             />
