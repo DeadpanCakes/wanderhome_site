@@ -6,6 +6,7 @@ import APIForm from "../../../../components/forms/APIForm";
 const Season = (props) => {
   const season = JSON.parse(props.season);
   const router = useRouter();
+  console.log(season);
   const [month, setMonth] = useState({
     name: "",
     description: "",
@@ -22,7 +23,7 @@ const Season = (props) => {
       <ChildList
         category="months"
         childArray={season.month_set}
-        baseURL={router.asPath}
+        baseURL={router.asPath + "/month"}
       />
       <APIForm
         payload={month}
@@ -33,7 +34,7 @@ const Season = (props) => {
       <ChildList
         category="holidays"
         childArray={season.holiday_set}
-        baseURL={router.asPath}
+        baseURL={router.asPath + "/holiday"}
       />
       <APIForm
         payload={holiday}
