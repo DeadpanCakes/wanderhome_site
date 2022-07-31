@@ -1,6 +1,6 @@
 import FormLayout from "../layouts/FormLayout";
 import InputField from "../InputField";
-import { v4 as uuid } from "uuid";
+import BooleanField from "../BooleanField";
 
 const APIForm = ({ payload, method, url, changeHandler }) => {
   const fields = generateFields(payload);
@@ -18,9 +18,15 @@ const APIForm = ({ payload, method, url, changeHandler }) => {
         const handler = handlers.find((handler) => {
           return handler.name === field.name;
         });
-        return (
+        return typeof field.value === "boolean" ? (
+          <BooleanField
+            name={field.name}
+            boolean={field.value}
+            toggler={handler.setState}
+          />
+        ) : (
           <InputField
-            key={uuid()}
+            key={field.name}
             name={field.name}
             value={field.value}
             changeHandler={handler.setState}
@@ -42,17 +48,27 @@ const generateFields = (payload) => {
 const generateHandlers = (fields, handler) => {
   const handlers = [];
   for (let fieldName in fields) {
-    handlers.push({
-      name: fieldName,
-      setState: (newValue) => {
-        return handler((prevState) => {
-          return {
-            ...prevState,
-            [fieldName]: newValue,
-          };
-        });
-      },
-    });
+    const isBoolean = (value) => {
+      return typeof value === "boolean";
+    };
+    const setState = isBoolean(fields[fieldName].value)
+      ? () => {
+          return handler((prevState) => {
+            return {
+              ...prevState,
+              [fieldName]: !prevState[fieldName],
+            };
+          });
+        }
+      : (newValue) => {
+          return handler((prevState) => {
+            return {
+              ...prevState,
+              [fieldName]: newValue,
+            };
+          });
+        };
+    handlers.push({ name: fieldName, setState });
   }
   return handlers;
 };
