@@ -11,6 +11,7 @@ const personality = (props) => {
   return (
     <>
       <h1>Personality</h1>
+      <p>{playbook.personality.prompt}</p>
       <ChildList
         category="options"
         baseURL={`/cms/playbooks/${playbook.id}/personality`}
