@@ -1,5 +1,5 @@
 import makeHandler from "../../../middleware/APIHandler";
 
-const handler = makeHandler("months/");
+const handler = makeHandler("holidays/");
 
 export default handler;
