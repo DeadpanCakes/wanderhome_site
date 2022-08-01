@@ -19,7 +19,7 @@ const Holiday = (props) => {
       <ChildList
         category="traditions"
         childArray={holiday.tradition_set}
-        baseURL={router.asPath}
+        baseURL={router.asPath + "traditions/"}
       />
       <APIForm
         payload={tradition}
@@ -30,7 +30,7 @@ const Holiday = (props) => {
       <ChildList
         category="moves"
         childArray={holiday.move_set}
-        baseURL={router.asPath}
+        baseURL={router.asPath + "moves/"}
       />
       <APIForm
         payload={move}
@@ -41,7 +41,7 @@ const Holiday = (props) => {
       <ChildList
         category="customs"
         childArray={holiday.custom_set}
-        baseURL={router.asPath}
+        baseURL={router.asPath + "customs/"}
       />
       <APIForm
         payload={custom}
