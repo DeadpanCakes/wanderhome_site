@@ -56,7 +56,7 @@ const Month = (props) => {
       <APIForm
         payload={lack}
         changeHandler={setLack}
-        url={router.asPath}
+        url="/ai/seasons/lacks"
         method="POST"
       />
       <ChildList
@@ -67,7 +67,7 @@ const Month = (props) => {
       <APIForm
         payload={sign}
         changeHandler={setSign}
-        url={router.asPath}
+        url="/api/seasons/signs"
         method="POST"
       />
     </>
