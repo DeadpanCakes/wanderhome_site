@@ -2,7 +2,6 @@ import TraitMoveForm from "../../../../../components/forms/traits/TraitMoveForm"
 
 const traitName = (props) => {
   const trait = JSON.parse(props.trait);
-  console.log(trait);
   return (
     <>
       <button
@@ -36,7 +35,6 @@ const deleteTrait = async (id) => {
     headers,
     body,
   });
-  console.log(response, "Here!");
 };
 
 export const getServerSideProps = async (context) => {
