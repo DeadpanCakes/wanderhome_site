@@ -25,6 +25,28 @@ const Month = (props) => {
     <>
       <h1>{month.name}</h1>
       <p>{month.description}</p>
+      <ChildList
+        childArray={month.lack_set}
+        baseURL={router.asPath}
+        category="Lacks"
+      />
+      <APIForm
+        payload={lack}
+        changeHandler={setLack}
+        url="/ai/seasons/lacks"
+        method="POST"
+      />
+      <ChildList
+        childArray={month.sign_set}
+        baseURL={router.asPath}
+        category="Signs"
+      />
+      <APIForm
+        payload={sign}
+        changeHandler={setSign}
+        url="/api/seasons/signs"
+        method="POST"
+      />
       <h2>Event</h2>
       {month.event ? (
         <>
@@ -48,28 +70,6 @@ const Month = (props) => {
           method="POST"
         />
       )}
-      <ChildList
-        childArray={month.lack_set}
-        baseURL={router.asPath}
-        category="Lacks"
-      />
-      <APIForm
-        payload={lack}
-        changeHandler={setLack}
-        url="/ai/seasons/lacks"
-        method="POST"
-      />
-      <ChildList
-        childArray={month.sign_set}
-        baseURL={router.asPath}
-        category="Signs"
-      />
-      <APIForm
-        payload={sign}
-        changeHandler={setSign}
-        url="/api/seasons/signs"
-        method="POST"
-      />
     </>
   );
 };
