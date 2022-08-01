@@ -1,9 +1,26 @@
+import { useState } from "react";
 import ChildList from "../../../components/ChildList";
+import APIForm from "../../../components/forms/APIForm";
 
 const Seasons = (props) => {
   const seasons = JSON.parse(props.seasons);
+  const [season, setSeason] = useState({
+    name: "",
+  });
   return (
-    <ChildList category="Seasons" childArray={seasons} baseURL="/cms/seasons" />
+    <>
+      <APIForm
+        payload={season}
+        changeHandler={setSeason}
+        url="/api/seasons/"
+        method="POST"
+      />
+      <ChildList
+        category="Seasons"
+        childArray={seasons}
+        baseURL="/cms/seasons"
+      />
+    </>
   );
 };
 
