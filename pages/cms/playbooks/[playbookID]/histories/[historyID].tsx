@@ -21,7 +21,7 @@ const History = (props) => {
       <h1>History</h1>
       <ChildList
         category="options"
-        baseURL={`/cms/playbooks/${playbook.id}/histories/}`}
+        baseURL={`/cms/playbooks/${playbook.id}/histories/option/`}
         childArray={history.option_set}
       />
       <APIForm
@@ -29,7 +29,6 @@ const History = (props) => {
         url="/api/playbooks/history-options"
         payload={option}
         changeHandler={(x) => {
-          console.log(option);
           setOption(x);
         }}
       />
