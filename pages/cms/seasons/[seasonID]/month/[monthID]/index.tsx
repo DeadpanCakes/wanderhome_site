@@ -33,7 +33,7 @@ const Month = (props) => {
       <APIForm
         payload={lack}
         changeHandler={setLack}
-        url="/ai/seasons/lacks"
+        url="/api/seasons/lacks"
         method="POST"
       />
       <ChildList
