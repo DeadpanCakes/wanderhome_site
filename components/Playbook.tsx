@@ -12,7 +12,7 @@ const Playbook = ({ playbook }) => {
     relationships,
     signatureMoves,
     seasonalMoves,
-  } = playbook;
+  } = playbookInterfacer(playbook);
   console.log(playbook);
   return (
     <div className={styles.playbook}>
@@ -56,6 +56,27 @@ const Playbook = ({ playbook }) => {
       />
     </div>
   );
+};
+
+const playbookInterfacer = (playbookAPI) => {
+  return {
+    ...playbookAPI,
+    animals: playbookAPI.animal_set,
+    looks: playbookAPI.appearance_set,
+    histories: playbookAPI.history_set.map((history) => {
+      return {
+        prompt: history.prompt,
+        options: history.option_set,
+      };
+    }),
+    personality: {
+      prompt: playbookAPI.personality.prompt,
+      options: playbookAPI.personality.option_set,
+    },
+    relationships: playbookAPI.relationship_set,
+    seasonalMoves: playbookAPI.seasonal_move_set,
+    signatureMoves: playbookAPI.signature_move_set,
+  };
 };
 
 export default Playbook;
