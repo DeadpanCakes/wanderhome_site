@@ -23,5 +23,6 @@ a {
   body {
     color: white;
     background: black;
+    margin: 5vh 10vw;
   }
 }
