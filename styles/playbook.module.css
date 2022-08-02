@@ -1,0 +1,9 @@
+.playbook {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "header header";
+}
+
+.header {
+  grid-area: header;
+}
