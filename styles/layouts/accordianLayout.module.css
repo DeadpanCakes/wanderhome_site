@@ -1,0 +1,18 @@
+.accordian {
+  overflow: hidden;
+}
+
+.parent {
+  display: flex;
+}
+
+.body {
+  overflow: hidden;
+  max-height: 1000px;
+  transition: max-height 300ms ease-in-out;
+}
+
+.hidden {
+  max-height: 0;
+  opacity: 0;
+}
