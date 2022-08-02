@@ -2,15 +2,14 @@ import { useState } from "react";
 import styles from "../../styles/layouts/accordianLayout.module.css";
 
 const Accordian = ({ parent, children }) => {
-  console.log("mounted");
   const [isExpanded, setExpansion] = useState(false);
   const toggleExpansion = () => setExpansion((prevState) => !prevState);
   return (
     <div className={styles.accordian}>
-      <div className={styles.parent}>
+      <button className={styles.parent} onClick={toggleExpansion}>
         {parent}
-        <button onClick={toggleExpansion}>{isExpanded ? "^" : "v"}</button>
-      </div>
+        <p>{isExpanded ? "^" : "v"}</p>
+      </button>
       <div
         className={isExpanded ? styles.body : `${styles.body} ${styles.hidden}`}
       >
