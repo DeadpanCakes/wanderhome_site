@@ -1,12 +1,16 @@
+import React from "react";
+import Accordian from "./Accordian";
+
 const ListLayout = ({ header, list }) => {
   return (
     <div>
-      {header}
-      <ul>
-        {list.map((item) => {
-          return <li>{item}</li>;
-        })}
-      </ul>
+      <Accordian parent={header}>
+        <ul>
+          {list.map((item) => {
+            return <li>{item}</li>;
+          })}
+        </ul>
+      </Accordian>
     </div>
   );
 };
