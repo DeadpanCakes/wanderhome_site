@@ -19,7 +19,6 @@ const Place = ({ month, place }) => {
     .map((move) => move.text);
   return (
     <div>
-      <button onClick={() => console.log(month)}>Month in here</button>
       <Accordian
         parent={
           <h1>
