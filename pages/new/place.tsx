@@ -1,10 +1,16 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import PlaceForm from "../../components/forms/PlaceForm";
 import useStorage from "../../hooks/useStorage";
 
 const place = (props) => {
   const [places, setPlaces, fetchPlaces] = useStorage("places", null);
   const natureCategories = JSON.parse(props.natureCategories);
+  useEffect(() => {
+    if (!places) {
+      fetchPlaces();
+    }
+  }, []);
   const addNewPlace = (newPlace) => {
     setPlaces((prevState) => {
       if (prevState) {
