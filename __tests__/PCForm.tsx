@@ -207,5 +207,8 @@ it("prevents user from progressing to the next page of the form with invalid dat
   await user.click(
     screen.getByLabelText("What do you know about the world that I don't?")
   );
+  expect(submitBtn.disabled).toBeTruthy();
+  await user.type(screen.getByLabelText("NAME"), "Ari");
+  await user.type(screen.getByLabelText("PRONOUNS"), "She/Her");
   expect(submitBtn.disabled).toBeFalsy();
 });

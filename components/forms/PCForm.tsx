@@ -45,8 +45,30 @@ const PCForm = ({ playbooks }) => {
   const relationshipIsValid = relationships.length === 2;
   const pageOneValid = useValidation(chosenPlaybook.id);
   const pageTwoValid = useValidation(animal, personalityIsValid, lookIsValid);
-  const pageThreeValid = useValidation(historyIsValid, relationshipIsValid);
+  const pageThreeValid = useValidation(
+    historyIsValid,
+    relationshipIsValid,
+    name,
+    pronouns
+  );
   const submitHandler = console.log;
+
+  useEffect(() => {
+    if (chosenPlaybook.id) {
+      setPersonality((prevState) => {
+        return {
+          positive: {
+            prompt: chosenPlaybook.personality.prompt.positive,
+            choices: [],
+          },
+          negative: {
+            prompt: chosenPlaybook.personality.prompt.negative,
+            choices: [],
+          },
+        };
+      });
+    }
+  }, [chosenPlaybook]);
 
   const PageThree = (
     <div className={styles.pageThree}>
