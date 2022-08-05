@@ -42,11 +42,26 @@ const playbooks = [
         option_set: [
           {
             id: 10,
-            text: "Dulcet, a god of tiny melodies. They are dramatic and/or •glamorous.",
+            text: "Dulcet, a god of tiny melodies. They are dramatic and/or glamorous.",
           },
           {
             id: 11,
-            text: "Furtive, a god of dust bunnies and cobwebs. They are quiet and/or •invisible.",
+            text: "Furtive, a god of dust bunnies and cobwebs. They are quiet and/or invisible.",
+          },
+        ],
+      },
+      {
+        id: 29,
+        prompt:
+          "Choose 1 ceremonial object you still honor and 1 you cannot treasure any longer. Tell the table about them.",
+        option_set: [
+          {
+            id: 30,
+            text: "A box of beeswax candles, handmade by your learned mentor as part of their final lesson.",
+          },
+          {
+            id: 31,
+            text: "A beautiful wooden walking stick adorned with feathers and runes, passed down through generations.",
           },
         ],
       },
@@ -172,5 +187,25 @@ it("prevents user from progressing to the next page of the form with invalid dat
   await user.click(screen.getByLabelText("Wheelchair"));
   expect(nextBtn.disabled).toBeFalsy();
   await user.click(nextBtn);
-  expect(nextBtn.disabled).toBeTruthy();
+  const submitBtn: HTMLInputElement = screen.getByText("Submit");
+  expect(submitBtn.disabled).toBeTruthy();
+  await user.click(
+    screen.getByLabelText(
+      "Furtive, a god of dust bunnies and cobwebs. They are quiet and/or invisible."
+    )
+  );
+  await user.click(
+    screen.getByLabelText(
+      "A box of beeswax candles, handmade by your learned mentor as part of their final lesson."
+    )
+  );
+  await user.click(
+    screen.getByLabelText(
+      "Which of my small and forgotten gods did you rescue and give to me?"
+    )
+  );
+  await user.click(
+    screen.getByLabelText("What do you know about the world that I don't?")
+  );
+  expect(submitBtn.disabled).toBeFalsy();
 });
