@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputField from "../InputField";
 import styles from "../../styles/PCForm.module.css";
 import PageLayout from "../layouts/PageLayout";
-import usePlaybookInterfacer from "../../hooks/usePlaybookInterfacer";
+import PlaybookSelection from "./PlaybookSelection";
 
 const PCForm = ({ playbooks }) => {
   const [name, setName] = useState("");
@@ -52,35 +52,6 @@ const PCForm = ({ playbooks }) => {
   useEffect(() => {
     checkPageTwoIsValid();
   }, [personality, animal, looks]);
-
-  const PageOne = (
-    <div>
-      <ul className={styles.playbookList}>
-        {playbooks.map((playbook) => {
-          return (
-            <li className={styles.playbookListing} key={playbook.id}>
-              <input
-                type="checkbox"
-                id={playbook.id}
-                onChange={() => {
-                  const target = playbook;
-                  const choice = playbooks.find(
-                    (playbook) => playbook.id === target.id
-                  );
-                  setChosenPlaybook(usePlaybookInterfacer(choice));
-                }}
-                checked={playbook.id === chosenPlaybook.id}
-              />
-              <label htmlFor={playbook.id}>
-                <h2>{playbook.name}</h2>
-                <p>{playbook.description}</p>
-              </label>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
 
   const PageTwo = (
     <div className={styles.pageTwo}>
@@ -360,7 +331,15 @@ const PCForm = ({ playbooks }) => {
         />
       </div>
       <PageLayout
-        pages={[PageOne, PageTwo, PageThree]}
+        pages={[
+          <PlaybookSelection
+            playbooks={playbooks}
+            chosenPlaybook={chosenPlaybook}
+            setChosenPlaybook={setChosenPlaybook}
+          />,
+          PageTwo,
+          PageThree,
+        ]}
         pageValidity={[pageOneValid, pageTwoValid]}
       />
     </form>
