@@ -1,4 +1,5 @@
 import ListLayout from "./layouts/ListLayout";
+import React from "react";
 
 const Moves = () => {
   const weakMoves = [

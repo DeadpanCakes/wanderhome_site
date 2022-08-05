@@ -1,5 +1,6 @@
 import Accordian from "./layouts/Accordian";
 import ListLayout from "./layouts/ListLayout";
+import React from "react";
 
 const NPC = ({ npc }) => {
   const moves = npc.traits.reduce((arr, trait) => {

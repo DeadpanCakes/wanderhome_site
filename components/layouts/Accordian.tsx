@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "../../styles/layouts/accordianLayout.module.css";
 
 const Accordian = ({ parent, children }) => {
