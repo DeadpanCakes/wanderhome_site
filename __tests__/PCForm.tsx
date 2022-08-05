@@ -24,11 +24,15 @@ const playbooks = [
       option_set: [
         { id: 5, text: "Alert" },
         { id: 6, text: "Patient" },
+        { id: 29, text: "Friendly" },
+        { id: 30, text: "Organized" },
       ],
     },
     appearance_set: [
       { id: 7, text: "Wooden Sandals" },
       { id: 8, text: "Huge Glasses" },
+      { id: 27, text: "Scratchy Cloak" },
+      { id: 28, text: "Wheelchair" },
     ],
     history_set: [
       {
@@ -138,25 +142,35 @@ it("changes the shape of playbook.personality", async () => {
   const caretaker = screen.getByText("The Caretaker");
   const nextBtn = screen.getByText("Next");
   await user.click(caretaker);
-  const firstIndicator = document.querySelector(".firstIndicator");
-  const secondIndicator = document.querySelector(".secondIndicator");
   await user.click(nextBtn);
   expect(screen.getByText("You value being")).toBeInTheDocument();
   expect(screen.getByText("You find it exhausting to be")).toBeInTheDocument();
 });
 
-// it("prevents user from progressing to the next page of the form with invalid data on current page", async () => {
-//   const user = userEvent.setup();
-//   render(<PCForm playbooks={playbooks} />);
-//   const playbookBoxes = document.querySelectorAll(".playbooks");
-//   const nextBtn: HTMLInputElement = screen.getByText("Next");
-//   const caretaker: HTMLInputElement = screen.getByLabelText("The Caretaker");
-//   expect(
-//     Array.from(playbookBoxes).every((box: HTMLInputElement) => !box.checked)
-//   );
-//   expect(nextBtn.disabled).toBeTruthy();
-//   await user.click(caretaker);
-//   expect(nextBtn.disabled).toBeFalsy();
-//   await user.click(nextBtn);
-//   expect(nextBtn.disabled).toBeTruthy();
-// });
+it("prevents user from progressing to the next page of the form with invalid data on current page", async () => {
+  const user = userEvent.setup();
+  render(<PCForm playbooks={playbooks} />);
+  const playbookBoxes = document.querySelectorAll(".playbooks");
+  const nextBtn: HTMLInputElement = screen.getByText("Next");
+  const caretaker: HTMLInputElement = screen.getByLabelText("The Caretaker");
+  expect(
+    Array.from(playbookBoxes).every((box: HTMLInputElement) => !box.checked)
+  );
+  expect(nextBtn.disabled).toBeTruthy();
+  await user.click(caretaker);
+  expect(nextBtn.disabled).toBeFalsy();
+  await user.click(nextBtn);
+  expect(nextBtn.disabled).toBeTruthy();
+  await user.type(screen.getByLabelText("ANIMAL"), "Stoat");
+  await user.click(screen.getByLabelText("Positive Alert"));
+  await user.click(screen.getByLabelText("Positive Patient"));
+  await user.click(screen.getByLabelText("Negative Friendly"));
+  await user.click(screen.getByLabelText("Negative Organized"));
+  await user.click(screen.getByLabelText("Wooden Sandals"));
+  await user.click(screen.getByLabelText("Huge Glasses"));
+  await user.click(screen.getByLabelText("Scratchy Cloak"));
+  await user.click(screen.getByLabelText("Wheelchair"));
+  expect(nextBtn.disabled).toBeFalsy();
+  await user.click(nextBtn);
+  expect(nextBtn.disabled).toBeTruthy();
+});

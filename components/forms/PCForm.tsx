@@ -2,12 +2,22 @@ import React, { useState, useEffect } from "react";
 import InputField from "../InputField";
 import styles from "../../styles/PCForm.module.css";
 import PageLayout from "../layouts/PageLayout";
+import usePlaybookInterfacer from "../../hooks/usePlaybookInterfacer";
 
 const PCForm = ({ playbooks }) => {
   const [name, setName] = useState("");
   const [pronouns, setPronouns] = useState("");
   const [animal, setAnimal] = useState("");
-  const [personality, setPersonality] = useState({});
+  const [personality, setPersonality] = useState({
+    positive: {
+      prompt: "",
+      choices: [],
+    },
+    negative: {
+      prompt: "",
+      choices: [],
+    },
+  });
   const [looks, setLooks] = useState([]);
   const [histories, setHistories] = useState([]);
   const [relationship1, setRelationship1] = useState("");
@@ -29,11 +39,19 @@ const PCForm = ({ playbooks }) => {
   const [pageOneValid, setPageOneValid] = useState(false);
   const [pageTwoValid, setPageTwoValid] = useState(false);
   const checkPageOneIsValid = () => setPageOneValid(!!chosenPlaybook.id);
+  const personalityIsValid = () =>
+    personality.positive.choices.length === 2 &&
+    personality.negative.choices.length === 2;
+  const lookIsValid = () => 4 >= looks.length && looks.length >= 3;
+  const checkPageTwoIsValid = () =>
+    setPageTwoValid(!!animal && !!personalityIsValid() && lookIsValid());
   const submitHandler = console.log;
-
   useEffect(() => {
     checkPageOneIsValid();
   }, [chosenPlaybook]);
+  useEffect(() => {
+    checkPageTwoIsValid();
+  }, [personality, animal, looks]);
 
   const PageOne = (
     <div>
@@ -49,16 +67,7 @@ const PCForm = ({ playbooks }) => {
                   const choice = playbooks.find(
                     (playbook) => playbook.id === target.id
                   );
-                  setChosenPlaybook({
-                    ...choice,
-                    personality: {
-                      ...choice.personality,
-                      prompt: {
-                        text: choice.personality.prompt,
-                        ...getPersonalityText(choice.name),
-                      },
-                    },
-                  });
+                  setChosenPlaybook(usePlaybookInterfacer(choice));
                 }}
                 checked={playbook.id === chosenPlaybook.id}
               />
@@ -100,9 +109,135 @@ const PCForm = ({ playbooks }) => {
           {chosenPlaybook.personality.option_set.map((option) => {
             return (
               <li className={styles.personalityOption}>
-                <input type="checkbox" />
+                <label
+                  className={styles.personalityOptionLabels}
+                  htmlFor={"positive" + option.text}
+                >{`Positive ${option.text}`}</label>
+                <input
+                  type="checkbox"
+                  id={"positive" + option.text}
+                  checked={personality.positive.choices.find(
+                    (choice) => option.id == choice.id
+                  )}
+                  onChange={() => {
+                    if (
+                      personality.positive.choices.find(
+                        (trait) => trait.id == option.id
+                      )
+                    ) {
+                      return setPersonality((prevState) => {
+                        return {
+                          ...prevState,
+                          positive: {
+                            ...personality.positive,
+                            choices: prevState.positive.choices.filter(
+                              (trait) => trait.id != option.id
+                            ),
+                          },
+                        };
+                      });
+                    }
+                    const newTrait = chosenPlaybook.personality.option_set.find(
+                      (trait) => option.id == trait.id
+                    );
+                    if (
+                      personality.negative.choices.find(
+                        (trait) => trait.id == option.id
+                      )
+                    ) {
+                      return setPersonality((prevState) => {
+                        return {
+                          ...prevState,
+                          negative: {
+                            ...personality.negative,
+                            choices: prevState.negative.choices.filter(
+                              (trait) => trait.id !== option.id
+                            ),
+                          },
+                          positive: {
+                            ...personality.positive,
+                            choices:
+                              prevState.positive.choices.concat(newTrait),
+                          },
+                        };
+                      });
+                    }
+                    return setPersonality((prevState) => {
+                      return {
+                        ...prevState,
+                        positive: {
+                          ...personality.positive,
+                          choices: prevState.positive.choices.concat(newTrait),
+                        },
+                      };
+                    });
+                  }}
+                />
                 <p>{option.text}</p>
-                <input type="checkbox" />
+                <label
+                  className={styles.personalityOptionLabels}
+                  htmlFor={"negative" + option.text}
+                >{`Negative ${option.text}`}</label>
+                <input
+                  type="checkbox"
+                  id={"negative" + option.text}
+                  checked={personality.negative.choices.find(
+                    (choice) => option.id == choice.id
+                  )}
+                  onChange={() => {
+                    if (
+                      personality.negative.choices.find(
+                        (trait) => trait.id == option.id
+                      )
+                    ) {
+                      return setPersonality((prevState) => {
+                        return {
+                          ...prevState,
+                          negative: {
+                            ...personality.negative,
+                            choices: prevState.negative.choices.filter(
+                              (trait) => trait.id !== option.id
+                            ),
+                          },
+                        };
+                      });
+                    }
+                    const newTrait = chosenPlaybook.personality.option_set.find(
+                      (trait) => option.id == trait.id
+                    );
+                    if (
+                      personality.positive.choices.find(
+                        (trait) => trait.id == option.id
+                      )
+                    ) {
+                      return setPersonality((prevState) => {
+                        return {
+                          ...prevState,
+                          positive: {
+                            ...personality.positive,
+                            choices: prevState.positive.choices.filter(
+                              (trait) => trait.id !== option.id
+                            ),
+                          },
+                          negative: {
+                            ...personality.negative,
+                            choices:
+                              prevState.negative.choices.concat(newTrait),
+                          },
+                        };
+                      });
+                    }
+                    return setPersonality((prevState) => {
+                      return {
+                        ...prevState,
+                        negative: {
+                          ...personality.negative,
+                          choices: prevState.negative.choices.concat(newTrait),
+                        },
+                      };
+                    });
+                  }}
+                />
               </li>
             );
           })}
@@ -113,9 +248,32 @@ const PCForm = ({ playbooks }) => {
         <ul className={styles.lookList}>
           {chosenPlaybook.appearance_set.map((look) => {
             return (
-              <li>
-                <input type="checkbox" />
-                <label>{look.text}</label>
+              <li
+                onChange={() => {
+                  setLooks((prevState) => {
+                    const lookAlreadyAdded = prevState.find(
+                      (addedLooks) => addedLooks.id === look.id
+                    );
+                    if (lookAlreadyAdded) {
+                      return prevState.filter(
+                        (addedLooks) => addedLooks.id !== look.id
+                      );
+                    }
+                    const newLook = chosenPlaybook.appearance_set.find(
+                      (appearance) => appearance.id === look.id
+                    );
+                    return prevState.concat(newLook);
+                  });
+                }}
+              >
+                <input
+                  type="checkbox"
+                  id={look.id}
+                  checked={looks.find(
+                    (addedLooks) => addedLooks.id === look.id
+                  )}
+                />
+                <label htmlFor={look.id}>{look.text}</label>
               </li>
             );
           })}
@@ -191,11 +349,7 @@ const PCForm = ({ playbooks }) => {
         e.preventDefault();
       }}
     >
-      <button
-        onClick={() => console.log(getPersonalityText(chosenPlaybook.name))}
-      >
-        Check
-      </button>
+      <button onClick={() => console.log(personality)}>Check</button>
       <div className={styles.basic}>
         <InputField name="name" value={name} changeHandler={setName} />
         <p>{chosenPlaybook.name.toUpperCase()}</p>
@@ -207,95 +361,10 @@ const PCForm = ({ playbooks }) => {
       </div>
       <PageLayout
         pages={[PageOne, PageTwo, PageThree]}
-        pageValidity={[pageOneValid]}
+        pageValidity={[pageOneValid, pageTwoValid]}
       />
     </form>
   );
-};
-
-const getPersonalityText = (playbook) => {
-  //   personality: {
-  //     positive: { prompt: "Values", choices: ["Expressive", "Patient"] },
-  //     negative: { prompt: "Exhausted by", choices: ["Alert", "Organized"] },
-  //   },
-  switch (playbook) {
-    case "The Caretaker":
-      console.log("reached");
-      return {
-        positive: "You value being",
-        negative: "You find it exhausting to be",
-      };
-    case "The Dancer":
-      return {
-        positive: "You are",
-        negative: "You wish you were better at being",
-      };
-    case "The Exile":
-      return {
-        positive: "You are",
-        negative: "You try not to be",
-      };
-    case "The Firelight":
-      return {
-        positive: "You try to be",
-        negative: "You know you can't be",
-      };
-    case "The Fool":
-      return {
-        positive: "You are",
-        negative: "You're worride you're not actually",
-      };
-    case "The Guardian":
-      return {
-        positive: "You generally are",
-        negative: "People assume you always are",
-      };
-    case "The Moth Tender":
-      return {
-        positive: "Your job asks you to be",
-        negative: "You actually are",
-      };
-    case "The Peddler":
-      return {
-        positive: "You are",
-        negative: "You feel you need to be",
-      };
-    case "The Pilgrim":
-      return {
-        positive: "You try to be",
-        negative: "You've given up on being",
-      };
-    case "The Poet":
-      return {
-        positive: "Based on your writing, people assume you are",
-        negative: "You actuall are",
-      };
-    case "The Ragamuffin":
-      return {
-        positive: "You are",
-        negative: "You refuse to be",
-      };
-    case "The Shepherd":
-      return {
-        positive: "These days, you still are",
-        negative: "Now, you're just not",
-      };
-    case "The Teacher":
-      return {
-        positive: "You are",
-        negative: "But now, you can't be",
-      };
-    case "The Vagabond":
-      return {
-        positive: "You call yourself",
-        negative: "You staunchly insist you're not",
-      };
-    case "The Veteran":
-      return {
-        positive: "Sometimes you are",
-        negative: "Yoe refuse to be",
-      };
-  }
 };
 
 export default PCForm;
