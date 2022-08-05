@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import InputField from "../InputField";
 import styles from "../../styles/PCForm.module.css";
@@ -6,7 +7,8 @@ import PlaybookSelection from "./PlaybookSelection";
 import PCDetailForm from "./PCDetail";
 import useValidation from "../../hooks/useValidation";
 
-const PCForm = ({ playbooks }) => {
+const PCForm = ({ playbooks, submitHandler }) => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [pronouns, setPronouns] = useState("");
   const [animal, setAnimal] = useState("");
@@ -51,7 +53,6 @@ const PCForm = ({ playbooks }) => {
     name,
     pronouns
   );
-  const submitHandler = console.log;
 
   useEffect(() => {
     if (chosenPlaybook.id) {
@@ -195,6 +196,7 @@ const PCForm = ({ playbooks }) => {
             signatureMoves: chosenPlaybook.signature_move_set,
             seasonalMoves: chosenPlaybook.seasonal_move_set,
           });
+          router.push("/");
         }}
       >
         Submit
