@@ -4,6 +4,7 @@ import styles from "../../styles/PCForm.module.css";
 import PageLayout from "../layouts/PageLayout";
 import PlaybookSelection from "./PlaybookSelection";
 import PCDetailForm from "./PCDetail";
+import useValidation from "../../hooks/useValidation";
 
 const PCForm = ({ playbooks }) => {
   const [name, setName] = useState("");
@@ -21,8 +22,7 @@ const PCForm = ({ playbooks }) => {
   });
   const [looks, setLooks] = useState([]);
   const [histories, setHistories] = useState([]);
-  const [relationship1, setRelationship1] = useState("");
-  const [relationship2, setRelationship2] = useState("");
+  const [relationships, setRelationships] = useState([]);
   const [chosenPlaybook, setChosenPlaybook] = useState({
     id: null,
     name: "",
@@ -37,22 +37,17 @@ const PCForm = ({ playbooks }) => {
     signature_move_set: [],
     seasonal_move_set: [],
   });
-  const [pageOneValid, setPageOneValid] = useState(false);
-  const [pageTwoValid, setPageTwoValid] = useState(false);
-  const checkPageOneIsValid = () => setPageOneValid(!!chosenPlaybook.id);
   const personalityIsValid = () =>
     personality.positive.choices.length === 2 &&
     personality.negative.choices.length === 2;
   const lookIsValid = () => 4 >= looks.length && looks.length >= 3;
-  const checkPageTwoIsValid = () =>
-    setPageTwoValid(!!animal && !!personalityIsValid() && lookIsValid());
+  const pageOneValid = useValidation(chosenPlaybook.id);
+  const pageTwoValid = useValidation(
+    animal,
+    personalityIsValid(),
+    lookIsValid()
+  );
   const submitHandler = console.log;
-  useEffect(() => {
-    checkPageOneIsValid();
-  }, [chosenPlaybook]);
-  useEffect(() => {
-    checkPageTwoIsValid();
-  }, [personality, animal, looks]);
 
   const PageThree = (
     <div className={styles.pageThree}>
@@ -75,21 +70,12 @@ const PCForm = ({ playbooks }) => {
       })}
       <div>
         <h2>Ask 1 to the left and 1 to the right</h2>
-        <InputField
-          name="relationship1"
-          value={relationship1}
-          changeHandler={setRelationship1}
-        />
-        <InputField
-          name="relationship2"
-          value={relationship2}
-          changeHandler={setRelationship2}
-        />
         <ul>
           {chosenPlaybook.relationship_set.map((relationship) => {
             return (
               <li>
-                <p>{relationship.text}</p>
+                <input type="checkbox" id={relationship.id} />
+                <label htmlFor={relationship.id}>{relationship.text}</label>
               </li>
             );
           })}
@@ -105,7 +91,7 @@ const PCForm = ({ playbooks }) => {
             personality,
             looks,
             histories,
-            relationships: [relationship1, relationship2],
+            relationships,
             signatureMoves: chosenPlaybook.signature_move_set,
             seasonalMoves: chosenPlaybook.seasonal_move_set,
           });
