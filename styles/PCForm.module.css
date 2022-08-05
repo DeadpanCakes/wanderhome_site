@@ -1,0 +1,42 @@
+.basic {
+  display: flex;
+}
+
+.playbookList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+}
+
+.playbookListing {
+  display: flex;
+  align-items: flex-start;
+}
+
+.pageTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.indicator {
+  display: flex;
+  justify-content: space-between;
+}
+
+.personalityOption {
+  display: flex;
+  justify-content: space-between;
+}
+
+.personalityOptionLabels {
+  display: none;
+}
+
+.lookList {
+  list-style: none;
+}
+
+.pageThree {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
