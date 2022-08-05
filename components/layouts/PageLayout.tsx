@@ -1,11 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const PageLayout = ({ pages }) => {
+const PageLayout = ({ pages, pageValidity }) => {
   const [currPage, setPage] = useState(1);
   const nextPage = () => setPage((currPage) => currPage + 1);
   const prevPage = () => setPage((currPage) => currPage - 1);
   const onFirstPage = () => currPage < 2;
   const onLastPage = () => currPage >= pages.length;
+  const currPageIsValid = () => pageValidity[currPage - 1];
   return (
     <div>
       {pages[currPage - 1]}
@@ -22,11 +23,11 @@ const PageLayout = ({ pages }) => {
         </button>
         <button
           onClick={() => {
-            if (!onLastPage()) {
+            if (!onLastPage() && currPageIsValid()) {
               nextPage();
             }
           }}
-          disabled={onLastPage()}
+          disabled={onLastPage() || !currPageIsValid()}
         >
           Next
         </button>
