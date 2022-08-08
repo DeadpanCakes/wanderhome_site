@@ -37,7 +37,7 @@ const PCDetailForm = ({
         <ul>
           {chosenPlaybook.personality.option_set.map((option) => {
             return (
-              <li className={styles.personalityOption}>
+              <li className={styles.personalityOption} key={option.id}>
                 <label
                   className={styles.personalityOptionLabels}
                   htmlFor={"positive" + option.text}
@@ -45,9 +45,11 @@ const PCDetailForm = ({
                 <input
                   type="checkbox"
                   id={"positive" + option.text}
-                  checked={personality.positive.choices.find(
-                    (choice) => option.id == choice.id
-                  )}
+                  checked={
+                    personality.positive.choices.find(
+                      (choice) => option.id == choice.id
+                    ) || false
+                  }
                   onChange={() => {
                     if (
                       personality.positive.choices.find(
@@ -110,9 +112,11 @@ const PCDetailForm = ({
                 <input
                   type="checkbox"
                   id={"negative" + option.text}
-                  checked={personality.negative.choices.find(
-                    (choice) => option.id == choice.id
-                  )}
+                  checked={
+                    personality.negative.choices.find(
+                      (choice) => option.id == choice.id
+                    ) || false
+                  }
                   onChange={() => {
                     if (
                       personality.negative.choices.find(
@@ -177,30 +181,30 @@ const PCDetailForm = ({
         <ul className={styles.lookList}>
           {chosenPlaybook.appearance_set.map((look) => {
             return (
-              <li
-                onChange={() => {
-                  setLooks((prevState) => {
-                    const lookAlreadyAdded = prevState.find(
-                      (addedLooks) => addedLooks.id === look.id
-                    );
-                    if (lookAlreadyAdded) {
-                      return prevState.filter(
-                        (addedLooks) => addedLooks.id !== look.id
-                      );
-                    }
-                    const newLook = chosenPlaybook.appearance_set.find(
-                      (appearance) => appearance.id === look.id
-                    );
-                    return prevState.concat(newLook);
-                  });
-                }}
-              >
+              <li key={look.id}>
                 <input
                   type="checkbox"
                   id={look.id}
-                  checked={looks.find(
-                    (addedLooks) => addedLooks.id === look.id
-                  )}
+                  checked={
+                    looks.find((addedLooks) => addedLooks.id === look.id) ||
+                    false
+                  }
+                  onChange={() => {
+                    setLooks((prevState) => {
+                      const lookAlreadyAdded = prevState.find(
+                        (addedLooks) => addedLooks.id === look.id
+                      );
+                      if (lookAlreadyAdded) {
+                        return prevState.filter(
+                          (addedLooks) => addedLooks.id !== look.id
+                        );
+                      }
+                      const newLook = chosenPlaybook.appearance_set.find(
+                        (appearance) => appearance.id === look.id
+                      );
+                      return prevState.concat(newLook);
+                    });
+                  }}
                 />
                 <label htmlFor={look.id}>{look.text}</label>
               </li>

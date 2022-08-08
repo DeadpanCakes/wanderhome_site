@@ -75,7 +75,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
     <div className={styles.pageThree}>
       {chosenPlaybook.history_set.map((history) => {
         return (
-          <div>
+          <div key={history.id}>
             <h2>{history.prompt}</h2>
             <ul>
               {history.option_set.map((option) => {
@@ -154,7 +154,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
         <ul>
           {chosenPlaybook.relationship_set.map((relationship) => {
             return (
-              <li>
+              <li key={relationship.id}>
                 <input
                   type="checkbox"
                   id={relationship.id}
