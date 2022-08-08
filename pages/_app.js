@@ -1,6 +1,10 @@
 import "../styles/globals.css";
 import React from "react";
 
+if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
+  require("../mocks");
+}
+
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
