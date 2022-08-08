@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const PageLayout = ({ pages, pageValidity }) => {
+interface Props {
+  pages: React.ReactNode[];
+  pageValidity?: boolean[];
+}
+
+const PageLayout = ({ pages, pageValidity }: Props) => {
   const [currPage, setPage] = useState(1);
   const nextPage = () => setPage((currPage) => currPage + 1);
   const prevPage = () => setPage((currPage) => currPage - 1);
