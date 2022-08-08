@@ -36,7 +36,7 @@ const Place = ({ month, place }) => {
       </p>
       {natures.map((nature) => (
         <>
-          <p key={nature}>
+          <p key={nature.id}>
             <i>{nature}</i>
           </p>
         </>
