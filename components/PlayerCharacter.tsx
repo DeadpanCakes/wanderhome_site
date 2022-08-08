@@ -18,7 +18,7 @@ const PlayerCharacter = ({ character }) => {
           <Accordian parent={<h2>Appearance</h2>}>
             <ul>
               {character.looks.map((look) => {
-                return <li>{look.text}</li>;
+                return <li key={look.id}>{look.text}</li>;
               })}
             </ul>
           </Accordian>

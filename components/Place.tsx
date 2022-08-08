@@ -35,11 +35,9 @@ const Place = ({ month, place }) => {
         <b>"{aestheticStr}"</b>
       </p>
       {natures.map((nature) => (
-        <>
-          <p key={nature.id}>
-            <i>{nature}</i>
-          </p>
-        </>
+        <p key={nature.id}>
+          <i>{nature}</i>
+        </p>
       ))}
       <ListLayout header={<h2>This Place Can Always: </h2>} list={moves} />
     </div>

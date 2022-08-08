@@ -7,7 +7,7 @@ const ListLayout = ({ header, list }) => {
       <Accordian parent={header}>
         <ul>
           {list.map((item) => {
-            return <li>{item}</li>;
+            return <li key={item}>{item}</li>;
           })}
         </ul>
       </Accordian>
