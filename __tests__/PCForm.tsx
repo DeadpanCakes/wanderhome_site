@@ -134,14 +134,14 @@ const playbooks = [
 
 it("renders api to page", async () => {
   const user = userEvent.setup();
-  render(<PCForm playbooks={playbooks} />);
+  render(<PCForm playbooks={playbooks} submitHandler={() => {}} />);
   const caretaker = screen.getByLabelText("The Caretaker");
   expect(caretaker.tagName).toBe("INPUT");
 });
 
 it("handles checking checkbox", async () => {
   const user = userEvent.setup();
-  render(<PCForm playbooks={playbooks} />);
+  render(<PCForm playbooks={playbooks} submitHandler={() => {}} />);
   const caretaker: HTMLInputElement = screen.getByLabelText("The Caretaker");
   const dancer: HTMLInputElement = screen.getByLabelText("The Dancer");
   await user.click(caretaker);
@@ -153,7 +153,7 @@ it("handles checking checkbox", async () => {
 
 it("changes the shape of playbook.personality", async () => {
   const user = userEvent.setup();
-  render(<PCForm playbooks={playbooks} />);
+  render(<PCForm playbooks={playbooks} submitHandler={() => {}} />);
   const caretaker = screen.getByText("The Caretaker");
   const nextBtn = screen.getByText("Next");
   await user.click(caretaker);
@@ -164,7 +164,7 @@ it("changes the shape of playbook.personality", async () => {
 
 it("prevents user from progressing to the next page of the form with invalid data on current page", async () => {
   const user = userEvent.setup();
-  render(<PCForm playbooks={playbooks} />);
+  render(<PCForm playbooks={playbooks} submitHandler={() => {}} />);
   const playbookBoxes = document.querySelectorAll(".playbooks");
   const nextBtn: HTMLInputElement = screen.getByText("Next");
   const caretaker: HTMLInputElement = screen.getByLabelText("The Caretaker");
