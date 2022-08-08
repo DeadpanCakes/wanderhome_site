@@ -1,7 +1,6 @@
 const getPersonalityText = (playbook) => {
   switch (playbook) {
     case "The Caretaker":
-      console.log("reached");
       return {
         positive: "You value being",
         negative: "You find it exhausting to be",
