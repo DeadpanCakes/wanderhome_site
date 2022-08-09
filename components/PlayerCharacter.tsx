@@ -10,7 +10,7 @@ const PlayerCharacter = ({ character }) => {
       <Accordian
         parent={
           <h1>
-            {character.name}, {character.animal}. {character.class.name}
+            {character.name}, {character.animal}. {character.class}
           </h1>
         }
       >
