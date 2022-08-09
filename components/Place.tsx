@@ -12,6 +12,10 @@ const Place = ({ month, place }) => {
     .flat()
     .map((aesthetic) => aesthetic.text);
   const aestheticStr = aesthetics.join(". ") + ".";
+  const lacks = month.lack_set.map((lack) => lack.text);
+  const lackStr = lacks.join(", ") + ". ";
+  const signs = month.sign_set.map((sign) => sign.text);
+  const signsStr = signs.join(", ") + ". ";
   const residentStr = place.residents.join(", ");
   const godStr = place.gods.join(", ");
   const moves = place.traits
@@ -32,7 +36,13 @@ const Place = ({ month, place }) => {
         <ListLayout header={<h3>Lore</h3>} list={lore} />
       </Accordian>
       <p>
-        <b>"{aestheticStr}"</b>
+        <b>
+          "
+          {(month.lack_set.length > 0 ? lackStr : "") +
+            (month.sign_set.length > 0 ? signsStr : "") +
+            aestheticStr}
+          "
+        </b>
       </p>
       {natures.map((nature) => (
         <p key={nature.id}>
