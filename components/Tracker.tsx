@@ -10,10 +10,10 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
   const [counters, setCounters, fetchCounters] = useStorage("counters", null);
   const addToken = () =>
     setCounters((prevState) => {
-      if (!threshhold || prevState[tokenName] < threshhold) {
-        return { ...prevState, [tokenName]: prevState[tokenName] + 1 };
-      } else {
+      if (prevState[tokenName] >= threshhold) {
         return prevState;
+      } else {
+        return { ...prevState, [tokenName]: prevState[tokenName] + 1 };
       }
     });
   const spendToken = () =>
