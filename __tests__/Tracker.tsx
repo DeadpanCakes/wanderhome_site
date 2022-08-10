@@ -19,3 +19,16 @@ it("can properly increment and decrement count", async () => {
   await user.click(screen.getByText("-"));
   expect(input.value).toEqual("0");
 });
+
+it("can reset the count", async () => {
+  const tokenName = "Token";
+  const user = userEvent.setup();
+  render(<Tracker tokenName={tokenName} />);
+  const input: HTMLInputElement = screen.getByLabelText(tokenName, {
+    exact: false,
+  });
+
+  await user.click(screen.getByText("+"));
+  await user.click(screen.getByTitle("initCount"));
+  expect(input.value).toEqual("0");
+});
