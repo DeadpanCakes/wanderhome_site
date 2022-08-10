@@ -1,13 +1,21 @@
 import React, { useEffect } from "react";
 import useStorage from "../hooks/useStorage";
 
-const Tracker = ({ tokenName }) => {
+interface Props {
+  tokenName: string;
+  threshhold?: number;
+}
+
+const Tracker = ({ tokenName, threshhold }: Props) => {
   const [counters, setCounters, fetchCounters] = useStorage("counters", null);
   const addToken = () =>
-    setCounters((prevState) => ({
-      ...prevState,
-      [tokenName]: prevState[tokenName] + 1,
-    }));
+    setCounters((prevState) => {
+      if (!threshhold || prevState[tokenName] < threshhold) {
+        return { ...prevState, [tokenName]: prevState[tokenName] + 1 };
+      } else {
+        return prevState;
+      }
+    });
   const spendToken = () =>
     setCounters((prevState) => ({
       ...prevState,
