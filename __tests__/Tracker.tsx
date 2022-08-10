@@ -48,3 +48,15 @@ it("tracks when a counter reaches its upper limit", async () => {
   }
   expect(input.value).toEqual(threshhold.toString());
 });
+
+it("prevents subtraction from zero", async () => {
+  const tokenName = "Token";
+  const user = userEvent.setup();
+  render(<Tracker tokenName={tokenName} />);
+  const input: HTMLInputElement = screen.getByLabelText(tokenName, {
+    exact: false,
+  });
+
+  await user.click(screen.getByText("-"));
+  expect(input.value).toBe("0");
+});
