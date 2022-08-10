@@ -43,6 +43,9 @@ const Tracker = ({ tokenName }) => {
       <input value={counters[tokenName]} readOnly={true} id={tokenName} />
       <button onClick={addToken}>+</button>
       <button onClick={spendToken}>-</button>
+      <button onClick={resetCount} title="initCount">
+        X
+      </button>
     </>
   ) : (
     <>
@@ -50,6 +53,7 @@ const Tracker = ({ tokenName }) => {
       <input value={0} readOnly={true} id={tokenName} />
       <button>+</button>
       <button>-</button>
+      <button title="initCounter">X</button>
     </>
   );
 };
