@@ -1,5 +1,20 @@
-.characterDetail {
+.parent {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.characterDetail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "first first first";
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.firstLine {
+  grid-area: first;
+}
+
+.characterDetail * {
+  margin: 0;
 }

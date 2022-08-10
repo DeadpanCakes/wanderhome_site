@@ -15,27 +15,37 @@ const PlayerCharacter = ({ character }) => {
         }
       >
         <div className={styles.characterDetail}>
-          <Accordian parent={<h2>Appearance</h2>}>
-            <ul>
-              {character.looks.map((look) => {
-                return <li key={look.id}>{look.text}</li>;
-              })}
-            </ul>
-          </Accordian>
-          <Accordian parent={<h2>Personality</h2>}>
-            <h3>{character.personality.positive.prompt}:</h3>
-            <ul>
-              {character.personality.positive.choices.map((choice) => (
-                <li key={choice.text}>{choice.text}</li>
-              ))}
-            </ul>
-            <h3>{character.personality.negative.prompt}:</h3>
-            <ul>
-              {character.personality.negative.choices.map((choice) => (
-                <li key={choice.text}>{choice.text}</li>
-              ))}
-            </ul>
-          </Accordian>
+          <div className={styles.firstLine}>
+            <Accordian parent={<h2>Appearance</h2>}>
+              <ul>
+                {character.looks.map((look) => {
+                  return <li key={look.id}>{look.text}</li>;
+                })}
+              </ul>
+            </Accordian>
+            <Accordian parent={<h2>Personality</h2>}>
+              <h3>{character.personality.positive.prompt}:</h3>
+              <ul>
+                {character.personality.positive.choices.map((choice) => (
+                  <li key={choice.text}>{choice.text}</li>
+                ))}
+              </ul>
+              <h3>{character.personality.negative.prompt}:</h3>
+              <ul>
+                {character.personality.negative.choices.map((choice) => (
+                  <li key={choice.text}>{choice.text}</li>
+                ))}
+              </ul>
+            </Accordian>
+          </div>
+          {character.histories.map((history) => {
+            return (
+              <ListLayout
+                header={<h2>{history.prompt}</h2>}
+                list={history.choices.map((choice) => choice.text)}
+              />
+            );
+          })}
         </div>
       </Accordian>
       <GenericMoves />
@@ -43,14 +53,6 @@ const PlayerCharacter = ({ character }) => {
         header={<h2>You Can Always:</h2>}
         list={character.signatureMoves.map((move) => move.text)}
       />
-      {character.histories.map((history) => {
-        return (
-          <ListLayout
-            header={<h2>{history.prompt}</h2>}
-            list={history.choices.map((choice) => choice.text)}
-          />
-        );
-      })}
       <ListLayout
         header={
           <h2>
