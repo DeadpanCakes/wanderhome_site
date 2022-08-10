@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, useState } from "react";
+import React, { HTMLInputTypeAttribute, useEffect, useState } from "react";
 import InputField from "../InputField";
 import Accordian from "../layouts/Accordian";
 import { v4 as uuid } from "uuid";
@@ -6,17 +6,70 @@ import PageLayout from "../layouts/PageLayout";
 
 const NPCForm = ({ traitCategories, submitHandler }) => {
   const [name, setName] = useState("");
+  const [nameIsValid, setNameIsValid] = useState(false);
   const [pronouns, setPronouns] = useState("");
+  const [pronounIsValid, setPronounIsValid] = useState(false);
   const [form, setForm] = useState("");
+  const [FormIsValid, setFormIsValid] = useState(false);
   const [relationship, setRelationship] = useState("");
+  const [relationIsValid, setRelationIsValid] = useState(false);
   const [detail, setDetail] = useState("");
+  const [detailIsValid, setDetailIsValid] = useState(false);
   const [traits, setTraits] = useState([]);
+  const [traitIsValid, setTraitIsValid] = useState(false);
   const [choices, setChoices] = useState([]);
+  const [choiceIsValid, setChoiceIsValid] = useState(false);
   const allTraits = traitCategories
     .map((currCategory) => {
       return currCategory.trait_set;
     })
     .flat();
+
+  useEffect(() => {
+    if (name.length > 0) {
+      setNameIsValid(true);
+    } else {
+      setNameIsValid(false);
+    }
+    if (pronouns.length > 0) {
+      setPronounIsValid(true);
+    } else {
+      setPronounIsValid(false);
+    }
+    if (form.length > 0) {
+      setFormIsValid(true);
+    } else {
+      setFormIsValid(false);
+    }
+    if (relationship.length > 0) {
+      setRelationIsValid(true);
+    } else {
+      setRelationIsValid(false);
+    }
+    if (detail.length > 0) {
+      setDetailIsValid(true);
+    } else {
+      setDetailIsValid(false);
+    }
+    if (traits.length > 1) {
+      setTraitIsValid(true);
+    } else {
+      setTraitIsValid(false);
+    }
+    if (choices.length > 2) {
+      setChoiceIsValid(true);
+    } else {
+      setChoiceIsValid(false);
+    }
+  }, [
+    nameIsValid,
+    pronounIsValid,
+    FormIsValid,
+    relationIsValid,
+    detailIsValid,
+    traitIsValid,
+    choiceIsValid,
+  ]);
 
   const SecondPage = (
     <>
@@ -113,6 +166,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                         <label htmlFor={trait.id}>{trait.name}</label>
                       </li>
                     );
+                    ("");
                   })}
                 </ul>
               </Accordian>
@@ -125,8 +179,19 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <PageLayout pages={[FirstPage, SecondPage]} />
+      <PageLayout
+        pages={[FirstPage, SecondPage]}
+        pageValidity={[
+          nameIsValid &&
+            pronounIsValid &&
+            FormIsValid &&
+            relationIsValid &&
+            detailIsValid &&
+            traitIsValid,
+        ]}
+      />
       <button
+        disabled={!choiceIsValid}
         onClick={() =>
           submitHandler({
             id: uuid(),
