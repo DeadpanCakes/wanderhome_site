@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import InputField from "../InputField";
 import Accordian from "../layouts/Accordian";
@@ -8,19 +8,57 @@ import styles from "../../styles/PlaceForm.module.css";
 const PlaceForm = ({ natureCategories, submitHandler }) => {
   const natures = natureCategories.map((cat) => cat.nature_set).flat();
   const [name, setName] = useState("");
+  const [nameIsValid, setNameIsValid] = useState(false);
   const [resident, setResident] = useState("");
   const [residents, setResidents] = useState([]);
+  const [residentIsValid, setResidentIsValid] = useState(false);
   const addResident = (newResident) => {
     setResidents((prevState) => prevState.concat(newResident));
   };
   const [god, setGod] = useState("");
   const [gods, setGods] = useState([]);
+  const [godIsValid, setGodIsValid] = useState(false);
   const addGod = (newGod) => {
     setGods((prevState) => prevState.concat(newGod));
   };
   const [chosenNatures, setChosenNatures] = useState([]);
+  const [natureIsValid, setNatureIsValid] = useState(false);
   const [chosenAesthetics, setChosenAesthetics] = useState([]);
+  const [aestheticIsValid, setAestheticIsValid] = useState(false);
   const [chosenLore, setChosenLore] = useState([]);
+  const [loreIsValid, setLoreIsValid] = useState(false);
+  useEffect(() => {
+    if (name.length > 1) {
+      setNameIsValid(true);
+    } else {
+      setNameIsValid(false);
+    }
+    if (residents.length > 0) {
+      setResidentIsValid(true);
+    } else {
+      setResidentIsValid(false);
+    }
+    if (gods.length > 0) {
+      setGodIsValid(true);
+    } else {
+      setGodIsValid(false);
+    }
+    if (chosenNatures.length === 3) {
+      setNatureIsValid(true);
+    } else {
+      setNatureIsValid(false);
+    }
+    if (chosenAesthetics.length === 6) {
+      setAestheticIsValid(true);
+    } else {
+      setAestheticIsValid(false);
+    }
+    if (chosenLore.length === 3) {
+      setLoreIsValid(true);
+    } else {
+      setLoreIsValid(false);
+    }
+  }, [name, residents, gods, chosenNatures, chosenAesthetics, chosenLore]);
   const genTraits = () => {
     return chosenNatures.map((nature) => {
       return {
@@ -37,6 +75,13 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   };
   const PageOne = (
     <form onSubmit={(e) => e.preventDefault()}>
+      <button
+        onClick={() =>
+          console.log(residents, residentIsValid, godIsValid, gods)
+        }
+      >
+        Check
+      </button>
       <InputField name="name" value={name} changeHandler={setName} />
       <ul>
         {residents.map((resident) => (
@@ -195,6 +240,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
         );
       })}
       <button
+        disabled={!aestheticIsValid || !loreIsValid}
         onClick={() =>
           submitHandler({
             id: uuid(),
@@ -209,7 +255,14 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
       </button>
     </form>
   );
-  return <PageLayout pages={[PageOne, PageTwo]} />;
+  return (
+    <PageLayout
+      pages={[PageOne, PageTwo]}
+      pageValidity={[
+        nameIsValid && residentIsValid && godIsValid && natureIsValid,
+      ]}
+    />
+  );
 };
 
 const NatureList = ({
