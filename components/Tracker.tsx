@@ -17,10 +17,13 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
       }
     });
   const spendToken = () =>
-    setCounters((prevState) => ({
-      ...prevState,
-      [tokenName]: prevState[tokenName] - 1,
-    }));
+    setCounters((prevState) => {
+      if (prevState[tokenName] <= 0) {
+        return prevState;
+      } else {
+        return { ...prevState, [tokenName]: prevState[tokenName] - 1 };
+      }
+    });
 
   const resetCount = () =>
     setCounters((prevState) => ({ ...prevState, [tokenName]: 0 }));
