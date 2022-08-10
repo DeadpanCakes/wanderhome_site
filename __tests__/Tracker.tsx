@@ -5,13 +5,17 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
 it("can properly increment and decrement count", async () => {
-  const tokenName = "Token(s)";
+  const tokenName = "Token";
   const user = userEvent.setup();
   render(<Tracker tokenName={tokenName} />);
 
-  expect(screen.getByLabelText(tokenName)).toEqual(0);
+  const input: HTMLInputElement = screen.getByLabelText(tokenName, {
+    exact: false,
+  });
+
+  expect(input.value).toEqual("0");
   await user.click(screen.getByText("+"));
-  expect(screen.getByLabelText(tokenName)).toEqual(1);
+  expect(input.value).toEqual("1");
   await user.click(screen.getByText("-"));
-  expect(screen.getByText(tokenName)).toEqual(0);
+  expect(input.value).toEqual("0");
 });
