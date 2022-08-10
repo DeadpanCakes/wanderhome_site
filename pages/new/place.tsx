@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import PlaceForm from "../../components/forms/PlaceForm";
 import useStorage from "../../hooks/useStorage";
+import Header from "../../components/Header";
 
 const place = (props) => {
   const [places, setPlaces, fetchPlaces] = useStorage("places", null);
@@ -26,6 +27,7 @@ const place = (props) => {
   };
   return (
     <>
+      <Header />
       <h1>Create A New Place</h1>
       <PlaceForm
         natureCategories={natureCategories}

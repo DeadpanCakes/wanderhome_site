@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import NPCForm from "../../components/forms/NPCForm";
 import useStorage from "../../hooks/useStorage";
+import Header from "../../components/Header";
 
 const kith = (props) => {
   const traits = JSON.parse(props.traits);
@@ -23,6 +24,7 @@ const kith = (props) => {
   };
   return (
     <>
+      <Header />
       <h1>Create A New Kith</h1>
       <NPCForm
         traitCategories={traits}
