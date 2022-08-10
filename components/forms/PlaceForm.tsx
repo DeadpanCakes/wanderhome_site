@@ -28,7 +28,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   const [chosenLore, setChosenLore] = useState([]);
   const [loreIsValid, setLoreIsValid] = useState(false);
   useEffect(() => {
-    if (name.length > 1) {
+    if (name.length > 0) {
       setNameIsValid(true);
     } else {
       setNameIsValid(false);
