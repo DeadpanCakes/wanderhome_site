@@ -4,6 +4,7 @@ import InputField from "../InputField";
 import PageLayout from "../layouts/PageLayout";
 import useValidation from "../../hooks/useValidation";
 import NatureList from "../NatureList";
+import useRandomIndex from "../../hooks/useRandomIndex";
 
 const PlaceForm = ({ natureCategories, submitHandler }) => {
   const natures = natureCategories.map((cat) => cat.nature_set).flat();
@@ -44,6 +45,42 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
         lore: chosenLore.find((lore) => lore.nature === nature.id),
       };
     });
+  };
+  const randomizePlace = () => {
+    const randomNatures = [];
+    const randomAesthetics = [];
+    const randomLore = [];
+    while (randomNatures.length < 3) {
+      const random = useRandomIndex(natures);
+      if (!randomNatures.find((nature) => nature.id === random.id)) {
+        randomNatures.push(random);
+      }
+    }
+    randomNatures.forEach((nature) => {
+      const currAesthetics = [];
+      while (currAesthetics.length < 2) {
+        const random = useRandomIndex(
+          nature.aesthetic_set.filter(
+            (aesthetic) =>
+              aesthetic.text !== "Something Else Of Your Own Invention"
+          )
+        );
+        if (!currAesthetics.find((aesthetic) => aesthetic.id === random.id)) {
+          currAesthetics.push(random);
+        }
+      }
+      randomAesthetics.push(currAesthetics);
+      randomLore.push(
+        useRandomIndex(
+          nature.lore_set.filter(
+            (nature) => nature.text !== "Something Else Of Your Own Invention"
+          )
+        )
+      );
+    });
+    setChosenNatures(randomNatures);
+    setChosenAesthetics(randomAesthetics.flat());
+    setChosenLore(randomLore);
   };
   const PageOne = (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -150,11 +187,11 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     }}
                   >
                     <input
-                      id={aesthetic.id}
+                      id={aesthetic.text}
                       className="aesthetics"
                       type="checkbox"
                       checked={chosenAesthetics.find(
-                        (choice) => choice.id === aesthetic.id
+                        (choice) => choice.text === aesthetic.text
                       )}
                     />
                     <label htmlFor={aesthetic.id}>{aesthetic.text}</label>
@@ -189,15 +226,15 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     }}
                   >
                     <input
-                      id={lore.id}
+                      id={lore.text}
                       name={"lores" + lore.nature}
                       className={"lores"}
                       type="radio"
                       checked={chosenLore.find(
-                        (choice) => choice.id === lore.id
+                        (choice) => choice.text === lore.text
                       )}
                     />
-                    <label htmlFor={lore.id}>{lore.text}</label>
+                    <label htmlFor={lore.text}>{lore.text}</label>
                   </li>
                 ))}
             </ul>
@@ -221,7 +258,10 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     </form>
   );
   return (
-    <PageLayout pages={[PageOne, PageTwo]} pageValidity={[pageOneValid]} />
+    <>
+      <button onClick={randomizePlace}>Randomize</button>
+      <PageLayout pages={[PageOne, PageTwo]} pageValidity={[pageOneValid]} />
+    </>
   );
 };
 export default PlaceForm;
