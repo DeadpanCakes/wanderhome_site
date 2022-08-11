@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Accordian from "./layouts/Accordian";
 import React from "react";
+import Tracker from "./Tracker";
 
 const Month = ({
   months,
@@ -86,6 +87,10 @@ const Month = ({
           </ul>
         </form>
       </Accordian>
+      <Tracker
+        tokenName={currMonth.event.trigger.tokenName}
+        threshhold={currMonth.event.trigger.threshhold}
+      />
     </>
   );
 };
