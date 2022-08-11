@@ -27,6 +27,30 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
       return currCategory.trait_set;
     })
     .flat();
+  const randomizeTraits = () => {
+    const traits = [];
+    const choices = [];
+    while (traits.length < 2) {
+      let random = allTraits[Math.floor(allTraits.length * Math.random())];
+      if (!traits.find((trait) => trait.id === random.id)) {
+        traits.push(random);
+      }
+    }
+    traits.forEach((trait) => {
+      const currTraitChoices = [];
+      const quantity = Math.round(Math.random() * 1) + 1;
+      while (currTraitChoices.length < quantity) {
+        const random =
+          trait.move_set[Math.floor(Math.random() * trait.move_set.length)];
+        if (!currTraitChoices.find((choice) => choice.id === random.id)) {
+          currTraitChoices.push(random);
+        }
+      }
+      choices.push(currTraitChoices);
+    });
+    setTraits(traits);
+    setChoices(choices.flat());
+  };
 
   const SecondPage = (
     <>
@@ -58,7 +82,9 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                           id={move.id}
                           className="moves"
                           value={move.text}
-                          checked={choices.includes(move.text)}
+                          checked={choices.find(
+                            (choice) => choice.id === move.id
+                          )}
                           type="checkbox"
                         />
                         <label htmlFor={move.id}>{move.text}</label>
@@ -136,6 +162,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
+      <button onClick={randomizeTraits}>Randomize</button>
       <PageLayout
         pages={[FirstPage, SecondPage]}
         pageValidity={[pageOneValid]}
