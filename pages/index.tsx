@@ -1,24 +1,132 @@
-import Head from 'next/head'
+import React, { useState, useEffect } from "react";
+import "whatwg-fetch";
+import Head from "next/head";
+import useStorage from "../hooks/useStorage";
+import NPC from "../components/NPC";
+import PlayerCharacter from "../components/PlayerCharacter";
+import Place from "../components/Place";
+import Month from "../components/Month";
+import Link from "next/link";
+import Header from "../components/Header";
+import useMonthInterfacer from "../hooks/useMonthInterfacer";
 
-export default function Home() {
+export default function Home(props) {
+  const rawMonths = JSON.parse(props.months);
+  const months = useMonthInterfacer(rawMonths);
+
+  const [characters, setCharacters, fetchCharacters] = useStorage(
+    "characters",
+    null
+  );
+  const [npcs, setNpcs, fetchNpcs] = useStorage("npcs", null);
+  const [places, setPlaces, fetchPlaces] = useStorage("places", null);
+  const [character, setCharacter, fetchCharacter] = useStorage(
+    "character",
+    null
+  );
+  const [lack, setLack] = useState({ id: null });
+  const [signs, setSigns] = useState([]);
+  const [activeMonth, setActiveMonth] = useState(months[0]);
+  const [activePlace, setActivePlace] = useState(null);
+  const [counters, setCounters, fetchCounters] = useStorage("counters", null);
+
+  useEffect(() => {
+    if (!characters) {
+      fetchCharacters();
+    }
+    if (!npcs) {
+      fetchNpcs();
+    }
+    if (!places) {
+      fetchPlaces();
+    }
+    if (!counters) {
+      fetchCounters();
+    }
+  }, []);
+  useEffect(() => {
+    if (places) {
+      setActivePlace(places[0]);
+    }
+  }, [places]);
   return (
     <div>
       <Head>
         <title>Wanderhome</title>
-        <meta name="description" content="Web app for the tabletop role-playing game Wanderhome by Jay Dragon" />
-        <meta name="keywords" content="Tabletop Role-Playing, TTRPG, Wanderhome" />
+        <meta
+          name="description"
+          content="Web app for the tabletop role-playing game Wanderhome by Jay Dragon"
+        />
+        <meta
+          name="keywords"
+          content="Tabletop Role-Playing, TTRPG, Wanderhome"
+        />
         <meta name="author" content="Anthony Mendoza" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <h1>Header</h1>
-      </header>
+      <Header />
       <main>
-        <h2>Body</h2>
+        {characters ? (
+          <PlayerCharacter character={characters[0]} />
+        ) : (
+          <h2>No Char yet</h2>
+        )}
+        {activeMonth && activePlace ? (
+          <div>
+            <Place
+              month={{
+                ...activeMonth,
+                lack_set: lack
+                  ? activeMonth.lack_set.filter((l) => lack.id !== l.id)
+                  : activeMonth.lack_set,
+                sign_set: activeMonth.sign_set.filter((s) =>
+                  signs.find((sign) => sign.id === s.id)
+                ),
+              }}
+              place={activePlace}
+            />
+            <Month
+              months={months}
+              currMonth={activeMonth}
+              setMonth={setActiveMonth}
+              setLack={setLack}
+              setSigns={setSigns}
+              chosenLack={lack}
+              chosenSigns={signs}
+            />
+          </div>
+        ) : (
+          <Link href="/new/place">
+            <button>
+              <a>No Places Made Yet. Make one!</a>
+            </button>
+          </Link>
+        )}
+        <ul>
+          {npcs ? (
+            npcs.map((npc) => <NPC npc={npc} />)
+          ) : (
+            <Link href="/new/kith">
+              <button>
+                <a>No Kith Made Yet. Make one!</a>
+              </button>
+            </Link>
+          )}
+        </ul>
       </main>
       <footer>
         <h3>Footer</h3>
       </footer>
     </div>
-  )
+  );
 }
+
+export const getStaticProps = async () => {
+  const monthRes = await fetch(process.env.API + "months/");
+  const months = await monthRes.json();
+  return {
+    props: {
+      months: JSON.stringify(months),
+    },
+  };
+};
