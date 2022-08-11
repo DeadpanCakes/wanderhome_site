@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import AddBtn from "./AddBtn";
-import usePopup from "../hooks/usePopup";
 import PopupLayout from "./layouts/PopupLayout";
 import Tools from "./Tools";
 
 const Header = () => {
-  const [toolVisible, toggleToolVisible] = usePopup();
+  const [visible, setVisible] = useState(false);
+  const toggleVisible = () => setVisible((prevState) => !prevState);
   return (
     <header>
-      <PopupLayout isVisible={toolVisible} closePopup={toggleToolVisible}>
+      <PopupLayout isVisible={visible} closePopup={toggleVisible}>
         <Tools />
       </PopupLayout>
-      <button onClick={toggleToolVisible}>Tools</button>
+      <button onClick={toggleVisible}>Tools</button>
       <AddBtn text="Make New Character" href="/new/character" />
       <AddBtn text="Make New Place" href="/new/place" />
       <AddBtn text="Make New Kith" href="/new/kith" />
