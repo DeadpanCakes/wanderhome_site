@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import NPCForm from "../../components/forms/NPCForm";
+import NPCForm from "../../components/forms/KithForm";
 import useStorage from "../../hooks/useStorage";
 import Header from "../../components/Header";
 
