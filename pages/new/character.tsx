@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import PCForm from "../../components/forms/PCForm";
 import useStorage from "../../hooks/useStorage";
+import Header from "../../components/Header";
 
 const character = (props) => {
   const playbooks = JSON.parse(props.playbooks);
@@ -21,7 +22,12 @@ const character = (props) => {
       return [newCharacter];
     });
   };
-  return <PCForm playbooks={playbooks} submitHandler={addCharacter} />;
+  return (
+    <>
+      <Header />
+      <PCForm playbooks={playbooks} submitHandler={addCharacter} />
+    </>
+  );
 };
 
 export const getStaticProps = async () => {
