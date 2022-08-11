@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import InputField from "../InputField";
-import Accordian from "../layouts/Accordian";
 import PageLayout from "../layouts/PageLayout";
-import styles from "../../styles/PlaceForm.module.css";
 import useValidation from "../../hooks/useValidation";
+import NatureList from "../NatureList";
 
 const PlaceForm = ({ natureCategories, submitHandler }) => {
   const natures = natureCategories.map((cat) => cat.nature_set).flat();
@@ -24,8 +23,8 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   const [chosenLore, setChosenLore] = useState([]);
   const pageOneValid = useValidation(
     name.length > 0,
-    resident.length > 0,
-    god.length > 0,
+    residents.length > 0,
+    gods.length > 0,
     chosenNatures.length === 3
   );
   const pageTwoValid = useValidation(
@@ -225,56 +224,4 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     <PageLayout pages={[PageOne, PageTwo]} pageValidity={[pageOneValid]} />
   );
 };
-
-const NatureList = ({
-  categories,
-  chosenNatures,
-  setChosenNatures,
-  natures,
-}) => {
-  return (
-    <ul className={styles.natureList}>
-      {categories.map((category) => {
-        return (
-          <Accordian parent={<h2>{category.name}</h2>}>
-            <ul>
-              {category.nature_set.map((nature) => {
-                return (
-                  <li
-                    onChange={() => {
-                      const natureElements =
-                        document.querySelectorAll(".natures");
-                      const checkedNatures = Array.from(natureElements).filter(
-                        (nature: HTMLInputElement) => nature.checked
-                      );
-                      setChosenNatures(
-                        natures.filter((nature) => {
-                          return checkedNatures.find(
-                            (checked) => checked.id === nature.id.toString()
-                          );
-                        })
-                      );
-                    }}
-                  >
-                    <input
-                      className="natures"
-                      type="checkbox"
-                      value={nature.name}
-                      id={nature.id}
-                      checked={chosenNatures.find(
-                        (choice) => choice.id === nature.id
-                      )}
-                    />
-                    <label htmlFor={nature.id}>{nature.name}</label>
-                  </li>
-                );
-              })}
-            </ul>
-          </Accordian>
-        );
-      })}
-    </ul>
-  );
-};
-
 export default PlaceForm;
