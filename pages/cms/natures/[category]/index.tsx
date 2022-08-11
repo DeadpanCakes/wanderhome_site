@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import ChildList from "../../../../components/ChildList";
 import NatureForm from "../../../../components/forms/natures/NatureForm";

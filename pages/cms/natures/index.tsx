@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import NatureCategoryForm from "../../../components/forms/natures/NatureCategoryForm";
 

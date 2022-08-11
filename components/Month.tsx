@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Accordian from "./layouts/Accordian";
-import React from "react";
 import Tracker from "./Tracker";
 
 const Month = ({

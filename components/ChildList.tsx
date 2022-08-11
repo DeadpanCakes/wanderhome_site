@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 const ChildList = ({ category, childArray, baseURL }) => {
   const getText = (child) => (child.name ? child.name : child.text);

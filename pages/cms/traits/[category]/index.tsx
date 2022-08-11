@@ -1,6 +1,6 @@
 import Link from "next/link";
 import TraitForm from "../../../../components/forms/traits/TraitForm";
-
+import React from "react";
 const id = (props) => {
   const category = JSON.parse(props.category);
   return (

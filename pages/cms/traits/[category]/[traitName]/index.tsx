@@ -1,4 +1,5 @@
 import TraitMoveForm from "../../../../../components/forms/traits/TraitMoveForm";
+import React from "react";
 
 const traitName = (props) => {
   const trait = JSON.parse(props.trait);

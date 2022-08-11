@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import styles from "../styles/OptionInput.module.css";
 
