@@ -4,7 +4,6 @@ import InputField from "../InputField";
 import PageLayout from "../layouts/PageLayout";
 import useValidation from "../../hooks/useValidation";
 import NatureList from "../NatureList";
-import useRandomIndex from "../../hooks/useRandomIndex";
 
 const PlaceForm = ({ natureCategories, submitHandler }) => {
   const natures = natureCategories.map((cat) => cat.nature_set).flat();
@@ -51,7 +50,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     const randomAesthetics = [];
     const randomLore = [];
     while (randomNatures.length < 3) {
-      const random = useRandomIndex(natures);
+      const random = getRandomIndex(natures);
       if (!randomNatures.find((nature) => nature.id === random.id)) {
         randomNatures.push(random);
       }
@@ -59,7 +58,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     randomNatures.forEach((nature) => {
       const currAesthetics = [];
       while (currAesthetics.length < 2) {
-        const random = useRandomIndex(
+        const random = getRandomIndex(
           nature.aesthetic_set.filter(
             (aesthetic) =>
               aesthetic.text !== "Something Else Of Your Own Invention"
@@ -71,7 +70,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
       }
       randomAesthetics.push(currAesthetics);
       randomLore.push(
-        useRandomIndex(
+        getRandomIndex(
           nature.lore_set.filter(
             (nature) => nature.text !== "Something Else Of Your Own Invention"
           )
@@ -264,4 +263,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     </>
   );
 };
+
+const getRandomIndex = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
 export default PlaceForm;
