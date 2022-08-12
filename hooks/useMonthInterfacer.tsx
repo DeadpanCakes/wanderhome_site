@@ -19,7 +19,7 @@ const useMonthInterfacer = (months) => {
           text: month.event.trigger,
           threshhold: 6,
         };
-      case "Devilday":
+      case "Devildays":
         return {
           tokenName: "Meteor",
           text: month.event.trigger,
@@ -45,7 +45,7 @@ const useMonthInterfacer = (months) => {
         };
       case "Grasping":
         return {
-          tokenName: "stones",
+          tokenName: "Stone",
           text: month.event.trigger,
           threshhold: 9,
         };
