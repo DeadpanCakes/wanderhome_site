@@ -182,9 +182,9 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
               return {
                 id: trait.id,
                 name: trait.name,
-                choices: trait.move_set
-                  .filter((move) => choices.includes(move.text))
-                  .map((move) => move.text),
+                choices: choices.filter((choice) => {
+                  return choice.trait === trait.id;
+                }),
               };
             }),
           })
