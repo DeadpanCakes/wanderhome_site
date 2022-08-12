@@ -22,7 +22,7 @@ const Traits = (props) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await fetch(process.env.API + "trait-categories/");
   const data = await response.json();
   return {
