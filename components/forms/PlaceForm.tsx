@@ -166,26 +166,21 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     nature.id.toString() === currNature.id.toString()
                 )
                 .aesthetic_set.map((aesthetic) => (
-                  <li
-                    onChange={() => {
-                      const aestheticElements =
-                        document.querySelectorAll(".aesthetics");
-                      const checkedAesthetics = Array.from(
-                        aestheticElements
-                      ).filter((e: HTMLInputElement) => e.checked);
-                      const allAesthetics = natures
-                        .map((nature) => nature.aesthetic_set)
-                        .flat();
-                      const chosenAesthetics = allAesthetics.filter(
-                        (aesthetic) =>
-                          checkedAesthetics.find(
-                            (checked) => checked.id === aesthetic.id.toString()
-                          )
-                      );
-                      setChosenAesthetics(chosenAesthetics);
-                    }}
-                  >
+                  <li>
                     <input
+                      onChange={() => {
+                        setChosenAesthetics((prevState) => {
+                          if (prevState.find((a) => a.id == aesthetic.id)) {
+                            return prevState.filter(
+                              (a) => a.id !== aesthetic.id
+                            );
+                          }
+                          const currAesthetic = nature.aesthetic_set.find(
+                            (a) => a.id == aesthetic.id
+                          );
+                          return prevState.concat(currAesthetic);
+                        });
+                      }}
                       id={aesthetic.text}
                       className="aesthetics"
                       type="checkbox"
@@ -193,7 +188,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                         (choice) => choice.text === aesthetic.text
                       )}
                     />
-                    <label htmlFor={aesthetic.id}>{aesthetic.text}</label>
+                    <label htmlFor={aesthetic.text}>{aesthetic.text}</label>
                   </li>
                 ))}
             </ul>
@@ -205,26 +200,18 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     nature.id.toString() === currNature.id.toString()
                 )
                 .lore_set.map((lore) => (
-                  <li
-                    onChange={() => {
-                      const lore = document.querySelectorAll(".lores");
-                      const checkedLore = Array.from(lore).filter(
-                        (lore: HTMLInputElement) => lore.checked
-                      );
-                      const allLore = natures
-                        .map((nature) => nature.lore_set)
-                        .flat();
-                      setChosenLore(
-                        allLore.filter((lore) =>
-                          checkedLore.find(
-                            (checked) =>
-                              checked.id.toString() === lore.id.toString()
-                          )
-                        )
-                      );
-                    }}
-                  >
+                  <li>
                     <input
+                      onChange={() => {
+                        setChosenLore((prevState) => {
+                          if (prevState.find((l) => l.id === lore.id)) {
+                            return prevState.filter((l) => l.id !== lore.id);
+                          }
+                          return prevState.concat(
+                            nature.lore_set.find((l) => l.id === lore.id)
+                          );
+                        });
+                      }}
                       id={lore.text}
                       name={"lores" + lore.nature}
                       className={"lores"}
@@ -258,6 +245,9 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   );
   return (
     <>
+      <button onClick={() => console.log(chosenAesthetics, chosenLore)}>
+        Check
+      </button>
       <button onClick={randomizePlace}>Randomize</button>
       <PageLayout pages={[PageOne, PageTwo]} pageValidity={[pageOneValid]} />
     </>
