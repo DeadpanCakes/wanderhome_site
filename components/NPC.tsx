@@ -3,9 +3,7 @@ import ListLayout from "./layouts/ListLayout";
 import React from "react";
 
 const NPC = ({ npc }) => {
-  const moves = npc.traits.reduce((arr, trait) => {
-    return [...arr, ...trait.choices];
-  }, []);
+  const moves = npc.traits.map((trait) => trait.choices).flat();
   const traitArr = npc.traits.map((trait) => trait.name);
   const traitStr = traitArr.join(". ");
   return (
@@ -23,7 +21,7 @@ const NPC = ({ npc }) => {
         </p>
         <ListLayout
           header={<h3>As {npc.name}, you can always:</h3>}
-          list={moves}
+          list={moves.map((move) => move.text)}
         />
       </Accordian>
     </div>
