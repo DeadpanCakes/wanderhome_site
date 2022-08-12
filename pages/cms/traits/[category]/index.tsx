@@ -28,21 +28,14 @@ const id = (props) => {
   );
 };
 
-export const getStaticPaths = async (context) => {
-  const response = await fetch(process.env.API + "trait-categories/");
-  const data = await response.json();
-  const paths = data.map((category) => {
-    return { params: { category: category.name } };
-  });
-  return { paths, fallback: false };
-};
-export const getStaticProps = async (context) => {
-  const { params } = context;
-  const response = await fetch(process.env.API + "trait-categories/");
-  const data = await response.json();
-  const category = data.find((category) => category.name === params.category);
-  const props = { category: JSON.stringify(category) };
-  return { props };
+export const getServerSideProps = async (context) => {
+  const categories = await fetch(process.env.API + "trait-categories/").then(
+    (data) => data.json()
+  );
+  const category = categories.find(
+    (cat) => cat.name === context.params.category
+  );
+  return { props: { category: JSON.stringify(category) } };
 };
 
 export default id;
