@@ -228,7 +228,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
         );
       })}
       <button
-        disabled={pageTwoValid}
+        disabled={!pageTwoValid}
         onClick={() =>
           submitHandler({
             id: uuid(),
