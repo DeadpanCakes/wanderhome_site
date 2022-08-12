@@ -31,23 +31,25 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
   useEffect(() => {
     if (!counters) {
       fetchCounters();
-      if (!counters) {
-        setCounters({
-          Token: 0,
-          Sprout: 0,
-          Raindrop: 0,
-          Flower: 0,
-          Meteor: 0,
-          Shell: 0,
-          Moon: 0,
-          Leave: 0,
-          Stone: 0,
-          Snowflake: 0,
-          Star: 0,
-        });
-      }
     }
   }, [counters]);
+  useEffect(() => {
+    if (!localStorage.getItem("counters")) {
+      setCounters({
+        Token: 0,
+        Sprout: 0,
+        Raindrop: 0,
+        Flower: 0,
+        Meteor: 0,
+        Shell: 0,
+        Moon: 0,
+        Leave: 0,
+        Stone: 0,
+        Snowflake: 0,
+        Star: 0,
+      });
+    }
+  }, []);
   return counters ? (
     <>
       <label htmlFor={tokenName}>{tokenName + "(s)"}</label>
