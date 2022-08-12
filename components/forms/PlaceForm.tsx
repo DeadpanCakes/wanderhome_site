@@ -181,14 +181,16 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                           return prevState.concat(currAesthetic);
                         });
                       }}
-                      id={aesthetic.text}
+                      id={"aesthetic" + aesthetic.id}
                       className="aesthetics"
                       type="checkbox"
-                      checked={chosenAesthetics.find(
-                        (choice) => choice.text === aesthetic.text
+                      checked={chosenAesthetics.some(
+                        (choice) => choice.id === aesthetic.id
                       )}
                     />
-                    <label htmlFor={aesthetic.text}>{aesthetic.text}</label>
+                    <label htmlFor={"aesthetic" + aesthetic.id}>
+                      {aesthetic.text}
+                    </label>
                   </li>
                 ))}
             </ul>
@@ -204,23 +206,25 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     <input
                       onChange={() => {
                         setChosenLore((prevState) => {
-                          if (prevState.find((l) => l.id === lore.id)) {
+                          if (prevState.some((l) => l.id === lore.id)) {
                             return prevState.filter((l) => l.id !== lore.id);
                           }
-                          return prevState.concat(
-                            nature.lore_set.find((l) => l.id === lore.id)
-                          );
+                          return prevState
+                            .filter((l) => l.nature !== lore.nature)
+                            .concat(
+                              nature.lore_set.find((l) => l.id === lore.id)
+                            );
                         });
                       }}
-                      id={lore.text}
+                      id={"lore" + lore.id}
                       name={"lores" + lore.nature}
                       className={"lores"}
-                      type="radio"
-                      checked={chosenLore.find(
-                        (choice) => choice.text === lore.text
+                      type="checkbox"
+                      checked={chosenLore.some(
+                        (choice) => choice.id === lore.id
                       )}
                     />
-                    <label htmlFor={lore.text}>{lore.text}</label>
+                    <label htmlFor={"lore" + lore.id}>{lore.text}</label>
                   </li>
                 ))}
             </ul>

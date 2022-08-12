@@ -45,11 +45,9 @@ const PCDetailForm = ({
                 <input
                   type="checkbox"
                   id={"positive" + option.text}
-                  checked={
-                    personality.positive.choices.find(
-                      (choice) => option.id == choice.id
-                    ) || false
-                  }
+                  checked={personality.positive.choices.some(
+                    (choice) => option.id == choice.id
+                  )}
                   onChange={() => {
                     if (
                       personality.positive.choices.find(
@@ -112,11 +110,9 @@ const PCDetailForm = ({
                 <input
                   type="checkbox"
                   id={"negative" + option.text}
-                  checked={
-                    personality.negative.choices.find(
-                      (choice) => option.id == choice.id
-                    ) || false
-                  }
+                  checked={personality.negative.choices.some(
+                    (choice) => option.id == choice.id
+                  )}
                   onChange={() => {
                     if (
                       personality.negative.choices.find(
@@ -185,10 +181,9 @@ const PCDetailForm = ({
                 <input
                   type="checkbox"
                   id={look.id}
-                  checked={
-                    looks.find((addedLooks) => addedLooks.id === look.id) ||
-                    false
-                  }
+                  checked={looks.some(
+                    (addedLooks) => addedLooks.id === look.id
+                  )}
                   onChange={() => {
                     setLooks((prevState) => {
                       const lookAlreadyAdded = prevState.find(

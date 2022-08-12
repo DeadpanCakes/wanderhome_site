@@ -71,7 +71,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                         <input
                           onChange={() => {
                             setChoices((prevState) => {
-                              if (prevState.find((m) => m.id === move.id)) {
+                              if (prevState.some((m) => m.id === move.id)) {
                                 return prevState.filter(
                                   (m) => m.id !== move.id
                                 );
@@ -84,7 +84,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                           id={move.id}
                           className="moves"
                           value={move.text}
-                          checked={choices.find(
+                          checked={choices.some(
                             (choice) => choice.id === move.id
                           )}
                           type="checkbox"
@@ -127,7 +127,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                         <input
                           onChange={() => {
                             setTraits((prevState) => {
-                              if (prevState.find((t) => t.id === trait.id)) {
+                              if (prevState.some((t) => t.id === trait.id)) {
                                 return prevState.filter(
                                   (t) => t.id === trait.id
                                 );
@@ -143,7 +143,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                           value={trait.name}
                           id={trait.id}
                           type="checkbox"
-                          checked={traits.find((t) => t.id === trait.id)}
+                          checked={traits.some((t) => t.id === trait.id)}
                         />
                         <label htmlFor={trait.id}>{trait.name}</label>
                       </li>
