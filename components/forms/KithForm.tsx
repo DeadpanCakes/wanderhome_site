@@ -64,21 +64,23 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
             return (
               <li>
                 <h2>{trait.name}</h2>
-                <ul
-                  onChange={() => {
-                    const moves = document.querySelectorAll(".moves");
-                    const checkedMoves = Array.from(moves).filter(
-                      (move: HTMLInputElement) => move.checked
-                    );
-                    setChoices(
-                      checkedMoves.map((move: HTMLInputElement) => move.value)
-                    );
-                  }}
-                >
+                <ul>
                   {trait.move_set.map((move) => {
                     return (
                       <li>
                         <input
+                          onChange={() => {
+                            setChoices((prevState) => {
+                              if (prevState.find((m) => m.id === move.id)) {
+                                return prevState.filter(
+                                  (m) => m.id !== move.id
+                                );
+                              }
+                              return prevState.concat(
+                                trait.move_set.find((m) => m.id === move.id)
+                              );
+                            });
+                          }}
                           id={move.id}
                           className="moves"
                           value={move.text}
@@ -118,26 +120,25 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
           return (
             <li>
               <Accordian parent={<h2>{category.name}</h2>}>
-                <ul
-                  onChange={() => {
-                    const traits = document.querySelectorAll(".traits");
-                    const checked = Array.from(traits).filter(
-                      (trait: HTMLInputElement) => trait.checked
-                    );
-                    setTraits(
-                      checked.map((checkedTrait) =>
-                        allTraits.find(
-                          (trait) =>
-                            trait.id.toString() === checkedTrait.id.toString()
-                        )
-                      )
-                    );
-                  }}
-                >
+                <ul>
                   {category.trait_set.map((trait) => {
                     return (
                       <li>
                         <input
+                          onChange={() => {
+                            setTraits((prevState) => {
+                              if (prevState.find((t) => t.id === trait.id)) {
+                                return prevState.filter(
+                                  (t) => t.id === trait.id
+                                );
+                              }
+                              return prevState.concat(
+                                category.trait_set.find(
+                                  (t) => t.id === trait.id
+                                )
+                              );
+                            });
+                          }}
                           className="traits"
                           value={trait.name}
                           id={trait.id}
