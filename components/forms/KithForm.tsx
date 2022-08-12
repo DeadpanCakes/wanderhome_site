@@ -143,9 +143,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                           value={trait.name}
                           id={trait.id}
                           type="checkbox"
-                          checked={traits
-                            .map((trait) => trait.id)
-                            .includes(trait.id)}
+                          checked={traits.find((t) => t.id === trait.id)}
                         />
                         <label htmlFor={trait.id}>{trait.name}</label>
                       </li>
