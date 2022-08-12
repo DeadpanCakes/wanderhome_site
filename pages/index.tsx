@@ -69,7 +69,11 @@ export default function Home(props) {
         {characters ? (
           <PlayerCharacter character={characters[0]} />
         ) : (
-          <h2>No Char yet</h2>
+          <Link href="/new/character">
+            <button>
+              <a>No Character Made Yet. Make one!</a>
+            </button>
+          </Link>
         )}
         {activeMonth && activePlace ? (
           <div>
