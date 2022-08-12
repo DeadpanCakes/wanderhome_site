@@ -126,19 +126,6 @@ const PCForm = ({ playbooks, submitHandler }) => {
                             choices: [chosenOption],
                           });
                         });
-                        /*
-                        if you click on an option that belongs to a cat that already exists
-                          check if cat already exists
-                        
-                          Return identical state except that cat
-                          that cat will change one of two ways
-                            if that option already exists in that cat instance
-                              then filter it out
-                            else
-                              concatenate it
-                        else if it does no exist
-                          return identical state, but concat new instance
-                        */
                       }}
                     />
                     <label htmlFor={option.id}>{option.text}</label>
