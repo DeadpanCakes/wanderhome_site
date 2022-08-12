@@ -1,3 +1,4 @@
+import React from "react";
 import ChildList from "../../../../../components/ChildList";
 import NatureMoveForm from "../../../../../components/forms/natures/NatureMoveForm";
 import NatureAestheticForm from "../../../../../components/forms/natures/NatureAestheticForm";
