@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
+import styles from "../../styles/header/About.module.css";
 
 const Info = () => {
   return (
-    <>
+    <div className={styles.about}>
       <h1>What This Is</h1>
       <p>
         This is a simple web app I'm making to aid in the play of Wanderhome, a
@@ -37,7 +38,7 @@ const Info = () => {
         I'm not associated with anyone who worked on this game, this is just a
         hobby.
       </p>
-    </>
+    </div>
   );
 };
 
