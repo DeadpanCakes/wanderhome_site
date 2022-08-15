@@ -7,7 +7,7 @@ import PlayerCharacter from "../components/PlayerCharacter";
 import Place from "../components/Place";
 import Month from "../components/Month";
 import Link from "next/link";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import useMonthInterfacer from "../hooks/useMonthInterfacer";
 
 export default function Home(props) {
@@ -106,17 +106,19 @@ export default function Home(props) {
             </button>
           </Link>
         )}
-        <ul>
-          {npcs ? (
-            npcs.map((npc) => <NPC npc={npc} />)
-          ) : (
-            <Link href="/new/kith">
-              <button>
-                <a>No Kith Made Yet. Make one!</a>
-              </button>
-            </Link>
-          )}
-        </ul>
+        {npcs ? (
+          <ul>
+            {npcs.map((npc) => (
+              <NPC npc={npc} />
+            ))}
+          </ul>
+        ) : (
+          <Link href="/new/kith">
+            <button>
+              <a>No Kith Made Yet. Make one!</a>
+            </button>
+          </Link>
+        )}
       </main>
       <footer>
         <h3>Footer</h3>
