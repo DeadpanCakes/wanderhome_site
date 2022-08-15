@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PCForm from "../../components/forms/PCForm";
 import useStorage from "../../hooks/useStorage";
-import Header from "../../components/Header";
+import Header from "../../components/header/Header";
 
 const character = (props) => {
   const playbooks = JSON.parse(props.playbooks);

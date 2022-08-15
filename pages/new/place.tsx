@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import PlaceForm from "../../components/forms/PlaceForm";
 import useStorage from "../../hooks/useStorage";
-import Header from "../../components/Header";
+import Header from "../../components/header/Header";
 
 const place = (props) => {
   const [places, setPlaces, fetchPlaces] = useStorage("places", null);

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import NPCForm from "../../components/forms/KithForm";
 import useStorage from "../../hooks/useStorage";
-import Header from "../../components/Header";
+import Header from "../../components/header/Header";
 
 const kith = (props) => {
   const traits = JSON.parse(props.traits);
