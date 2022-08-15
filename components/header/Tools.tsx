@@ -70,7 +70,7 @@ const Tools = () => {
     },
   ];
   return (
-    <>
+    <div className={styles.tools}>
       <h2>Tools</h2>
       <ul className={styles.toolList}>
         {tools.map((tool) => {
@@ -87,7 +87,7 @@ const Tools = () => {
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 
