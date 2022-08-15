@@ -127,9 +127,61 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+* {
+  background-color: #e7cee6;
+  color: #137399;
+}
+
+.darkBG {
+  color: #86a9ed;
+  background-color: #0f516c;
+}
+
 main {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  min-height: 100vh;
+  min-height: 85vh;
   max-width: 90vw;
+  font-size: 17px;
+  line-height: 1.5rem;
+}
+
+header {
+  color: #86a9ed;
+  background-color: #0f516c;
+  min-height: 7vh;
+}
+
+footer {
+  min-height: 50vh;
+  background-color: var(--primary-color);
+}
+
+button {
+  border: 2px solid #0f516c;
+  border-radius: 10px;
+  min-height: 25px;
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  text-shadow: 0 0 5px #86a9ed;
+}
+
+a:hover {
+  text-shadow: 0 0 5px #86a9ed;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+input {
+  border: 0;
+  border-radius: 15px;
+  padding: 5px;
+  background-color: #0f516c;
+  color: #e7cee6;
 }
