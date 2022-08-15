@@ -19,9 +19,6 @@ const Header = () => {
       </PopupLayout>
       <button onClick={toggleInfo}>About</button>
       <button onClick={toggleVisible}>Tools</button>
-      <AddBtn text="Make New Character" href="/new/character" />
-      <AddBtn text="Make New Place" href="/new/place" />
-      <AddBtn text="Make New Kith" href="/new/kith" />
     </header>
   );
 };
