@@ -10,7 +10,7 @@ import Link from "next/link";
 import Header from "../components/header/Header";
 import useMonthInterfacer from "../hooks/useMonthInterfacer";
 import styles from "../styles/Home.module.css";
-
+import Sidebar from "../components/sidebar/Sidebar";
 export default function Home(props) {
   const rawMonths = JSON.parse(props.months);
   const months = useMonthInterfacer(rawMonths);
@@ -82,8 +82,15 @@ export default function Home(props) {
           href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Niconne&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <Header />
+      <Sidebar />
       <main className={styles.dashboard}>
         {characters ? (
           <PlayerCharacter character={characters[0]} />
