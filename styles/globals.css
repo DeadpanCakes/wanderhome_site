@@ -148,6 +148,14 @@ h2 {
   line-height: 3rem;
 }
 
+b {
+  font-weight: bold;
+}
+
+i {
+  font-style: italic;
+}
+
 .darkBG {
   color: #86a9ed;
   background-color: #0f516c;
