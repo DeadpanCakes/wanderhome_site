@@ -3,7 +3,7 @@ import AddBtn from "../AddBtn";
 import styles from "../../styles/sidebar/Sidebar.module.css";
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const toggleSidebar = () => setCollapsed((prevState) => !prevState);
   return (
     <div
