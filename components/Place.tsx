@@ -13,9 +13,9 @@ const Place = ({ month, place }) => {
     .map((aesthetic) => aesthetic.text);
   const aestheticStr = aesthetics.join(". ") + ".";
   const lacks = month.lack_set.map((lack) => lack.text);
-  const lackStr = lacks.join(", ") + ". ";
+  const lackStr = lacks.join(". ") + ". ";
   const signs = month.sign_set.map((sign) => sign.text);
-  const signsStr = signs.join(", ") + ". ";
+  const signsStr = signs.join(". ") + ". ";
   const residentStr = place.residents.join(", ");
   const godStr = place.gods.join(", ");
   const moves = place.traits
