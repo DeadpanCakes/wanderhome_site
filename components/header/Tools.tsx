@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import styles from "../styles/Tools.module.css";
+import styles from "../../styles/Tools.module.css";
 
 const Tools = () => {
   const tools = [
