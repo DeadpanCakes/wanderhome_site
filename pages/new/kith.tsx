@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import NPCForm from "../../components/forms/KithForm";
 import useStorage from "../../hooks/useStorage";
-import Header from "../../components/header/Header";
+import DefaultLayout from "../../components/layouts/DefaultLayout";
 
 const kith = (props) => {
   const traits = JSON.parse(props.traits);
@@ -24,15 +24,16 @@ const kith = (props) => {
   };
   return (
     <>
-      <Header />
-      <h1>Create A New Kith</h1>
-      <NPCForm
-        traitCategories={traits}
-        submitHandler={(newNpc) => {
-          addNpc(newNpc);
-          router.push("/");
-        }}
-      />
+      <DefaultLayout>
+        <h1>Create A New Kith</h1>
+        <NPCForm
+          traitCategories={traits}
+          submitHandler={(newNpc) => {
+            addNpc(newNpc);
+            router.push("/");
+          }}
+        />
+      </DefaultLayout>
     </>
   );
 };

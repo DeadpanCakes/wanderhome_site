@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PCForm from "../../components/forms/PCForm";
 import useStorage from "../../hooks/useStorage";
-import Header from "../../components/header/Header";
+import DefaultLayout from "../../components/layouts/DefaultLayout";
 
 const character = (props) => {
   const playbooks = JSON.parse(props.playbooks);
@@ -24,8 +24,9 @@ const character = (props) => {
   };
   return (
     <>
-      <Header />
-      <PCForm playbooks={playbooks} submitHandler={addCharacter} />
+      <DefaultLayout>
+        <PCForm playbooks={playbooks} submitHandler={addCharacter} />
+      </DefaultLayout>
     </>
   );
 };
