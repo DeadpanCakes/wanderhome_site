@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddBtn from "../AddBtn";
+import Link from "next/link";
 import PopupLayout from "../layouts/PopupLayout";
 import Tools from "./Tools";
 import Info from "./Info";
@@ -17,7 +17,11 @@ const Header = () => {
           <button onClick={toggleInfo}>About</button>
           <button onClick={toggleVisible}>Tools</button>
         </div>
-        <h1 className={styles.title}>Wanderhome</h1>
+        <Link href="/">
+          <a>
+            <h1 className={styles.title}>Wanderhome</h1>
+          </a>
+        </Link>
       </header>
       <PopupLayout isVisible={infoVisible} closePopup={toggleInfo}>
         <Info />
