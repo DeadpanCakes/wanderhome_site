@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "whatwg-fetch";
-import Head from "next/head";
 import useStorage from "../hooks/useStorage";
 import NPC from "../components/NPC";
 import PlayerCharacter from "../components/PlayerCharacter";
 import Place from "../components/Place";
 import Month from "../components/Month";
 import Link from "next/link";
-import Header from "../components/header/Header";
 import useMonthInterfacer from "../hooks/useMonthInterfacer";
 import styles from "../styles/Home.module.css";
 import DefaultLayout from "../components/layouts/DefaultLayout";
+import Meta from "../components/layouts/Meta";
 
 export default function Home(props) {
   const rawMonths = JSON.parse(props.months);
@@ -54,18 +53,7 @@ export default function Home(props) {
   return (
     <div>
       <DefaultLayout>
-        <Head>
-          <title>Wanderhome</title>
-          <meta
-            name="description"
-            content="Web app for the tabletop role-playing game Wanderhome by Jay Dragon"
-          />
-          <meta
-            name="keywords"
-            content="Tabletop Role-Playing, TTRPG, Wanderhome"
-          />
-          <meta name="author" content="Anthony Mendoza" />
-        </Head>
+        <Meta />
         <main className={styles.dashboard}>
           {characters ? (
             <PlayerCharacter character={characters[0]} />
