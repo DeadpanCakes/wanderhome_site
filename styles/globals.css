@@ -191,6 +191,16 @@ button:hover {
   text-shadow: 0 0 5px #86a9ed;
 }
 
+button:disabled {
+  color: #c0acbe;
+  border: 2px solid #c0acbe;
+}
+
+button:disabled:hover {
+  text-shadow: none;
+  cursor: default;
+}
+
 a:hover {
   text-shadow: 0 0 5px #86a9ed;
 }
