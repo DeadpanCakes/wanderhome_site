@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import useStorage from "../hooks/useStorage";
+import styles from "../styles/Tracker.module.css";
 
 interface Props {
   tokenName: string;
@@ -51,15 +52,28 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
     }
   }, []);
   return counters ? (
-    <>
-      <label htmlFor={tokenName}>{tokenName + "(s)"}</label>
-      <input value={counters[tokenName]} readOnly={true} id={tokenName} />
-      <button onClick={addToken}>+</button>
-      <button onClick={spendToken}>-</button>
-      <button onClick={resetCount} title="initCount">
-        X
-      </button>
-    </>
+    <div className={styles.tracker}>
+      <label className={styles.token} htmlFor={tokenName}>
+        {tokenName + "(s)"}
+      </label>
+      <input
+        className={styles.counter}
+        value={counters[tokenName]}
+        readOnly={true}
+        id={tokenName}
+      />
+      <div className={styles.controls}>
+        <button className={styles.plus} onClick={addToken}>
+          +
+        </button>
+        <button className={styles.minus} onClick={spendToken}>
+          -
+        </button>
+        <button className={styles.init} onClick={resetCount} title="initCount">
+          X
+        </button>
+      </div>
+    </div>
   ) : (
     <>
       <label htmlFor={tokenName}>{tokenName + "(s)"}</label>

@@ -1,0 +1,41 @@
+.tracker {
+  margin: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.token {
+  font-size: 1.5rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
+}
+
+.counter {
+  border-radius: 0;
+  align-self: stretch;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "plus init"
+    "minus init";
+}
+
+.plus {
+  border-radius: 0;
+  grid-area: "plus";
+}
+
+.minus {
+  border-radius: 0;
+  grid-area: "minus";
+}
+
+.init {
+  border-radius: 0;
+  grid-area: init;
+}
