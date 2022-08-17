@@ -13,7 +13,11 @@ const Month = ({
 }) => {
   return (
     <>
-      <Accordian parent={<h1>{currMonth.name}</h1>}>
+      <Tracker
+        tokenName={currMonth.event.trigger.tokenName}
+        threshhold={currMonth.event.trigger.threshhold}
+      />
+      <Accordian parent={<h1>The Great Arc</h1>}>
         <form>
           <label htmlFor="monthSelector">What Month Is It?</label>
           <select
@@ -86,10 +90,6 @@ const Month = ({
           </ul>
         </form>
       </Accordian>
-      <Tracker
-        tokenName={currMonth.event.trigger.tokenName}
-        threshhold={currMonth.event.trigger.threshhold}
-      />
     </>
   );
 };
