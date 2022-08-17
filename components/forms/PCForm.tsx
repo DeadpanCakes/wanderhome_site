@@ -43,7 +43,9 @@ const PCForm = ({ playbooks, submitHandler }) => {
     personality.positive.choices.length === 2 &&
     personality.negative.choices.length === 2;
   const lookIsValid = 4 >= looks.length && looks.length >= 3;
-  const historyIsValid = histories.length === chosenPlaybook.history_set.length;
+  const historyIsValid =
+    histories.length === chosenPlaybook.history_set.length &&
+    histories.every((history) => history.choices.length > 0);
   const relationshipIsValid = relationships.length === 2;
   const pageOneValid = useValidation(chosenPlaybook.id);
   const pageTwoValid = useValidation(animal, personalityIsValid, lookIsValid);
@@ -85,41 +87,36 @@ const PCForm = ({ playbooks, submitHandler }) => {
                       type="checkbox"
                       id={option.id}
                       onChange={() => {
-                        const chosenHistory = chosenPlaybook.history_set.find(
-                          (h) => h.id == history.id
-                        );
-                        const chosenOption = chosenHistory.option_set.find(
-                          (o) => o.id == option.id
-                        );
-                        const existingProp = histories.find(
-                          (h) => h.id == history.id
-                        );
-                        if (existingProp) {
-                          return setHistories((prevState) => {
+                        setHistories((prevState) => {
+                          const chosenHistory = chosenPlaybook.history_set.find(
+                            (h) => h.id == history.id
+                          );
+                          const chosenOption = chosenHistory.option_set.find(
+                            (o) => o.id == option.id
+                          );
+                          const existingProp = prevState.find(
+                            (h) => h.id == history.id
+                          );
+                          if (existingProp) {
                             return prevState.map((h) => {
-                              if (h.id == existingProp.id) {
-                                if (
-                                  existingProp.choices.some(
-                                    (choice) => choice.id == option.id
-                                  )
-                                ) {
-                                  return {
-                                    ...h,
-                                    choices: h.choices.filter((o) => {
-                                      o.id != option.id;
-                                    }),
-                                  };
-                                }
-                                return {
-                                  ...h,
-                                  choices: h.choices.concat(chosenOption),
-                                };
+                              if (h.id === existingProp.id) {
+                                return existingProp.choices.some(
+                                  (choice) => choice.id === option.id
+                                )
+                                  ? {
+                                      ...h,
+                                      choices: h.choices.filter(
+                                        (o) => o.id !== option.id
+                                      ),
+                                    }
+                                  : {
+                                      ...h,
+                                      choices: h.choices.concat(chosenOption),
+                                    };
                               }
                               return { ...h };
                             });
-                          });
-                        }
-                        return setHistories((prevState) => {
+                          }
                           return prevState.concat({
                             id: chosenHistory.id,
                             prompt: chosenHistory.prompt,
@@ -196,9 +193,6 @@ const PCForm = ({ playbooks, submitHandler }) => {
         e.preventDefault();
       }}
     >
-      <button onClick={() => console.log(histories, relationshipIsValid)}>
-        Check
-      </button>
       <div className={styles.basic}>
         <InputField name="name" value={name} changeHandler={setName} />
         <p>{chosenPlaybook.name.toUpperCase()}</p>
