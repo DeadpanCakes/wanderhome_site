@@ -4,6 +4,11 @@ import PopupLayout from "../layouts/PopupLayout";
 import Tools from "./Tools";
 import Info from "./Info";
 import styles from "../../styles/header/Header.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleInfo,
+  faScrewdriverWrench,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [infoVisible, setInfoVisible] = useState(false);
@@ -14,8 +19,12 @@ const Header = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.btnContainer}>
-          <button onClick={toggleInfo}>About</button>
-          <button onClick={toggleVisible}>Tools</button>
+          <button onClick={toggleInfo}>
+            <FontAwesomeIcon icon={faCircleInfo} size="lg" />
+          </button>
+          <button onClick={toggleVisible}>
+            <FontAwesomeIcon icon={faScrewdriverWrench} size="lg" />
+          </button>
         </div>
         <Link href="/">
           <a>
