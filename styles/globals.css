@@ -196,6 +196,12 @@ h2 {
   line-height: 3rem;
 }
 
+h3 {
+  font-size: 1.1rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
+}
+
 b {
   font-weight: bold;
 }
@@ -206,9 +212,6 @@ i {
 
 a {
   text-decoration: none;
-}
-
-main {
 }
 
 header {
@@ -222,7 +225,9 @@ footer {
 }
 
 button {
-  border: 2px solid #0f516c;
+  background-color: #603a58;
+  border: 2px solid #2c1b28;
+  color: #fff0ea;
   border-radius: 10px;
   min-height: 25px;
   padding: 5px;
