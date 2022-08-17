@@ -1,23 +1,54 @@
 .sidebar {
   display: block;
+  padding: 20px;
   position: fixed;
   left: 0;
   min-height: 100%;
   width: 25vw;
   transition: width 300ms ease-in-out;
+  border-right: 2px solid #603a58;
+  border-top: 2px solid #603a58;
+  background: linear-gradient(
+    0deg,
+    #603a58,
+    #5e3956,
+    #5c3854,
+    #5a3653,
+    #583551,
+    #56344f,
+    #54334d,
+    #52324b,
+    #503149,
+    #4e2f48,
+    #4c2e46,
+    #4a2d44
+  );
+  border-radius: 0 20px 0 0;
 }
 
 .hidden {
   width: 0;
+  padding: 0;
+  border: none;
 }
 
 .toggleBtn {
+  border-radius: 0 10px 10px 0;
+  border: none;
   position: absolute;
   right: -20px;
-  top: 0;
+  top: 10px;
 }
 
 .content {
   display: grid;
   overflow: hidden;
+}
+
+.content > * {
+  margin: 5px;
+}
+
+.homeLink {
+  color: #ffdfd1;
 }

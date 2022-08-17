@@ -3,6 +3,8 @@ import AddBtn from "../AddBtn";
 import styles from "../../styles/sidebar/Sidebar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faX, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -15,12 +17,14 @@ const Sidebar = () => {
       }
     >
       <button className={styles.toggleBtn} onClick={toggleSidebar}>
-        X
+        <FontAwesomeIcon icon={collapsed ? faBars : faX} size="lg" />
       </button>
       <div className={styles.content}>
         {router.pathname === "/" ? null : (
           <Link href="/">
-            <a>Back To Game</a>
+            <a className={styles.homeLink}>
+              <FontAwesomeIcon icon={faAngleLeft} /> Back To Game
+            </a>
           </Link>
         )}
         <AddBtn text="Make New Character" href="/new/character" />
