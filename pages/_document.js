@@ -15,28 +15,28 @@ class MyDocument extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
             rel="stylesheet"
-            crossOrigin
+            crossOrigin="true"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Tillana&display=swap"
             rel="stylesheet"
-            crossOrigin
+            crossOrigin="true"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400&display=swap"
             rel="stylesheet"
-            crossOrigin
+            crossOrigin="true"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Niconne&display=swap"
             rel="stylesheet"
-            crossOrigin
+            crossOrigin="true"
           />
         </Head>
         <body>
