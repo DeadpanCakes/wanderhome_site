@@ -20,7 +20,7 @@ const NPC = ({ npc }) => {
           {npc.detail}, {npc.relationship}.
         </p>
         <ListLayout
-          header={<h3>As {npc.name}, you can always:</h3>}
+          header={<h3>{npc.name} can always:</h3>}
           list={moves.map((move) => move.text)}
         />
       </Accordian>
