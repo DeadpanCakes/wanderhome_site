@@ -10,6 +10,8 @@ import useMonthInterfacer from "../hooks/useMonthInterfacer";
 import styles from "../styles/Home.module.css";
 import DefaultLayout from "../components/layouts/DefaultLayout";
 import Meta from "../components/layouts/Meta";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home(props) {
   const rawMonths = JSON.parse(props.months);

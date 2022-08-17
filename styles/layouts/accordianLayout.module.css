@@ -10,6 +10,7 @@
 
 .parent {
   display: flex;
+  position: static;
   justify-content: space-between;
   align-items: stretch;
   border-radius: 5px 5px 0 0;
@@ -32,4 +33,9 @@
   margin: none;
   max-height: 0;
   opacity: 0;
+}
+
+.iconContainer {
+  align-self: center;
+  margin-right: 3%;
 }

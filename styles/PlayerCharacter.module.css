@@ -4,17 +4,23 @@
 }
 
 .characterDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+.choice {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "first first first";
-  align-items: stretch;
-  justify-items: stretch;
+  grid-template-columns: 25px 1fr;
+  align-items: center;
+  padding-left: 5%;
+  padding-top: 5px;
 }
 
-.firstLine {
-  grid-area: first;
+.personality {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.characterDetail * {
-  margin: 0;
+.positive,
+.negative {
 }

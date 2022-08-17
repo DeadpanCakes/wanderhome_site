@@ -31,38 +31,53 @@ const PlayerCharacter = ({ character }) => {
               </ul>
             </Accordian>
             <Accordian parent={<h2>Personality</h2>}>
-              <h3>{character.personality.positive.prompt}:</h3>
-              <ul>
-                {character.personality.positive.choices.map((choice) => (
-                  <li key={choice.text}>
-                    <FontAwesomeIcon icon={faSeedling} />
-                    {choice.text}
-                  </li>
-                ))}
-              </ul>
-              <h3>{character.personality.negative.prompt}:</h3>
-              <ul>
-                {character.personality.negative.choices.map((choice) => (
-                  <li key={choice.text}>
-                    <FontAwesomeIcon icon={faSeedling} />
-                    {choice.text}
-                  </li>
-                ))}
-              </ul>
+              <div className={styles.personality}>
+                <div>
+                  <h3>{character.personality.positive.prompt}:</h3>
+                  <ul>
+                    {character.personality.positive.choices.map((choice) => (
+                      <li key={choice.text}>
+                        <FontAwesomeIcon icon={faSeedling} />
+                        {choice.text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3>{character.personality.negative.prompt}:</h3>
+                  <ul>
+                    {character.personality.negative.choices.map((choice) => (
+                      <li key={choice.text}>
+                        <FontAwesomeIcon icon={faSeedling} />
+                        {choice.text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </Accordian>
           </div>
-          <div className={styles.history}>
-            {character.histories
-              .sort((a, b) => a.id - b.id)
-              .map((history) => {
-                return (
-                  <ListLayout
-                    header={<h2>{history.prompt}</h2>}
-                    list={history.choices.map((choice) => choice.text)}
-                  />
-                );
-              })}
-          </div>
+          <Accordian parent={<h2>Background</h2>}>
+            <div className={styles.history}>
+              {character.histories
+                .sort((a, b) => a.id - b.id)
+                .map((history) => {
+                  return (
+                    <>
+                      <h2>{history.prompt}</h2>
+                      <ul>
+                        {history.choices.map((choice) => (
+                          <li className={styles.choice}>
+                            <FontAwesomeIcon icon={faSeedling} />
+                            <p>{choice.text}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  );
+                })}
+            </div>
+          </Accordian>
         </div>
       </Accordian>
       <GenericMoves />

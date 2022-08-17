@@ -209,9 +209,6 @@ a {
 }
 
 main {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  min-height: 85vh;
 }
 
 header {

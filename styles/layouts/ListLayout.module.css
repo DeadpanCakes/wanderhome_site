@@ -1,0 +1,7 @@
+.listing {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  align-items: center;
+  padding-left: 5%;
+  padding-top: 5px;
+}
