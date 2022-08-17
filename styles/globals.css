@@ -128,12 +128,60 @@ table {
   border-spacing: 0;
 }
 
-* {
-  background-color: #e7cee6;
-  color: #137399;
+body {
+  background-color: transparent;
   font-family: "Khula", sans-serif;
   font-size: 17px;
   line-height: 2rem;
+  color: #603a58;
+  background: linear-gradient(
+    15deg,
+    #e4b49d,
+    #e8b7a0,
+    #ebbba4,
+    #efbea8,
+    #f2c2ac,
+    #f5c6b0,
+    #f7cab5,
+    #f9ceba,
+    #fbd2bf,
+    #fdd6c5,
+    #fedbcb,
+    #ffdfd1
+  );
+}
+
+.caretaker {
+  color: linear-gradient(
+    0deg,
+    #603a58,
+    #5e3956,
+    #5c3854,
+    #5a3653,
+    #583551,
+    #56344f,
+    #54334d,
+    #52324b,
+    #503149,
+    #4e2f48,
+    #4c2e46,
+    #4a2d44
+  );
+  background: linear-gradient(
+    15deg,
+    #e4b49d,
+    #e8b7a0,
+    #ebbba4,
+    #efbea8,
+    #f2c2ac,
+    #f5c6b0,
+    #f7cab5,
+    #f9ceba,
+    #fbd2bf,
+    #fdd6c5,
+    #fedbcb,
+    #ffdfd1
+  );
 }
 
 h1 {
@@ -156,21 +204,14 @@ i {
   font-style: italic;
 }
 
-.darkBG {
-  color: #86a9ed;
-  background-color: #0f516c;
-}
-
 main {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   min-height: 85vh;
-  max-width: 90vw;
 }
 
 header {
-  color: #86a9ed;
-  background-color: #0f516c;
+  color: #603a58;
   min-height: 7vh;
 }
 
@@ -187,8 +228,22 @@ button {
 }
 
 button:hover {
+  color: linear-gradient(
+    0deg,
+    #603a58,
+    #5e3956,
+    #5c3854,
+    #5a3653,
+    #583551,
+    #56344f,
+    #54334d,
+    #52324b,
+    #503149,
+    #4e2f48,
+    #4c2e46,
+    #4a2d44
+  );
   cursor: pointer;
-  text-shadow: 0 0 5px #86a9ed;
 }
 
 button:disabled {
@@ -199,10 +254,6 @@ button:disabled {
 button:disabled:hover {
   text-shadow: none;
   cursor: default;
-}
-
-a:hover {
-  text-shadow: 0 0 5px #86a9ed;
 }
 
 label:hover {

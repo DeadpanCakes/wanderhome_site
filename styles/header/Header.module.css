@@ -1,19 +1,17 @@
 .header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  background-color: #137399;
-  color: white;
+  background-color: transparent;
 }
 
 .btnContainer {
-  background-color: #137399;
+  background-color: transparent;
 }
 
 .title {
   font-family: "Niconne", cursive;
   font-size: 5rem;
-  background-color: #137399;
-  color: #9a79cf;
-  text-shadow: 0 0 1px #650bf5;
+  background-color: transparent;
   text-align: center;
+  color: #603a58;
 }
