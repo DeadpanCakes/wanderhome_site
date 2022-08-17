@@ -51,14 +51,18 @@ const PlayerCharacter = ({ character }) => {
               </ul>
             </Accordian>
           </div>
-          {character.histories.map((history) => {
-            return (
-              <ListLayout
-                header={<h2>{history.prompt}</h2>}
-                list={history.choices.map((choice) => choice.text)}
-              />
-            );
-          })}
+          <div className={styles.history}>
+            {character.histories
+              .sort((a, b) => a.id - b.id)
+              .map((history) => {
+                return (
+                  <ListLayout
+                    header={<h2>{history.prompt}</h2>}
+                    list={history.choices.map((choice) => choice.text)}
+                  />
+                );
+              })}
+          </div>
         </div>
       </Accordian>
       <GenericMoves />
