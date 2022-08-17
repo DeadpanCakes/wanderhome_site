@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Accordian from "./layouts/Accordian";
 import Tracker from "./Tracker";
+import styles from "../styles/Month.module.css";
 
 const Month = ({
   months,
@@ -19,20 +20,27 @@ const Month = ({
       />
       <Accordian parent={<h1>The Great Arc</h1>}>
         <form>
-          <label htmlFor="monthSelector">What Month Is It?</label>
-          <select
-            id="monthSelector"
-            title="monthSelector"
-            onChange={(e) => {
-              setMonth(months.find((month) => month.name === e.target.value));
-            }}
-          >
-            {months.map((month) => (
-              <option value={month.name} key={month.name}>
-                {month.name}
-              </option>
-            ))}
-          </select>
+          <div className={styles.monthSelector}>
+            <label
+              className={styles.monthSelectorLabel}
+              htmlFor="monthSelector"
+            >
+              What Month Is It?
+            </label>
+            <select
+              id="monthSelector"
+              title="monthSelector"
+              onChange={(e) => {
+                setMonth(months.find((month) => month.name === e.target.value));
+              }}
+            >
+              {months.map((month) => (
+                <option value={month.name} key={month.name}>
+                  {month.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <h2>Choose 1 that this place lacks. The others are all present.</h2>
           <ul>
             {currMonth.lack_set.map((lack) => (
