@@ -204,6 +204,10 @@ i {
   font-style: italic;
 }
 
+a {
+  text-decoration: none;
+}
+
 main {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
