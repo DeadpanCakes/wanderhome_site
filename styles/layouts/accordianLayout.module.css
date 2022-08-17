@@ -22,9 +22,14 @@
   overflow: hidden;
   max-height: 10000px;
   transition: max-height 300ms linear, opacity 400ms linear;
+  padding: 5px;
 }
 
 .hidden {
+  border-radius: 0;
+  border: 0;
+  padding: 0;
+  margin: none;
   max-height: 0;
   opacity: 0;
 }
