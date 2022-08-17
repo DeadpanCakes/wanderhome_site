@@ -1,5 +1,7 @@
 import React from "react";
 import Accordian from "./Accordian";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 const ListLayout = ({ header, list }) => {
   return (
@@ -7,7 +9,12 @@ const ListLayout = ({ header, list }) => {
       <Accordian parent={header}>
         <ul>
           {list.map((item) => {
-            return <li key={item}>{item}</li>;
+            return (
+              <li key={item}>
+                <FontAwesomeIcon icon={faSeedling} />
+                {item}
+              </li>
+            );
           })}
         </ul>
       </Accordian>

@@ -3,6 +3,8 @@ import GenericMoves from "./GenericMoves";
 import ListLayout from "./layouts/ListLayout";
 import Accordian from "./layouts/Accordian";
 import styles from "../styles/PlayerCharacter.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 const PlayerCharacter = ({ character }) => {
   return (
@@ -19,7 +21,12 @@ const PlayerCharacter = ({ character }) => {
             <Accordian parent={<h2>Appearance</h2>}>
               <ul>
                 {character.looks.map((look) => {
-                  return <li key={look.id}>{look.text}</li>;
+                  return (
+                    <li key={look.id}>
+                      <FontAwesomeIcon icon={faSeedling} />
+                      {look.text}
+                    </li>
+                  );
                 })}
               </ul>
             </Accordian>
@@ -27,13 +34,19 @@ const PlayerCharacter = ({ character }) => {
               <h3>{character.personality.positive.prompt}:</h3>
               <ul>
                 {character.personality.positive.choices.map((choice) => (
-                  <li key={choice.text}>{choice.text}</li>
+                  <li key={choice.text}>
+                    <FontAwesomeIcon icon={faSeedling} />
+                    {choice.text}
+                  </li>
                 ))}
               </ul>
               <h3>{character.personality.negative.prompt}:</h3>
               <ul>
                 {character.personality.negative.choices.map((choice) => (
-                  <li key={choice.text}>{choice.text}</li>
+                  <li key={choice.text}>
+                    <FontAwesomeIcon icon={faSeedling} />
+                    {choice.text}
+                  </li>
                 ))}
               </ul>
             </Accordian>
