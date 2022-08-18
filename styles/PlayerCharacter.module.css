@@ -16,11 +16,13 @@
   padding-top: 5px;
 }
 
+.appearance,
+.personality,
+.history {
+  padding: 2% 5%;
+}
+
 .personality {
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
-
-.positive,
-.negative {
 }

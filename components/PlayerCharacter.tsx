@@ -19,7 +19,7 @@ const PlayerCharacter = ({ character }) => {
         <div className={styles.characterDetail}>
           <div className={styles.firstLine}>
             <Accordian parent={<h2>Appearance</h2>}>
-              <ul>
+              <ul className={styles.appearance}>
                 {character.looks.map((look) => {
                   return (
                     <li key={look.id}>
