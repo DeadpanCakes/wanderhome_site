@@ -23,8 +23,8 @@ const kith = (props) => {
     });
   };
   return (
-    <>
-      <DefaultLayout>
+    <DefaultLayout>
+      <main>
         <h1>Create A New Kith</h1>
         <NPCForm
           traitCategories={traits}
@@ -33,8 +33,8 @@ const kith = (props) => {
             router.push("/");
           }}
         />
-      </DefaultLayout>
-    </>
+      </main>
+    </DefaultLayout>
   );
 };
 

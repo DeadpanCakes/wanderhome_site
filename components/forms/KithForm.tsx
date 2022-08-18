@@ -4,6 +4,7 @@ import Accordian from "../layouts/Accordian";
 import { v4 as uuid } from "uuid";
 import PageLayout from "../layouts/PageLayout";
 import useValidation from "../../hooks/useValidation";
+import styles from "../../styles/forms/KithForm.module.css";
 
 const NPCForm = ({ traitCategories, submitHandler }) => {
   const [name, setName] = useState("");
@@ -64,7 +65,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
             return (
               <li>
                 <h2>{trait.name}</h2>
-                <ul>
+                <ul className={styles.moves}>
                   {trait.move_set.map((move) => {
                     return (
                       <li>
@@ -98,29 +99,56 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
             );
           })}
       </ul>
+      <button
+        disabled={!pageTwoValid}
+        onClick={() =>
+          submitHandler({
+            id: uuid(),
+            name,
+            pronouns,
+            form,
+            relationship,
+            detail,
+            traits: traits.map((trait) => {
+              return {
+                id: trait.id,
+                name: trait.name,
+                choices: choices.filter((choice) => {
+                  return choice.trait === trait.id;
+                }),
+              };
+            }),
+          })
+        }
+      >
+        Submit
+      </button>
     </>
   );
   const FirstPage = (
     <>
-      <InputField name="name" value={name} changeHandler={setName} />
-      <InputField
-        name="pronouns"
-        value={pronouns}
-        changeHandler={setPronouns}
-      />
-      <InputField name="form" value={form} changeHandler={setForm} />
-      <InputField
-        name="relationship"
-        value={relationship}
-        changeHandler={setRelationship}
-      />
-      <InputField name="detail" value={detail} changeHandler={setDetail} />
-      <ul>
+      <button onClick={randomizeTraits}>Randomize</button>
+      <div className={styles.textFields}>
+        <InputField name="name" value={name} changeHandler={setName} />
+        <InputField
+          name="pronouns"
+          value={pronouns}
+          changeHandler={setPronouns}
+        />
+        <InputField name="form" value={form} changeHandler={setForm} />
+        <InputField
+          name="relationship"
+          value={relationship}
+          changeHandler={setRelationship}
+        />
+        <InputField name="detail" value={detail} changeHandler={setDetail} />
+      </div>
+      <ul className={styles.categories}>
         {traitCategories.map((category) => {
           return (
             <li>
               <Accordian parent={<h2>{category.name}</h2>}>
-                <ul>
+                <ul className={styles.categoryOptions}>
                   {category.trait_set.map((trait) => {
                     return (
                       <li>
@@ -161,35 +189,10 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
-      <button onClick={randomizeTraits}>Randomize</button>
       <PageLayout
         pages={[FirstPage, SecondPage]}
         pageValidity={[pageOneValid]}
       />
-      <button
-        disabled={!pageTwoValid}
-        onClick={() =>
-          submitHandler({
-            id: uuid(),
-            name,
-            pronouns,
-            form,
-            relationship,
-            detail,
-            traits: traits.map((trait) => {
-              return {
-                id: trait.id,
-                name: trait.name,
-                choices: choices.filter((choice) => {
-                  return choice.trait === trait.id;
-                }),
-              };
-            }),
-          })
-        }
-      >
-        Submit
-      </button>
     </form>
   );
 };

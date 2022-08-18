@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "../styles/InputField.module.css";
 
 const InputField = ({ name, value, changeHandler }) => {
   return (
-    <>
+    <div className={styles.container}>
       <label htmlFor={name}>{name.toUpperCase()}</label>
       <input
         id={name}
@@ -12,7 +13,7 @@ const InputField = ({ name, value, changeHandler }) => {
           changeHandler(e.target.value);
         }}
       ></input>
-    </>
+    </div>
   );
 };
 

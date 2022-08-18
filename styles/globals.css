@@ -151,6 +151,11 @@ body {
   );
 }
 
+main {
+  min-height: 100vh;
+  padding: 5vh 10vw;
+}
+
 .caretaker {
   color: linear-gradient(
     0deg,
