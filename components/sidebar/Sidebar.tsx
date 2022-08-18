@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AddBtn from "../AddBtn";
 import styles from "../../styles/sidebar/Sidebar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import useOutsideChecker from "../../hooks/useOutsideChecker";
 
 const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(true);
-  const toggleSidebar = () => setCollapsed((prevState) => !prevState);
+  const [visible, setVisible] = useState(false);
+  const lastClick = useRef(null);
+  useOutsideChecker(lastClick, setVisible);
+  const toggleSidebar = () => setVisible((prevState) => !prevState);
   const router = useRouter();
   return (
     <div
       className={
-        collapsed ? styles.sidebar + " " + styles.hidden : styles.sidebar
+        !visible ? styles.sidebar + " " + styles.hidden : styles.sidebar
       }
+      ref={lastClick}
     >
       <button className={styles.toggleBtn} onClick={toggleSidebar}>
-        <FontAwesomeIcon icon={collapsed ? faBars : faX} size="lg" />
+        <FontAwesomeIcon icon={!visible ? faBars : faX} size="lg" />
       </button>
       <div className={styles.content}>
         {router.pathname === "/" ? null : (
