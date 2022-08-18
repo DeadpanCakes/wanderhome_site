@@ -26,15 +26,15 @@ const place = (props) => {
     router.push("/");
   };
   return (
-    <>
-      <DefaultLayout>
+    <DefaultLayout>
+      <main>
         <h1>Create A New Place</h1>
         <PlaceForm
           natureCategories={natureCategories}
           submitHandler={submitHandler}
         />
-      </DefaultLayout>
-    </>
+      </main>
+    </DefaultLayout>
   );
 };
 

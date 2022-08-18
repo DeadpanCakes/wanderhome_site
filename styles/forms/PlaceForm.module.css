@@ -1,0 +1,49 @@
+.randomizer {
+  margin: 0 0 30px 20px;
+}
+
+.textFields {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  place-items: start;
+}
+
+.textField {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.submitListing {
+  margin-top: 15px;
+}
+
+.submittedList {
+  display: flex;
+}
+
+.submittedListing {
+  display: flex;
+  background-color: #603a58;
+  color: #fff0ea;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 3px;
+  align-items: center;
+}
+.deleteBtn {
+  border: none;
+}
+
+.pageTwo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.submitBtn {
+  grid-column: 3;
+  place-self: center;
+  padding: 15px;
+  margin: 10px;
+}

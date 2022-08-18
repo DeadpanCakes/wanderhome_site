@@ -4,6 +4,9 @@ import InputField from "../InputField";
 import PageLayout from "../layouts/PageLayout";
 import useValidation from "../../hooks/useValidation";
 import NatureList from "../NatureList";
+import styles from "../../styles/forms/PlaceForm.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const PlaceForm = ({ natureCategories, submitHandler }) => {
   const natures = natureCategories.map((cat) => cat.nature_set).flat();
@@ -11,12 +14,18 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   const [resident, setResident] = useState("");
   const [residents, setResidents] = useState([]);
   const addResident = (newResident) => {
-    setResidents((prevState) => prevState.concat(newResident));
+    setResidents((prevState) =>
+      !prevState.includes(newResident)
+        ? prevState.concat(newResident)
+        : prevState
+    );
   };
   const [god, setGod] = useState("");
   const [gods, setGods] = useState([]);
   const addGod = (newGod) => {
-    setGods((prevState) => prevState.concat(newGod));
+    setGods((prevState) =>
+      !prevState.includes(newGod) ? prevState.concat(newGod) : prevState
+    );
   };
   const [chosenNatures, setChosenNatures] = useState([]);
   const [chosenAesthetics, setChosenAesthetics] = useState([]);
@@ -83,66 +92,77 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   };
   const PageOne = (
     <form onSubmit={(e) => e.preventDefault()}>
-      <InputField name="name" value={name} changeHandler={setName} />
-      <ul>
-        {residents.map((resident) => (
-          <li key={resident} id={resident}>
-            <p>{resident}</p>
-            <button
-              onClick={() => {
-                const target = document.getElementById(resident);
-                target.remove();
-              }}
+      <button onClick={randomizePlace} className={styles.randomizer}>
+        Randomize
+      </button>
+      <div className={styles.textFields}>
+        <InputField name="name" value={name} changeHandler={setName} />
+        <div className={styles.textField}>
+          <InputField
+            name="resident"
+            value={resident}
+            changeHandler={setResident}
+          />
+          <button
+            className={styles.submitListing}
+            onClick={() => {
+              if (resident.length > 0) {
+                addResident(resident);
+                setResident("");
+              }
+            }}
+          >
+            Add Resident
+          </button>
+        </div>
+        <ul className={styles.submittedList}>
+          {residents.map((resident) => (
+            <li
+              key={resident}
+              id={resident}
+              className={styles.submittedListing}
             >
-              X
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div>
-        <InputField
-          name="resident"
-          value={resident}
-          changeHandler={setResident}
-        />
-        <button
-          onClick={() => {
-            if (resident.length > 0) {
-              addResident(resident);
-              setResident("");
-            }
-          }}
-        >
-          Add Resident
-        </button>
-      </div>
-      <ul>
-        {gods.map((god) => (
-          <li key={god} id={god}>
-            <p>{god}</p>
-            <button
-              onClick={() => {
-                const target = document.getElementById(god);
-                target.remove();
-              }}
-            >
-              X
-            </button>
-          </li>
-        ))}
-      </ul>
-      <div>
-        <InputField name="god" value={god} changeHandler={setGod} />
-        <button
-          onClick={() => {
-            if (god.length > 0) {
-              addGod(god);
-              setGod("");
-            }
-          }}
-        >
-          Add God
-        </button>
+              <button
+                className={styles.deleteBtn}
+                onClick={() => {
+                  setResidents((prevState) =>
+                    prevState.filter((res) => res !== resident)
+                  );
+                }}
+              >
+                {resident} <FontAwesomeIcon icon={faX} />
+              </button>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.textField}>
+          <InputField name="god" value={god} changeHandler={setGod} />
+          <button
+            className={styles.submitListing}
+            onClick={() => {
+              if (god.length > 0) {
+                addGod(god);
+                setGod("");
+              }
+            }}
+          >
+            Add God
+          </button>
+        </div>
+        <ul className={styles.submittedList}>
+          {gods.map((god) => (
+            <li key={god} id={god} className={styles.submittedListing}>
+              <button
+                className={styles.deleteBtn}
+                onClick={() => {
+                  setGods((prevState) => prevState.filter((g) => g !== god));
+                }}
+              >
+                {god} <FontAwesomeIcon icon={faX} />
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
       <NatureList
         categories={natureCategories}
@@ -153,10 +173,10 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     </form>
   );
   const PageTwo = (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form className={styles.pageTwo} onSubmit={(e) => e.preventDefault()}>
       {chosenNatures.map((nature) => {
         return (
-          <>
+          <div>
             <h2>{nature.name}</h2>
             <h3>Choose 2 aesthetic elements</h3>
             <ul>
@@ -228,10 +248,11 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                   </li>
                 ))}
             </ul>
-          </>
+          </div>
         );
       })}
       <button
+        className={styles.submitBtn}
         disabled={!pageTwoValid}
         onClick={() =>
           submitHandler({
@@ -248,13 +269,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     </form>
   );
   return (
-    <>
-      <button onClick={() => console.log(chosenAesthetics, chosenLore)}>
-        Check
-      </button>
-      <button onClick={randomizePlace}>Randomize</button>
-      <PageLayout pages={[PageOne, PageTwo]} pageValidity={[pageOneValid]} />
-    </>
+    <PageLayout pages={[PageOne, PageTwo]} pageValidity={[pageOneValid]} />
   );
 };
 

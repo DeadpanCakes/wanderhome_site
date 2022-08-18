@@ -4,7 +4,9 @@ import styles from "../styles/InputField.module.css";
 const InputField = ({ name, value, changeHandler }) => {
   return (
     <div className={styles.container}>
-      <label htmlFor={name}>{name.toUpperCase()}</label>
+      <label htmlFor={name} className={styles.label}>
+        {name.toUpperCase()}
+      </label>
       <input
         id={name}
         name={name}
