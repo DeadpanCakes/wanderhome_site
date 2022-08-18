@@ -157,7 +157,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
                             setTraits((prevState) => {
                               if (prevState.some((t) => t.id === trait.id)) {
                                 return prevState.filter(
-                                  (t) => t.id === trait.id
+                                  (t) => t.id !== trait.id
                                 );
                               }
                               return prevState.concat(
