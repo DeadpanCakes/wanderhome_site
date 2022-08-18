@@ -1,6 +1,8 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
-import styles from "../../styles/Tools.module.css";
+import styles from "../../styles/header/Tools.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 const Tools = () => {
   const tools = [
@@ -70,17 +72,20 @@ const Tools = () => {
     },
   ];
   return (
-    <div className={styles.tools}>
-      <h2>Tools</h2>
+    <div className={styles.container}>
+      <h1>Tools</h1>
       <ul className={styles.toolList}>
         {tools.map((tool) => {
           return (
-            <li key={uuid()}>
+            <li className={styles.tool} key={uuid()}>
               <h2>{tool.name}</h2>
               <p>{tool.desc}</p>
               <ul>
                 {tool.ex.map((ex) => (
-                  <li key={uuid}>{ex}</li>
+                  <li className={styles.example} key={uuid}>
+                    <FontAwesomeIcon icon={faLeaf} />
+                    <i>{ex}</i>
+                  </li>
                 ))}
               </ul>
             </li>

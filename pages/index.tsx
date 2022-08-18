@@ -67,7 +67,7 @@ export default function Home(props) {
             </Link>
           )}
           {activeMonth && activePlace ? (
-            <div>
+            <div className={styles.env}>
               <Place
                 month={{
                   ...activeMonth,

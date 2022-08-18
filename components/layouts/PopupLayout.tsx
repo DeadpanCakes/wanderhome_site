@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "../../styles/layouts/PopupLayout.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 const PopupLayout = ({ children, isVisible, closePopup }) => {
   return (
@@ -9,7 +11,7 @@ const PopupLayout = ({ children, isVisible, closePopup }) => {
       }
     >
       <button onClick={closePopup} className={styles.btn}>
-        X
+        <FontAwesomeIcon icon={faX} />
       </button>
       {children}
     </div>
