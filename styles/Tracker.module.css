@@ -17,6 +17,14 @@
   align-self: stretch;
 }
 
+.counter:hover {
+  cursor: default;
+}
+
+.counter:focus {
+  outline: none;
+}
+
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr;
