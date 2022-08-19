@@ -288,5 +288,15 @@ select {
 }
 
 footer {
-  background-color: rgb(14, 78, 14);
+  background: linear-gradient(
+    165deg,
+    #767522,
+    #727221,
+    #6f6e20,
+    #6c6b1f,
+    #68681e,
+    #65641d,
+    #61611c,
+    #5e5e1b
+  );
 }
