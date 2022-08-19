@@ -21,7 +21,9 @@ const Header = () => {
             <Info />
           </ToggleablePopup>
           <ToggleablePopup
-            buttonContent={<FontAwesomeIcon icon={faCircleInfo} size="lg" />}
+            buttonContent={
+              <FontAwesomeIcon icon={faScrewdriverWrench} size="lg" />
+            }
           >
             <Tools />
           </ToggleablePopup>
