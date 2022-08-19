@@ -61,7 +61,7 @@ export default function Home(props) {
             <PlayerCharacter character={characters[0]} />
           ) : (
             <Link href="/new/character">
-              <button>
+              <button className={styles.characterPlaceholder}>
                 <a>No Character Made Yet. Make one!</a>
               </button>
             </Link>
@@ -92,7 +92,7 @@ export default function Home(props) {
             </div>
           ) : (
             <Link href="/new/place">
-              <button>
+              <button className={styles.placePlaceholder}>
                 <a>No Places Made Yet. Make one!</a>
               </button>
             </Link>
@@ -105,7 +105,7 @@ export default function Home(props) {
             </ul>
           ) : (
             <Link href="/new/kith">
-              <button>
+              <button className={styles.kithPlaceholder}>
                 <a>No Kith Made Yet. Make one!</a>
               </button>
             </Link>
