@@ -5,17 +5,36 @@
 .playbookList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 20px;
   list-style: none;
+}
+
+.playbookCheckbox {
+  margin: 15px;
 }
 
 .playbookListing {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+}
+
+.playbookText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pageTwo {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 50px;
+}
+
+.animalListing {
+  display: flex;
+  align-items: center;
+  margin: 10px;
 }
 
 .indicator {
@@ -24,6 +43,8 @@
 }
 
 .personalityOption {
+  width: 80%;
+  margin-left: 10%;
   display: flex;
   justify-content: space-between;
 }
@@ -39,4 +60,16 @@
 .pageThree {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.historyOptions,
+.relationshipOptions {
+  margin-left: 20px;
+}
+
+.submitBtn {
+  justify-self: end;
+  align-self: start;
+  padding: 30px;
+  margin-right: 20px;
 }

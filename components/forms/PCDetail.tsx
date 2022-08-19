@@ -1,6 +1,8 @@
 import React from "react";
-import styles from "../../styles/PCForm.module.css";
+import styles from "../../styles/forms/PCForm.module.css";
 import InputField from "../InputField";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 
 const PCDetailForm = ({
   animal,
@@ -17,11 +19,14 @@ const PCDetailForm = ({
         <h2>Choose an animal</h2>
         <InputField name="animal" value={animal} changeHandler={setAnimal} />
         <ul>
-          {chosenPlaybook.animal_set.map((animal) => (
-            <li key={animal.id}>
-              <p>{animal.text}</p>
-            </li>
-          ))}
+          {chosenPlaybook.animal_set
+            .sort((a, b) => a.id - b.id)
+            .map((animal) => (
+              <li key={animal.id} className={styles.animalListing}>
+                <FontAwesomeIcon icon={faSeedling} />
+                <p>{animal.text}</p>
+              </li>
+            ))}
         </ul>
       </div>
       <div>

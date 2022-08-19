@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import InputField from "../InputField";
-import styles from "../../styles/PCForm.module.css";
+import styles from "../../styles/forms/PCForm.module.css";
 import PageLayout from "../layouts/PageLayout";
 import PlaybookSelection from "./PlaybookSelection";
 import PCDetailForm from "./PCDetail";
@@ -47,7 +47,11 @@ const PCForm = ({ playbooks, submitHandler }) => {
     histories.length === chosenPlaybook.history_set.length &&
     histories.every((history) => history.choices.length > 0);
   const relationshipIsValid = relationships.length === 2;
-  const pageOneValid = useValidation(chosenPlaybook.id);
+  const pageOneValid = useValidation(
+    name.length > 0,
+    pronouns.length > 0,
+    chosenPlaybook.id
+  );
   const pageTwoValid = useValidation(animal, personalityIsValid, lookIsValid);
   const pageThreeValid = useValidation(
     historyIsValid,
@@ -79,7 +83,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
         return (
           <div key={history.id}>
             <h2>{history.prompt}</h2>
-            <ul>
+            <ul className={styles.historyOptions}>
               {history.option_set.map((option) => {
                 return (
                   <li key={option.id}>
@@ -135,7 +139,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
       })}
       <div>
         <h2>Ask 1 to the left and 1 to the right</h2>
-        <ul>
+        <ul className={styles.relationshipOptions}>
           {chosenPlaybook.relationship_set.map((relationship) => {
             return (
               <li key={relationship.id}>
@@ -166,6 +170,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
         </ul>
       </div>
       <button
+        className={styles.submitBtn}
         disabled={!pageThreeValid}
         onClick={() => {
           submitHandler({
@@ -193,22 +198,25 @@ const PCForm = ({ playbooks, submitHandler }) => {
         e.preventDefault();
       }}
     >
-      <div className={styles.basic}>
-        <InputField name="name" value={name} changeHandler={setName} />
-        <p>{chosenPlaybook.name.toUpperCase()}</p>
-        <InputField
-          name="pronouns"
-          value={pronouns}
-          changeHandler={setPronouns}
-        />
-      </div>
       <PageLayout
         pages={[
-          <PlaybookSelection
-            playbooks={playbooks}
-            chosenPlaybook={chosenPlaybook}
-            setChosenPlaybook={setChosenPlaybook}
-          />,
+          <>
+            <div className={styles.basic}>
+              <InputField name="name" value={name} changeHandler={setName} />
+              <p>{chosenPlaybook.name.toUpperCase()}</p>
+              <InputField
+                name="pronouns"
+                value={pronouns}
+                changeHandler={setPronouns}
+              />
+            </div>
+            <PlaybookSelection
+              playbooks={playbooks}
+              chosenPlaybook={chosenPlaybook}
+              setChosenPlaybook={setChosenPlaybook}
+            />
+            ,
+          </>,
           <PCDetailForm
             animal={animal}
             setAnimal={setAnimal}

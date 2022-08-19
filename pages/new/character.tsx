@@ -23,11 +23,11 @@ const character = (props) => {
     });
   };
   return (
-    <>
-      <DefaultLayout>
+    <DefaultLayout>
+      <main>
         <PCForm playbooks={playbooks} submitHandler={addCharacter} />
-      </DefaultLayout>
-    </>
+      </main>
+    </DefaultLayout>
   );
 };
 
