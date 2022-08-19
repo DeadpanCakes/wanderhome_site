@@ -5,6 +5,7 @@ import Accordian from "./layouts/Accordian";
 import styles from "../styles/PlayerCharacter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
+import Tracker from "./Tracker";
 
 const PlayerCharacter = ({ character }) => {
   return (
@@ -93,6 +94,7 @@ const PlayerCharacter = ({ character }) => {
         }
         list={character.seasonalMoves.map((move) => move.text)}
       />
+      <Tracker tokenName={"Token"} />
     </div>
   );
 };
