@@ -1,0 +1,17 @@
+.footer {
+  display: grid;
+}
+
+.linkList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.links {
+  color: #edebd7;
+}
+
+.links:hover {
+  filter: drop-shadow(0 0 5px #e9e8df);
+}

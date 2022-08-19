@@ -224,11 +224,6 @@ header {
   min-height: 7vh;
 }
 
-footer {
-  min-height: 50vh;
-  background-color: var(--primary-color);
-}
-
 button {
   background-color: #603a58;
   border: 2px solid #2c1b28;
@@ -299,4 +294,6 @@ footer {
     #61611c,
     #5e5e1b
   );
+  min-height: 30vh;
+  border-top: 2px solid #777425da;
 }
