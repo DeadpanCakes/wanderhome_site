@@ -77,7 +77,7 @@ const Tools = () => {
       <ul className={styles.toolList}>
         {tools.map((tool) => {
           return (
-            <li className={styles.tool} key={uuid()}>
+            <li className={styles.tool} key={tool.name}>
               <h2>{tool.name}</h2>
               <p>{tool.desc}</p>
               <ul>
