@@ -23,7 +23,7 @@ const Info = () => {
         wrap their heads around this API without reading through the PDF first.
         So, if you don't have Wanderhome yet, you can find it at Possum Creek
         Games'{" "}
-        <Link href="ttps://possumcreekgames.com/products/wanderhome-pdf">
+        <Link href="https://possumcreekgames.com/products/wanderhome-pdf">
           <a>website</a>
         </Link>
         . If you're struggling financially, free community copies occasionally
