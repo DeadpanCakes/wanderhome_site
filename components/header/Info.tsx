@@ -20,7 +20,7 @@ const Info = () => {
         wanted an easy way to access all the moves during play. No Dice, No
         Masters and especially Belonging Outside Belonging games are much more
         than the sum of their mechanics, and I can't imagine how one would would
-        wrap their heads around this API without reading through the PDF first.
+        wrap their heads around this tool without reading through the PDF first.
         So, if you don't have Wanderhome yet, you can find it at Possum Creek
         Games'{" "}
         <Link href="https://possumcreekgames.com/products/wanderhome-pdf">
@@ -38,6 +38,13 @@ const Info = () => {
         I'm not associated with anyone who worked on this game, this is just a
         hobby.
       </p>
+      <br />
+      <b>
+        NOTE: This tool currently stores your game state on the browser. Playing
+        in an incognito/private window, clearing your history, or running some
+        extensions may interfere with the app's ability to store the information
+        properly.
+      </b>
     </div>
   );
 };
