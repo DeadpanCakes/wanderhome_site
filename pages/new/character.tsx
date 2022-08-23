@@ -10,7 +10,7 @@ const character = (props) => {
     null
   );
   useEffect(() => {
-    if (!character) {
+    if (!characters) {
       fetchCharacter();
     }
   }, []);
