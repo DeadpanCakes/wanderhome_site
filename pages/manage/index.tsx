@@ -22,12 +22,20 @@ const Manage = () => {
     <DefaultLayout>
       <main>
         {characters ? (
-          <SettingSelect options={characters} setChange={setActiveChar} />
+          <SettingSelect
+            options={characters}
+            setChange={setActiveChar}
+            selected={activeChar}
+          />
         ) : (
           <p>No Chars Yet</p>
         )}
         {places ? (
-          <SettingSelect options={places} setChange={setActivePlace} />
+          <SettingSelect
+            options={places}
+            setChange={setActivePlace}
+            selected={activePlace}
+          />
         ) : (
           <p>No Places Yet</p>
         )}
@@ -39,12 +47,12 @@ const Manage = () => {
   );
 };
 
-const SettingSelect = ({ options, setChange }) => {
+const SettingSelect = ({ options, setChange, selected }) => {
   return (
     <select onChange={(e) => setChange(e.target.value)}>
       {options.map((o) => {
         return (
-          <option value={o.id} key={o.id}>
+          <option value={o.id} key={o.id} selected={o.id === selected}>
             {o.name}
           </option>
         );
