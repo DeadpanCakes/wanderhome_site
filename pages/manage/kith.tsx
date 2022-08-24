@@ -5,7 +5,6 @@ import NPC from "../../components/NPC";
 
 const Kith = () => {
   const { kith, activeKith, setActiveKith } = useContext(GameContext);
-  console.log(kith);
   return (
     <DefaultLayout>
       <main>
@@ -26,6 +25,14 @@ const Kith = () => {
                     <input
                       type="checkbox"
                       checked={activeKith.includes(k.id)}
+                      onChange={() => {
+                        setActiveKith((prevState) => {
+                          if (prevState.includes(k.id)) {
+                            return prevState.filter((p) => p !== k.id);
+                          }
+                          return prevState.concat(k.id);
+                        });
+                      }}
                     />
                     <NPC npc={k} />
                   </li>
