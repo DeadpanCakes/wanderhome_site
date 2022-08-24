@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.selectors {
+  display: flex;
+  min-height: 50px;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
+}
