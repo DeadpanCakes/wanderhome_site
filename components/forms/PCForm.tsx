@@ -6,6 +6,7 @@ import PageLayout from "../layouts/PageLayout";
 import PlaybookSelection from "./PlaybookSelection";
 import PCDetailForm from "./PCDetail";
 import useValidation from "../../hooks/useValidation";
+import { v4 as uuid } from "uuid";
 
 const PCForm = ({ playbooks, submitHandler }) => {
   const router = useRouter();
@@ -174,6 +175,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
         disabled={!pageThreeValid}
         onClick={() => {
           submitHandler({
+            id: uuid(),
             name,
             class: chosenPlaybook.name,
             pronouns,
@@ -215,7 +217,6 @@ const PCForm = ({ playbooks, submitHandler }) => {
               chosenPlaybook={chosenPlaybook}
               setChosenPlaybook={setChosenPlaybook}
             />
-            ,
           </>,
           <PCDetailForm
             animal={animal}
