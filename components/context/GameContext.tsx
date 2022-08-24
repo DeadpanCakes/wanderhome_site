@@ -14,6 +14,15 @@ const GameContext = React.createContext({
   counters: null,
   setCounters: null,
   fetchCounters: null,
+  activeChar: null,
+  setActiveChar: null,
+  fetchActiveChar: null,
+  activePlace: null,
+  setActivePlace: null,
+  fetchActivePlace: null,
+  activeKith: null,
+  setActiveKith: null,
+  fetchActiveKith: null,
 });
 
 export default GameContext;

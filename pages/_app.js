@@ -15,6 +15,18 @@ function MyApp({ Component, pageProps }) {
   const [kith, setKith, fetchKith] = useStorage("kith", null);
   const [places, setPlaces, fetchPlaces] = useStorage("places", null);
   const [counters, setCounters, fetchCounters] = useStorage("counters", null);
+  const [activeChar, setActiveChar, fetchActiveChar] = useStorage(
+    "activeChar",
+    null
+  );
+  const [activePlace, setActivePlace, fetchActivePlace] = useStorage(
+    "activePlace",
+    null
+  );
+  const [activeKith, setActiveKith, fetchActiveKith] = useStorage(
+    "activeKith",
+    null
+  );
 
   useEffect(() => {
     if (!characters) {
@@ -28,6 +40,15 @@ function MyApp({ Component, pageProps }) {
     }
     if (!counters) {
       fetchCounters();
+    }
+    if (!activeChar) {
+      fetchActiveChar();
+    }
+    if (!activePlace) {
+      fetchActivePlace();
+    }
+    if (!activeKith) {
+      fetchActiveKith();
     }
   }, []);
   return (
@@ -45,6 +66,15 @@ function MyApp({ Component, pageProps }) {
         counters,
         setCounters,
         fetchCounters,
+        activeChar,
+        setActiveChar,
+        fetchActiveChar,
+        activePlace,
+        setActivePlace,
+        fetchActivePlace,
+        activeKith,
+        setActiveKith,
+        fetchActiveKith,
       }}
     >
       <Component {...pageProps} />
