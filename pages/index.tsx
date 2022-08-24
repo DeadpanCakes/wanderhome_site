@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "whatwg-fetch";
 import useStorage from "../hooks/useStorage";
 import NPC from "../components/NPC";
@@ -10,41 +10,19 @@ import useMonthInterfacer from "../hooks/useMonthInterfacer";
 import styles from "../styles/Home.module.css";
 import DefaultLayout from "../components/layouts/DefaultLayout";
 import Meta from "../components/layouts/Meta";
+import GameContext from "../components/context/GameContext";
 
 export default function Home(props) {
   const rawMonths = JSON.parse(props.months);
   const months = useMonthInterfacer(rawMonths);
+  const game = useContext(GameContext);
+  const { characters, kith, places } = game;
 
-  const [characters, setCharacters, fetchCharacters] = useStorage(
-    "characters",
-    null
-  );
-  const [npcs, setNpcs, fetchNpcs] = useStorage("npcs", null);
-  const [places, setPlaces, fetchPlaces] = useStorage("places", null);
-  const [character, setCharacter, fetchCharacter] = useStorage(
-    "character",
-    null
-  );
   const [lack, setLack] = useState({ id: null });
   const [signs, setSigns] = useState([]);
   const [activeMonth, setActiveMonth] = useState(months[0]);
   const [activePlace, setActivePlace] = useState(null);
-  const [counters, setCounters, fetchCounters] = useStorage("counters", null);
 
-  useEffect(() => {
-    if (!characters) {
-      fetchCharacters();
-    }
-    if (!npcs) {
-      fetchNpcs();
-    }
-    if (!places) {
-      fetchPlaces();
-    }
-    if (!counters) {
-      fetchCounters();
-    }
-  }, []);
   useEffect(() => {
     if (places) {
       setActivePlace(places[0]);
@@ -95,9 +73,9 @@ export default function Home(props) {
               </button>
             </Link>
           )}
-          {npcs ? (
+          {game.kith ? (
             <ul>
-              {npcs.map((npc) => (
+              {game.kith.map((npc) => (
                 <NPC npc={npc} />
               ))}
             </ul>
