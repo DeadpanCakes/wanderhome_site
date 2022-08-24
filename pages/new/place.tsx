@@ -5,7 +5,8 @@ import DefaultLayout from "../../components/layouts/DefaultLayout";
 import GameContext from "../../components/context/GameContext";
 
 const place = (props) => {
-  const { places, setPlaces, fetchPlaces } = useContext(GameContext);
+  const { places, setPlaces, fetchPlaces, setActivePlace } =
+    useContext(GameContext);
   const natureCategories = JSON.parse(props.natureCategories);
   useEffect(() => {
     if (!places) {
@@ -19,6 +20,7 @@ const place = (props) => {
       }
       return [newPlace];
     });
+    setActivePlace(newPlace.id);
   };
   const router = useRouter();
   const submitHandler = (newPlace) => {

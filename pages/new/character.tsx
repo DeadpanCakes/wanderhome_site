@@ -5,7 +5,7 @@ import DefaultLayout from "../../components/layouts/DefaultLayout";
 
 const character = (props) => {
   const playbooks = JSON.parse(props.playbooks);
-  const { characters, setCharacters, fetchCharacters } =
+  const { characters, setCharacters, fetchCharacters, setActiveChar } =
     useContext(GameContext);
   useEffect(() => {
     if (!characters) {
@@ -19,6 +19,7 @@ const character = (props) => {
       }
       return [newCharacter];
     });
+    setActiveChar(newCharacter.id);
   };
   return (
     <DefaultLayout>

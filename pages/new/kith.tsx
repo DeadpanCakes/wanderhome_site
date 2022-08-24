@@ -7,7 +7,7 @@ import GameContext from "../../components/context/GameContext";
 const kith = (props) => {
   const traits = JSON.parse(props.traits);
   const router = useRouter();
-  const { kith, setKith, fetchKith } = useContext(GameContext);
+  const { kith, setKith, fetchKith, setActiveKith } = useContext(GameContext);
   useEffect(() => {
     if (!kith) {
       fetchKith();
@@ -21,6 +21,7 @@ const kith = (props) => {
         return [newNpc];
       }
     });
+    setActiveKith((prevState) => prevState.concat(newNpc.id));
   };
   return (
     <DefaultLayout>
