@@ -34,6 +34,11 @@ const Sidebar = () => {
         <AddBtn text="Make New Character" href="/new/character" />
         <AddBtn text="Make New Place" href="/new/place" />
         <AddBtn text="Make New Kith" href="/new/kith" />
+        <Link href="/manage">
+          <a>
+            <button>Manage Game</button>
+          </a>
+        </Link>
       </div>
     </div>
   );
