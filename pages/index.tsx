@@ -69,11 +69,19 @@ export default function Home(props) {
             </Link>
           )}
           {game.kith ? (
-            <ul>
-              {game.kith.map((npc) => (
-                <NPC npc={npc} />
-              ))}
-            </ul>
+            game.kith.length > 0 ? (
+              <ul>
+                {game.kith.map((npc) => (
+                  <NPC npc={npc} />
+                ))}
+              </ul>
+            ) : (
+              <Link href="/new/kith">
+                <button className={styles.kithPlaceholder}>
+                  <a>No Kith Made Yet. Make one!</a>
+                </button>
+              </Link>
+            )
           ) : (
             <Link href="/new/kith">
               <button className={styles.kithPlaceholder}>
