@@ -16,25 +16,20 @@ export default function Home(props) {
   const rawMonths = JSON.parse(props.months);
   const months = useMonthInterfacer(rawMonths);
   const game = useContext(GameContext);
-  const { characters, kith, places } = game;
+  const { characters, kith, places, activeChar, activePlace } = game;
 
   const [lack, setLack] = useState({ id: null });
   const [signs, setSigns] = useState([]);
   const [activeMonth, setActiveMonth] = useState(months[0]);
-  const [activePlace, setActivePlace] = useState(null);
-
-  useEffect(() => {
-    if (places) {
-      setActivePlace(places[0]);
-    }
-  }, [places]);
   return (
     <div>
       <DefaultLayout>
         <Meta />
         <main className={styles.dashboard}>
           {characters ? (
-            <PlayerCharacter character={characters[0]} />
+            <PlayerCharacter
+              character={characters.find((char) => char.id === activeChar)}
+            />
           ) : (
             <Link href="/new/character">
               <button className={styles.characterPlaceholder}>
@@ -42,7 +37,7 @@ export default function Home(props) {
               </button>
             </Link>
           )}
-          {activeMonth && activePlace ? (
+          {activeMonth && places ? (
             <div className={styles.env}>
               <Place
                 month={{
@@ -54,7 +49,7 @@ export default function Home(props) {
                     signs.find((sign) => sign.id === s.id)
                   ),
                 }}
-                place={activePlace}
+                place={places.find((p) => activePlace === p.id)}
               />
               <Month
                 months={months}
