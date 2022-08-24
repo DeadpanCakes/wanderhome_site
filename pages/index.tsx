@@ -16,7 +16,8 @@ export default function Home(props) {
   const rawMonths = JSON.parse(props.months);
   const months = useMonthInterfacer(rawMonths);
   const game = useContext(GameContext);
-  const { characters, kith, places, activeChar, activePlace } = game;
+  const { characters, kith, places, activeChar, activePlace, activeKith } =
+    game;
 
   const [lack, setLack] = useState({ id: null });
   const [signs, setSigns] = useState([]);
@@ -68,13 +69,23 @@ export default function Home(props) {
               </button>
             </Link>
           )}
-          {game.kith ? (
+          {game.kith && game.activeKith ? (
             game.kith.length > 0 ? (
-              <ul>
-                {game.kith.map((npc) => (
-                  <NPC npc={npc} />
-                ))}
-              </ul>
+              game.activeKith.length > 0 ? (
+                <ul>
+                  {game.kith
+                    .filter((k) => activeKith.includes(k.id))
+                    .map((npc) => (
+                      <NPC npc={npc} />
+                    ))}
+                </ul>
+              ) : (
+                <Link href="/manage/kith">
+                  <button className={styles.kithPlaceholder}>
+                    <a>No Active Kith</a>
+                  </button>
+                </Link>
+              )
             ) : (
               <Link href="/new/kith">
                 <button className={styles.kithPlaceholder}>
