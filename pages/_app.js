@@ -35,12 +35,16 @@ function MyApp({ Component, pageProps }) {
       value={{
         characters,
         setCharacters,
+        fetchCharacters,
         places,
         setPlaces,
+        fetchPlaces,
         kith,
         setKith,
+        fetchKith,
         counters,
         setCounters,
+        fetchCounters,
       }}
     >
       <Component {...pageProps} />
