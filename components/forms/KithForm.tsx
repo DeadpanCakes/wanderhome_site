@@ -22,7 +22,28 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
     detail.length > 0,
     traits.length > 1
   );
-  const pageTwoValid = useValidation(choices.length > 1);
+  const pageTwoValid = useValidation(
+    choices
+      .map((choice) => choice.trait)
+      .reduce((acc, curr) => {
+        const existingTrait = acc.find((i) => i.includes(curr));
+        if (existingTrait) {
+          return acc
+            .filter((i) => !i.includes(curr))
+            .concat([[...existingTrait.concat(curr)]]);
+        }
+        return acc.concat([[curr]]);
+      }, [])
+      .every((i) => i.length >= 1 && i.length <= 2),
+    choices
+      .map((choice) => choice.trait)
+      .reduce((acc, curr) => {
+        if (!acc.includes(curr)) {
+          return acc.concat(curr);
+        }
+        return acc;
+      }, []).length === traits.length
+  );
   const allTraits = traitCategories
     .map((currCategory) => {
       return currCategory.trait_set;
