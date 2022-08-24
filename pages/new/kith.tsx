@@ -21,7 +21,12 @@ const kith = (props) => {
         return [newNpc];
       }
     });
-    setActiveKith((prevState) => prevState.concat(newNpc.id));
+    setActiveKith((prevState) => {
+      if (prevState) {
+        return prevState.concat(newNpc.id);
+      }
+      return [newNpc.id];
+    });
   };
   return (
     <DefaultLayout>
