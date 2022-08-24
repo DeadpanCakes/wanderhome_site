@@ -6,6 +6,7 @@ import styles from "../styles/PlayerCharacter.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import Tracker from "./Tracker";
+import { v4 as uuid } from "uuid";
 
 const PlayerCharacter = ({ character }) => {
   return (
@@ -23,7 +24,7 @@ const PlayerCharacter = ({ character }) => {
               <ul className={styles.appearance}>
                 {character.looks.map((look) => {
                   return (
-                    <li key={look.id}>
+                    <li key={uuid()}>
                       <FontAwesomeIcon icon={faSeedling} />
                       {look.text}
                     </li>
@@ -37,7 +38,7 @@ const PlayerCharacter = ({ character }) => {
                   <h3>{character.personality.positive.prompt}:</h3>
                   <ul>
                     {character.personality.positive.choices.map((choice) => (
-                      <li key={choice.text}>
+                      <li key={uuid()}>
                         <FontAwesomeIcon icon={faSeedling} />
                         {choice.text}
                       </li>
@@ -50,7 +51,7 @@ const PlayerCharacter = ({ character }) => {
                     {character.personality.negative.choices.map((choice) => (
                       <li key={choice.text}>
                         <FontAwesomeIcon icon={faSeedling} />
-                        {choice.text}
+                        {uuid()}
                       </li>
                     ))}
                   </ul>

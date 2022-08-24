@@ -1,6 +1,7 @@
 import Accordian from "./layouts/Accordian";
 import ListLayout from "./layouts/ListLayout";
 import React from "react";
+import { v4 as uuid } from "uuid";
 
 const Place = ({ month, place }) => {
   const natures = place.traits.map(
@@ -45,7 +46,7 @@ const Place = ({ month, place }) => {
         </b>
       </p>
       {natures.map((nature) => (
-        <p key={nature.id}>
+        <p key={uuid()}>
           <i>{nature}</i>
         </p>
       ))}

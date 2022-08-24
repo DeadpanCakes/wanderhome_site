@@ -82,7 +82,7 @@ const Tools = () => {
               <p>{tool.desc}</p>
               <ul>
                 {tool.ex.map((ex) => (
-                  <li className={styles.example} key={uuid}>
+                  <li className={styles.example} key={uuid()}>
                     <FontAwesomeIcon icon={faLeaf} />
                     <i>{ex}</i>
                   </li>
