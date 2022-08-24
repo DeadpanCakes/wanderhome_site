@@ -1,21 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import PCForm from "../../components/forms/PCForm";
-import useStorage from "../../hooks/useStorage";
+import GameContext from "../../components/context/GameContext";
 import DefaultLayout from "../../components/layouts/DefaultLayout";
 
 const character = (props) => {
   const playbooks = JSON.parse(props.playbooks);
-  const [characters, setCharacter, fetchCharacter] = useStorage(
-    "characters",
-    null
-  );
+  const { characters, setCharacters, fetchCharacters } =
+    useContext(GameContext);
   useEffect(() => {
     if (!characters) {
-      fetchCharacter();
+      fetchCharacters();
     }
   }, []);
   const addCharacter = (newCharacter) => {
-    setCharacter((prevState) => {
+    setCharacters((prevState) => {
       if (prevState) {
         return prevState.concat(newCharacter);
       }

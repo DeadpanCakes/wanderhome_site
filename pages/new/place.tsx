@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import PlaceForm from "../../components/forms/PlaceForm";
-import useStorage from "../../hooks/useStorage";
 import DefaultLayout from "../../components/layouts/DefaultLayout";
+import GameContext from "../../components/context/GameContext";
 
 const place = (props) => {
-  const [places, setPlaces, fetchPlaces] = useStorage("places", null);
+  const { places, setPlaces, fetchPlaces } = useContext(GameContext);
   const natureCategories = JSON.parse(props.natureCategories);
   useEffect(() => {
     if (!places) {

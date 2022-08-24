@@ -1,21 +1,21 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import NPCForm from "../../components/forms/KithForm";
-import useStorage from "../../hooks/useStorage";
 import DefaultLayout from "../../components/layouts/DefaultLayout";
+import GameContext from "../../components/context/GameContext";
 
 const kith = (props) => {
   const traits = JSON.parse(props.traits);
   const router = useRouter();
-  const [npcs, setNpcs, fetchNpcs] = useStorage("npcs", null);
+  const { kith, setKith, fetchKith } = useContext(GameContext);
   useEffect(() => {
-    if (!npcs) {
-      fetchNpcs();
+    if (!kith) {
+      fetchKith();
     }
   }, []);
-  const addNpc = (newNpc) => {
-    setNpcs((prevState) => {
-      if (npcs) {
+  const addKith = (newNpc) => {
+    setKith((prevState) => {
+      if (kith) {
         return prevState.concat(newNpc);
       } else {
         return [newNpc];
@@ -28,8 +28,8 @@ const kith = (props) => {
         <h1>Create A New Kith</h1>
         <NPCForm
           traitCategories={traits}
-          submitHandler={(newNpc) => {
-            addNpc(newNpc);
+          submitHandler={(newKith) => {
+            addKith(newKith);
             router.push("/");
           }}
         />
