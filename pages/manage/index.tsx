@@ -41,7 +41,7 @@ const Manage = () => {
           )}
         </div>
         <Link href="/manage/kith">
-          <a>Manage Kith</a>
+          <a className={styles.manageKith}>Manage Kith</a>
         </Link>
       </main>
     </DefaultLayout>
