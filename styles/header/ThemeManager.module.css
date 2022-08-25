@@ -3,7 +3,19 @@
 }
 
 .themes {
+  display: flex;
+  justify-content: stretch;
+  align-self: center;
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
+}
+
+.labels {
+  flex: 1;
+  text-align: center;
+}
+
+.inputs {
+  padding: 20px;
 }

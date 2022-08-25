@@ -26,8 +26,11 @@ const ThemeManager = () => {
                   type="checkbox"
                   id={t.name}
                   checked={activeTheme.id === t.id}
+                  className={styles.inputs}
                 />
-                <label htmlFor={t.name}>{t.name}</label>
+                <label htmlFor={t.name} className={styles.labels}>
+                  {t.name}
+                </label>
               </li>
             );
           })}
