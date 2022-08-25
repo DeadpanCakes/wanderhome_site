@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import useStorage from "../hooks/useStorage";
 import styles from "../styles/Tracker.module.css";
+import ThemeContext from "../components/context/ThemeContext";
 
 interface Props {
   tokenName: string;
@@ -51,6 +52,7 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
       });
     }
   }, []);
+  const { activeTheme } = useContext(ThemeContext);
   return counters ? (
     <div className={styles.tracker}>
       <label className={styles.token} htmlFor={tokenName}>
@@ -61,6 +63,7 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
         value={counters[tokenName]}
         readOnly={true}
         id={tokenName}
+        style={{ color: activeTheme.back, background: activeTheme.fore }}
       />
       <div className={styles.controls}>
         <button className={styles.plus} onClick={addToken}>

@@ -9,6 +9,7 @@ import {
   faScrewdriverWrench,
 } from "@fortawesome/free-solid-svg-icons";
 import ToggleablePopup from "../layouts/ToggleablePopup";
+import ThemeManager from "./ThemeManager";
 
 const Header = () => {
   return (
@@ -33,6 +34,7 @@ const Header = () => {
             <h1 className={styles.title}>Wanderhome</h1>
           </a>
         </Link>
+        <ThemeManager />
       </header>
     </div>
   );

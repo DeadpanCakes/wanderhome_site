@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import "whatwg-fetch";
-import useStorage from "../hooks/useStorage";
 import NPC from "../components/NPC";
 import PlayerCharacter from "../components/PlayerCharacter";
 import Place from "../components/Place";
@@ -11,11 +10,13 @@ import styles from "../styles/Home.module.css";
 import DefaultLayout from "../components/layouts/DefaultLayout";
 import Meta from "../components/layouts/Meta";
 import GameContext from "../components/context/GameContext";
+import ThemeContext from "../components/context/ThemeContext";
 
 export default function Home(props) {
   const rawMonths = JSON.parse(props.months);
   const months = useMonthInterfacer(rawMonths);
   const game = useContext(GameContext);
+  const { activeTheme } = useContext(ThemeContext);
   const { characters, kith, places, activeChar, activePlace, activeKith } =
     game;
 
@@ -23,7 +24,9 @@ export default function Home(props) {
   const [signs, setSigns] = useState([]);
   const [activeMonth, setActiveMonth] = useState(months[0]);
   return (
-    <div>
+    <div
+      style={{ color: activeTheme.fore, background: activeTheme.backGradient }}
+    >
       <DefaultLayout>
         <Meta />
         <main className={styles.dashboard}>

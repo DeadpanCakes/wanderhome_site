@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import AddBtn from "../AddBtn";
 import styles from "../../styles/sidebar/Sidebar.module.css";
 import Link from "next/link";
@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import useOutsideChecker from "../../hooks/useOutsideChecker";
+import ThemeContext from "../context/ThemeContext";
 
 const Sidebar = () => {
   const [visible, setVisible] = useState(false);
@@ -13,12 +14,14 @@ const Sidebar = () => {
   useOutsideChecker(lastClick, setVisible);
   const toggleSidebar = () => setVisible((prevState) => !prevState);
   const router = useRouter();
+  const { activeTheme } = useContext(ThemeContext);
   return (
     <div
       className={
         !visible ? styles.sidebar + " " + styles.hidden : styles.sidebar
       }
       ref={lastClick}
+      style={{ color: activeTheme.back, background: activeTheme.fore }}
     >
       <button className={styles.toggleBtn} onClick={toggleSidebar}>
         <FontAwesomeIcon icon={!visible ? faBars : faX} size="lg" />
@@ -36,7 +39,7 @@ const Sidebar = () => {
         <AddBtn text="Make New Kith" href="/new/kith" />
         <Link href="/manage">
           <a>
-            <button>Manage Game</button>
+            <button style={{ color: activeTheme.back }}>Manage Game</button>
           </a>
         </Link>
       </div>
