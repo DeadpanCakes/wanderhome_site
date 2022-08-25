@@ -1,23 +1,39 @@
 import ThemeContext from "../context/ThemeContext";
 import React, { useState, useContext } from "react";
 import { v4 as uuid } from "uuid";
+import ToggleablePopup from "../layouts/ToggleablePopup";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPalette } from "@fortawesome/free-solid-svg-icons";
+import styles from "../../styles/header/ThemeManager.module.css";
 
 const ThemeManager = () => {
   const { themes, activeTheme, setActiveTheme } = useContext(ThemeContext);
   return (
-    <select
-      onChange={(e) => {
-        const target = e.target.value;
-        const newTheme = themes.find((theme) => theme.id === target);
-        setActiveTheme(newTheme);
-      }}
-    >
-      {themes.map((theme) => (
-        <option value={theme.id} key={theme.id}>
-          {theme.name} test
-        </option>
-      ))}
-    </select>
+    <ToggleablePopup buttonContent={<FontAwesomeIcon icon={faPalette} />}>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <ul className={styles.themeList}>
+          {themes.map((t) => {
+            return (
+              <li
+                key={t.id}
+                style={{ color: t.fore, background: t.backGradient }}
+                className={styles.themes}
+              >
+                <input
+                  onChange={() => {
+                    setActiveTheme(t);
+                  }}
+                  type="checkbox"
+                  id={t.name}
+                  checked={activeTheme.id === t.id}
+                />
+                <label htmlFor={t.name}>{t.name}</label>
+              </li>
+            );
+          })}
+        </ul>
+      </form>
+    </ToggleablePopup>
   );
 };
 
