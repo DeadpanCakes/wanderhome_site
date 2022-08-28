@@ -2,9 +2,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   background-color: transparent;
+  place-items: center;
 }
 
 .btnContainer {
+  place-self: stretch;
   display: flex;
   background-color: transparent;
   align-items: center;
@@ -17,21 +19,4 @@
   background-color: transparent;
   text-align: center;
   font-size: 72px;
-  background: linear-gradient(
-    330deg,
-    #945988,
-    #87517c,
-    #79496f,
-    #6c4163,
-    #5e3957,
-    #51314a,
-    #43283e,
-    #362031,
-    #281825,
-    #1b1019,
-    #0d080c,
-    #000000
-  );
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
