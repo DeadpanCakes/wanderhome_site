@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
 interface Props {
   pages: React.ReactNode[];
@@ -12,6 +13,7 @@ const PageLayout = ({ pages, pageValidity }: Props) => {
   const onFirstPage = () => currPage < 2;
   const onLastPage = () => currPage >= pages.length;
   const currPageIsValid = () => pageValidity[currPage - 1];
+  const { activeTheme } = useContext(ThemeContext);
   return (
     <div>
       {pages[currPage - 1]}
@@ -23,6 +25,10 @@ const PageLayout = ({ pages, pageValidity }: Props) => {
             }
           }}
           disabled={onFirstPage()}
+          style={{
+            color: activeTheme.fore,
+            border: `2px solid ${activeTheme.fore}`,
+          }}
         >
           Prev
         </button>
@@ -33,6 +39,10 @@ const PageLayout = ({ pages, pageValidity }: Props) => {
             }
           }}
           disabled={onLastPage() || !currPageIsValid()}
+          style={{
+            color: activeTheme.fore,
+            border: `2px solid ${activeTheme.fore}`,
+          }}
         >
           Next
         </button>
