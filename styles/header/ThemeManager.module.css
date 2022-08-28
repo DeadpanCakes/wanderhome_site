@@ -1,5 +1,6 @@
 .themeList {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .themes {
@@ -9,6 +10,9 @@
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
+  font-size: 1.5rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
 }
 
 .labels {
