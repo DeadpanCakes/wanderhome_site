@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.btnCtrls {
+  display: flex;
+  justify-content: center;
+  gap: 20%;
+}
+
+.btns {
+  font-size: 1rem;
+  padding: 5px 10px;
+}

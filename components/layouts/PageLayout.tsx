@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import styles from "../../styles/layouts/PageLayout.module.css";
 
 interface Props {
   pages: React.ReactNode[];
@@ -15,9 +16,9 @@ const PageLayout = ({ pages, pageValidity }: Props) => {
   const currPageIsValid = () => pageValidity[currPage - 1];
   const { activeTheme } = useContext(ThemeContext);
   return (
-    <div>
+    <div className={styles.container}>
       {pages[currPage - 1]}
-      <div>
+      <div className={styles.btnCtrls}>
         <button
           onClick={() => {
             if (!onFirstPage()) {
@@ -29,6 +30,7 @@ const PageLayout = ({ pages, pageValidity }: Props) => {
             color: activeTheme.fore,
             border: `2px solid ${activeTheme.fore}`,
           }}
+          className={styles.btns}
         >
           Prev
         </button>
@@ -39,6 +41,7 @@ const PageLayout = ({ pages, pageValidity }: Props) => {
             }
           }}
           disabled={onLastPage() || !currPageIsValid()}
+          className={styles.btns}
           style={{
             color: activeTheme.fore,
             border: `2px solid ${activeTheme.fore}`,

@@ -202,6 +202,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
       onSubmit={(e) => {
         e.preventDefault();
       }}
+      className={styles.container}
     >
       <PageLayout
         pages={[

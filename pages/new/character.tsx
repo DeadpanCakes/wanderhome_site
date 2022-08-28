@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import PCForm from "../../components/forms/PCForm";
 import GameContext from "../../components/context/GameContext";
 import DefaultLayout from "../../components/layouts/DefaultLayout";
+import styles from "../../styles/NewCharacter.module.css";
 
 const character = (props) => {
   const playbooks = JSON.parse(props.playbooks);
@@ -23,7 +24,7 @@ const character = (props) => {
   };
   return (
     <DefaultLayout>
-      <main>
+      <main className={styles.container}>
         <PCForm playbooks={playbooks} submitHandler={addCharacter} />
       </main>
     </DefaultLayout>
