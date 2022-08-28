@@ -53,7 +53,7 @@ function MyApp({ Component, pageProps }) {
     {
       id: "5",
       name: "The Fool",
-      fore: "#7933099",
+      fore: "#793309",
       back: "#d1c2cf",
       foreGradient:
         "linear-gradient(90deg, #793309, #713009, #6a2d09, #622909, #5b2608, #532307, #4c2006, #451d05)",
