@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../styles/InputField.module.css";
+import ThemeContext from "./context/ThemeContext";
 
 const InputField = ({ name, value, changeHandler }) => {
+  const { activeTheme } = useContext(ThemeContext);
   return (
     <div className={styles.container}>
       <label htmlFor={name} className={styles.label}>
@@ -14,6 +16,7 @@ const InputField = ({ name, value, changeHandler }) => {
         onChange={(e) => {
           changeHandler(e.target.value);
         }}
+        style={{ color: activeTheme.back, background: activeTheme.fore }}
       ></input>
     </div>
   );
