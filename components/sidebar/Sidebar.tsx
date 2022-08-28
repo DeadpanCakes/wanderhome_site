@@ -21,7 +21,12 @@ const Sidebar = () => {
         !visible ? styles.sidebar + " " + styles.hidden : styles.sidebar
       }
       ref={lastClick}
-      style={{ color: activeTheme.back, background: activeTheme.fore }}
+      style={{
+        color: activeTheme.back,
+        background: activeTheme.fore,
+        borderRight: visible ? `2px solid rgb${activeTheme.fore}` : "none",
+        borderTop: visible ? `2px solid ${activeTheme.fore}` : "none",
+      }}
     >
       <button className={styles.toggleBtn} onClick={toggleSidebar}>
         <FontAwesomeIcon icon={!visible ? faBars : faX} size="lg" />
