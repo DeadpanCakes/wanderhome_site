@@ -6,8 +6,6 @@
   min-height: 100%;
   width: 25vw;
   transition: width 300ms ease-in-out;
-  border-right: 2px solid #603a58;
-  border-top: 2px solid #603a58;
   background: linear-gradient(
     0deg,
     #603a58,
@@ -50,5 +48,5 @@
 }
 
 .homeLink {
-  color: #ffdfd1;
+  color: inherit;
 }
