@@ -10,6 +10,7 @@ const ThemeManager = () => {
   const { themes, activeTheme, setActiveTheme } = useContext(ThemeContext);
   return (
     <ToggleablePopup buttonContent={<FontAwesomeIcon icon={faPalette} />}>
+      <h1>Theme Manager</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <ul className={styles.themeList}>
           {themes.map((t) => {
