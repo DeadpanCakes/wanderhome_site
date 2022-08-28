@@ -17,6 +17,9 @@
 .playbookListing {
   display: flex;
   align-items: center;
+  margin: 5% 0;
+  padding: 5%;
+  border-radius: 10px;
 }
 
 .playbookText {
