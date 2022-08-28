@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import InputField from "../InputField";
 import styles from "../../styles/forms/PCForm.module.css";
 import PageLayout from "../layouts/PageLayout";
@@ -7,6 +7,7 @@ import PlaybookSelection from "./PlaybookSelection";
 import PCDetailForm from "./PCDetail";
 import useValidation from "../../hooks/useValidation";
 import { v4 as uuid } from "uuid";
+import ThemeContext from "../context/ThemeContext";
 
 const PCForm = ({ playbooks, submitHandler }) => {
   const router = useRouter();
@@ -60,6 +61,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
     name,
     pronouns
   );
+  const { activeTheme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (chosenPlaybook.id) {
@@ -189,6 +191,7 @@ const PCForm = ({ playbooks, submitHandler }) => {
           });
           router.push("/");
         }}
+        style={{ border: `2px solid ${activeTheme.fore}` }}
       >
         Submit
       </button>
