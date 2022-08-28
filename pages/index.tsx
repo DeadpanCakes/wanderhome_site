@@ -36,7 +36,13 @@ export default function Home(props) {
             />
           ) : (
             <Link href="/new/character">
-              <button className={styles.characterPlaceholder}>
+              <button
+                className={styles.characterPlaceholder}
+                style={{
+                  color: activeTheme.back,
+                  background: activeTheme.fore,
+                }}
+              >
                 <a>No Character Made Yet. Make one!</a>
               </button>
             </Link>
@@ -67,7 +73,13 @@ export default function Home(props) {
             </div>
           ) : (
             <Link href="/new/place">
-              <button className={styles.placePlaceholder}>
+              <button
+                className={styles.placePlaceholder}
+                style={{
+                  color: activeTheme.back,
+                  background: activeTheme.fore,
+                }}
+              >
                 <a>No Places Made Yet. Make one!</a>
               </button>
             </Link>
@@ -84,21 +96,39 @@ export default function Home(props) {
                 </ul>
               ) : (
                 <Link href="/manage/kith">
-                  <button className={styles.kithPlaceholder}>
+                  <button
+                    className={styles.kithPlaceholder}
+                    style={{
+                      color: activeTheme.back,
+                      background: activeTheme.fore,
+                    }}
+                  >
                     <a>No Active Kith</a>
                   </button>
                 </Link>
               )
             ) : (
               <Link href="/new/kith">
-                <button className={styles.kithPlaceholder}>
+                <button
+                  className={styles.kithPlaceholder}
+                  style={{
+                    color: activeTheme.back,
+                    background: activeTheme.fore,
+                  }}
+                >
                   <a>No Kith Made Yet. Make one!</a>
                 </button>
               </Link>
             )
           ) : (
             <Link href="/new/kith">
-              <button className={styles.kithPlaceholder}>
+              <button
+                className={styles.kithPlaceholder}
+                style={{
+                  color: activeTheme.back,
+                  background: activeTheme.fore,
+                }}
+              >
                 <a>No Kith Made Yet. Make one!</a>
               </button>
             </Link>
