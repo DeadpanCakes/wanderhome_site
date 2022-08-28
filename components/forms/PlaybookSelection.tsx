@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "../../styles/forms/PCForm.module.css";
+import ThemeContext from "../context/ThemeContext";
 
 const PlaybookSelection = ({
   playbooks,
   chosenPlaybook,
   setChosenPlaybook,
 }) => {
+  const { activeTheme } = useContext(ThemeContext);
   return (
     <div>
       <ul className={styles.playbookList}>
@@ -13,7 +15,14 @@ const PlaybookSelection = ({
           .sort((a, b) => a.id - b.id)
           .map((playbook) => {
             return (
-              <li className={styles.playbookListing} key={playbook.id}>
+              <li
+                className={styles.playbookListing}
+                key={playbook.id}
+                style={{
+                  color: activeTheme.back,
+                  background: activeTheme.fore,
+                }}
+              >
                 <input
                   className={styles.playbookCheckbox}
                   type="checkbox"
