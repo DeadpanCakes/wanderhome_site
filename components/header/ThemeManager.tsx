@@ -16,7 +16,11 @@ const ThemeManager = () => {
             return (
               <li
                 key={t.id}
-                style={{ color: t.fore, background: t.backGradient }}
+                style={{
+                  color: t.fore,
+                  background: t.backGradient,
+                  border: `3px solid ${t.fore}`,
+                }}
                 className={styles.themes}
               >
                 <input
