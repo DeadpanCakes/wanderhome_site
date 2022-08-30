@@ -14,8 +14,9 @@ import ThemeContext from "../context/ThemeContext";
 
 const Header = () => {
   const { activeTheme } = useContext(ThemeContext);
+  console.log(activeTheme);
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ color: activeTheme.fore }}>
       <header className={styles.header}>
         <div className={styles.btnContainer}>
           <ToggleablePopup
