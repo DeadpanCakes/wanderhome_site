@@ -8,7 +8,11 @@ const DefaultLayout = ({ children }) => {
   const { activeTheme } = useContext(ThemeContext);
   return (
     <div
-      style={{ color: activeTheme.fore, background: activeTheme.backGradient }}
+      style={{
+        color: activeTheme.fore,
+        background: activeTheme.backGradient,
+        borderColor: activeTheme.fore,
+      }}
     >
       <Header />
       <Sidebar />
