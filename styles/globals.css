@@ -210,11 +210,12 @@ header {
 
 button {
   background-color: inherit;
-  border: 2px solid black;
+  border: inherit;
   color: inherit;
   border-radius: 10px;
   min-height: 25px;
   padding: 5px;
+  border: 2px solid;
 }
 
 button:hover {
@@ -222,8 +223,7 @@ button:hover {
 }
 
 button:disabled {
-  color: #c0acbe;
-  border: 2px solid #c0acbe;
+  filter: opacity(0.5);
 }
 
 button:disabled:hover {
@@ -239,8 +239,6 @@ input {
   border: 0;
   border-radius: 15px;
   padding: 5px;
-  background-color: #603a58;
-  color: #fff0ea;
 }
 
 select {
