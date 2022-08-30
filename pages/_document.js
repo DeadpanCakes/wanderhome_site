@@ -5,6 +5,16 @@ const Document = () => {
   return (
     <Html>
       <Head>
+        <title>Wanderhome</title>
+        <meta
+          name="description"
+          content="Web app for the tabletop role-playing game Wanderhome by Jay Dragon"
+        />
+        <meta
+          name="keywords"
+          content="Tabletop Role-Playing, TTRPG, Wanderhome"
+        />
+        <meta name="author" content="Anthony Mendoza" />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter&display=optional"
           rel="stylesheet"
@@ -37,6 +47,7 @@ const Document = () => {
           rel="stylesheet"
           crossOrigin="true"
         />
+        <link rel="icon" href="/images/favicon.ico" />
       </Head>
       <body>
         <Main />
