@@ -1,5 +1,9 @@
 .randomizer {
-  margin: 0 0 30px 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
 }
 
 .textFields {

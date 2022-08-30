@@ -148,7 +148,9 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
   );
   const FirstPage = (
     <>
-      <button onClick={randomizeTraits}>Randomize</button>
+      <button onClick={randomizeTraits} className={styles.randomizeBtn}>
+        Randomize
+      </button>
       <div className={styles.textFields}>
         <InputField name="name" value={name} changeHandler={setName} />
         <InputField
