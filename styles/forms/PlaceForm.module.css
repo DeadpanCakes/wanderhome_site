@@ -48,6 +48,8 @@
 .submitBtn {
   grid-column: 3;
   place-self: center;
-  padding: 15px;
   margin: 10px;
+  font-size: 1.5rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
 }
