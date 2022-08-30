@@ -12,11 +12,12 @@ const Accordian = ({ parent, children }) => {
   const toggleExpansion = () => setExpansion((prevState) => !prevState);
   const { activeTheme } = useContext(ThemeContext);
   return (
-    <div
-      className={styles.accordian}
-      style={{ color: activeTheme.back, background: activeTheme.fore }}
-    >
-      <button className={styles.parent} onClick={toggleExpansion}>
+    <div className={styles.accordian}>
+      <button
+        className={styles.parent}
+        onClick={toggleExpansion}
+        style={{ color: activeTheme.back, background: activeTheme.fore }}
+      >
         {parent}
         <div className={styles.iconContainer}>
           {isExpanded ? (
@@ -28,6 +29,7 @@ const Accordian = ({ parent, children }) => {
       </button>
       <div
         className={isExpanded ? styles.body : `${styles.body} ${styles.hidden}`}
+        style={{ color: activeTheme.fore, background: "transparent" }}
       >
         {children}
       </div>
