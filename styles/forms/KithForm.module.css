@@ -27,3 +27,12 @@
 .moves {
   margin-left: 15px;
 }
+
+.submitBtn {
+  font-size: 1.5rem;
+  font-family: "Tillana", cursive;
+  line-height: 3rem;
+  align-self: center;
+  margin-right: 25%;
+  margin-left: auto;
+}

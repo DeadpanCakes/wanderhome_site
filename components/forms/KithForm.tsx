@@ -141,6 +141,7 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
             }),
           })
         }
+        className={styles.submitBtn}
       >
         Submit
       </button>
