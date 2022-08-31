@@ -77,14 +77,6 @@ const useMonthInterfacer = (months) => {
           ...month.event,
           trigger: {
             ...getEventTrigger(month),
-            get counter() {
-              return counter;
-            },
-            get isActive() {
-              return counter >= this.threshhold;
-            },
-            resetCounter,
-            incrementCounter,
           },
         },
       };
