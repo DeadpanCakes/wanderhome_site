@@ -4,6 +4,7 @@ import NPC from "../components/NPC";
 import PlayerCharacter from "../components/PlayerCharacter";
 import Place from "../components/Place";
 import Month from "../components/Month";
+import ActiveEvents from "../components/ActiveEvents";
 import Link from "next/link";
 import useMonthInterfacer from "../hooks/useMonthInterfacer";
 import styles from "../styles/Home.module.css";
@@ -17,12 +18,27 @@ export default function Home(props) {
   const months = useMonthInterfacer(rawMonths);
   const game = useContext(GameContext);
   const { activeTheme } = useContext(ThemeContext);
-  const { characters, kith, places, activeChar, activePlace, activeKith } =
-    game;
+  const {
+    characters,
+    kith,
+    places,
+    activeChar,
+    activePlace,
+    activeKith,
+    counters,
+  } = game;
 
   const [lack, setLack] = useState({ id: null });
   const [signs, setSigns] = useState([]);
   const [activeMonth, setActiveMonth] = useState(months[0]);
+  const activeEvents = counters
+    ? months
+        .filter(
+          (m) =>
+            counters[m.event.trigger.tokenName] >= m.event.trigger.threshhold
+        )
+        .map((m) => m.event)
+    : [];
   return (
     <div
       style={{ color: activeTheme.fore, background: activeTheme.backGradient }}
@@ -68,8 +84,8 @@ export default function Home(props) {
                 setLack={setLack}
                 setSigns={setSigns}
                 chosenLack={lack}
-                chosenSigns={signs}
               />
+              <ActiveEvents events={activeEvents} />
             </div>
           ) : (
             <Link href="/new/place">
@@ -88,10 +104,10 @@ export default function Home(props) {
             game.kith.length > 0 ? (
               game.activeKith.length > 0 ? (
                 <ul>
-                  {game.kith
+                  {kith
                     .filter((k) => activeKith.includes(k.id))
                     .map((npc) => (
-                      <NPC npc={npc} />
+                      <NPC npc={npc} key={npc.id} />
                     ))}
                 </ul>
               ) : (
