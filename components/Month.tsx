@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Accordian from "./layouts/Accordian";
 import Tracker from "./Tracker";
 import styles from "../styles/Month.module.css";
+import ThemeContext from "./context/ThemeContext";
 
 const Month = ({
   months,
@@ -10,8 +11,8 @@ const Month = ({
   setLack,
   setSigns,
   chosenLack,
-  chosenSigns,
 }) => {
+  const { activeTheme } = useContext(ThemeContext);
   return (
     <>
       <Tracker
@@ -33,6 +34,7 @@ const Month = ({
               onChange={(e) => {
                 setMonth(months.find((month) => month.name === e.target.value));
               }}
+              style={{ color: activeTheme.back, background: activeTheme.fore }}
             >
               {months.map((month) => (
                 <option value={month.name} key={month.name}>
