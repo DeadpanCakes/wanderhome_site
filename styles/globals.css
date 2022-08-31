@@ -207,6 +207,10 @@ header {
   min-height: 7vh;
 }
 
+ul > li {
+  margin-left: 5%;
+}
+
 button {
   background-color: inherit;
   border: inherit;
