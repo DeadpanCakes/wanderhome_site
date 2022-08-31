@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleInfo,
   faScrewdriverWrench,
+  faPalette,
 } from "@fortawesome/free-solid-svg-icons";
 import ToggleablePopup from "../layouts/ToggleablePopup";
 import ThemeManager from "./ThemeManager";
@@ -44,7 +45,9 @@ const Header = () => {
             </h1>
           </a>
         </Link>
-        <ThemeManager />
+        <ToggleablePopup buttonContent={<FontAwesomeIcon icon={faPalette} />}>
+          <ThemeManager />
+        </ToggleablePopup>
       </header>
     </div>
   );

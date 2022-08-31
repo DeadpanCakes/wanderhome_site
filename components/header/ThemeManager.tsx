@@ -9,7 +9,14 @@ import styles from "../../styles/header/ThemeManager.module.css";
 const ThemeManager = () => {
   const { themes, activeTheme, setActiveTheme } = useContext(ThemeContext);
   return (
-    <ToggleablePopup buttonContent={<FontAwesomeIcon icon={faPalette} />}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+      className={styles.themeManager}
+    >
       <h1>Theme Manager</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <ul className={styles.themeList}>
@@ -41,7 +48,7 @@ const ThemeManager = () => {
           })}
         </ul>
       </form>
-    </ToggleablePopup>
+    </div>
   );
 };
 
