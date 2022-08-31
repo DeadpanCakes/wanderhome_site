@@ -5,7 +5,6 @@ const Document = () => {
   return (
     <Html>
       <Head>
-        <title>Wanderhome</title>
         <meta
           name="description"
           content="Web app for the tabletop role-playing game Wanderhome by Jay Dragon"
