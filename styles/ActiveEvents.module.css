@@ -1,0 +1,15 @@
+.events {
+  margin: 0;
+}
+
+.effects {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.effectMoves {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
