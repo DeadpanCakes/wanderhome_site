@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import useStorage from "../hooks/useStorage";
 import styles from "../styles/Tracker.module.css";
+import GameContext from "./context/GameContext";
 import ThemeContext from "../components/context/ThemeContext";
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const Tracker = ({ tokenName, threshhold }: Props) => {
-  const [counters, setCounters, fetchCounters] = useStorage("counters", null);
+  const { counters, setCounters } = useContext(GameContext);
   const addToken = () =>
     setCounters((prevState) => {
       if (prevState[tokenName] >= threshhold) {
@@ -30,28 +31,6 @@ const Tracker = ({ tokenName, threshhold }: Props) => {
   const resetCount = () =>
     setCounters((prevState) => ({ ...prevState, [tokenName]: 0 }));
 
-  useEffect(() => {
-    if (!counters) {
-      fetchCounters();
-    }
-  }, [counters]);
-  useEffect(() => {
-    if (!localStorage.getItem("counters")) {
-      setCounters({
-        Token: 0,
-        Sprout: 0,
-        Raindrop: 0,
-        Flower: 0,
-        Meteor: 0,
-        "Bug Shell": 0,
-        Moon: 0,
-        Leaf: 0,
-        Stone: 0,
-        Snowflake: 0,
-        Star: 0,
-      });
-    }
-  }, []);
   const { activeTheme } = useContext(ThemeContext);
   return counters ? (
     <div className={styles.tracker}>
