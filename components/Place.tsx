@@ -2,6 +2,9 @@ import Accordian from "./layouts/Accordian";
 import ListLayout from "./layouts/ListLayout";
 import React from "react";
 import { v4 as uuid } from "uuid";
+import styles from "../styles/Place.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 const Place = ({ month, place }) => {
   const natures = place.traits.map(
@@ -36,7 +39,7 @@ const Place = ({ month, place }) => {
         <p>Gods: {godStr}</p>
         <ListLayout header={<h3>Lore</h3>} list={lore} />
       </Accordian>
-      <p>
+      <p className={styles.placeDetails}>
         <b>
           "
           {(month.lack_set.length > 0 ? lackStr : "") +
@@ -46,7 +49,8 @@ const Place = ({ month, place }) => {
         </b>
       </p>
       {natures.map((nature) => (
-        <p key={uuid()}>
+        <p key={uuid()} className={styles.natures}>
+          <FontAwesomeIcon icon={faLeaf} />
           <i>{nature}</i>
         </p>
       ))}
