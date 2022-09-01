@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSeedling } from "@fortawesome/free-solid-svg-icons";
 import Tracker from "./Tracker";
 import { v4 as uuid } from "uuid";
+import { ChildProcess } from "child_process";
 
 const PlayerCharacter = ({ character }) => {
   return (
@@ -24,7 +25,7 @@ const PlayerCharacter = ({ character }) => {
               <ul className={styles.appearance}>
                 {character.looks.map((look) => {
                   return (
-                    <li key={uuid()}>
+                    <li key={"look" + look.id}>
                       <FontAwesomeIcon icon={faSeedling} />
                       {look.text}
                     </li>
@@ -38,7 +39,7 @@ const PlayerCharacter = ({ character }) => {
                   <h3>{character.personality.positive.prompt}:</h3>
                   <ul>
                     {character.personality.positive.choices.map((choice) => (
-                      <li key={uuid()}>
+                      <li key={"positive" + choice.id}>
                         <FontAwesomeIcon icon={faSeedling} />
                         {choice.text}
                       </li>
@@ -49,7 +50,7 @@ const PlayerCharacter = ({ character }) => {
                   <h3>{character.personality.negative.prompt}:</h3>
                   <ul>
                     {character.personality.negative.choices.map((choice) => (
-                      <li key={choice.text}>
+                      <li key={"negative" + choice.id}>
                         <FontAwesomeIcon icon={faSeedling} />
                         {uuid()}
                       </li>
@@ -65,17 +66,20 @@ const PlayerCharacter = ({ character }) => {
                 .sort((a, b) => a.id - b.id)
                 .map((history) => {
                   return (
-                    <>
+                    <div key={"background" + history.id}>
                       <h2>{history.prompt}</h2>
                       <ul>
                         {history.choices.map((choice) => (
-                          <li className={styles.choice}>
+                          <li
+                            className={styles.choice}
+                            key={"history" + choice.id}
+                          >
                             <FontAwesomeIcon icon={faSeedling} />
                             <p>{choice.text}</p>
                           </li>
                         ))}
                       </ul>
-                    </>
+                    </div>
                   );
                 })}
             </div>
