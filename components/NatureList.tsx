@@ -12,34 +12,32 @@ const NatureList = ({
     <ul className={styles.natureList}>
       {categories.map((category) => {
         return (
-          <Accordian parent={<h2>{category.name}</h2>}>
+          <Accordian
+            parent={<h2>{category.name}</h2>}
+            key={"category" + category.id}
+          >
             <ul>
               {category.nature_set.map((nature) => {
                 return (
-                  <li
-                    onChange={() => {
-                      const natureElements =
-                        document.querySelectorAll(".natures");
-                      const checkedNatures = Array.from(natureElements).filter(
-                        (nature: HTMLInputElement) => nature.checked
-                      );
-                      setChosenNatures(
-                        natures.filter((nature) => {
-                          return checkedNatures.find(
-                            (checked) => checked.id === nature.id.toString()
-                          );
-                        })
-                      );
-                    }}
-                  >
+                  <li key={"nature" + nature.id}>
                     <input
                       className="natures"
                       type="checkbox"
                       value={nature.name}
                       id={nature.id}
-                      checked={chosenNatures.find(
-                        (choice) => choice.id === nature.id
-                      )}
+                      onChange={() => {
+                        setChosenNatures((prevState) => {
+                          if (prevState.find((n) => n.id === nature.id)) {
+                            return prevState.filter((n) => n.id !== nature.id);
+                          }
+                          return prevState.concat(nature);
+                        });
+                      }}
+                      checked={
+                        !!chosenNatures.find(
+                          (choice) => choice.id === nature.id
+                        )
+                      }
                     />
                     <label htmlFor={nature.id}>{nature.name}</label>
                   </li>
