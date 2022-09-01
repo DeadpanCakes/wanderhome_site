@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import InputField from "../InputField";
 import PageLayout from "../layouts/PageLayout";
@@ -30,6 +30,26 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
   const [chosenNatures, setChosenNatures] = useState([]);
   const [chosenAesthetics, setChosenAesthetics] = useState([]);
   const [chosenLore, setChosenLore] = useState([]);
+  useEffect(() => {
+    setChosenAesthetics((prevState) => {
+      const orphanedAesthetic = prevState.find(
+        (a) => !chosenNatures.find((n) => a.nature === n.id)
+      );
+      if (orphanedAesthetic) {
+        return prevState.filter((a) => a.id !== orphanedAesthetic.id);
+      }
+      return prevState;
+    });
+    setChosenLore((prevState) => {
+      const orphanedLore = prevState.find(
+        (l) => !chosenNatures.find((n) => l.nature === n.id)
+      );
+      if (orphanedLore) {
+        return prevState.filter((l) => l.id !== orphanedLore.id);
+      }
+      return prevState;
+    });
+  }, [chosenNatures]);
   const pageOneValid = useValidation(
     name.length > 0,
     residents.length > 0,
