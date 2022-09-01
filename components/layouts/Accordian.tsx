@@ -19,7 +19,10 @@ const Accordian = ({ parent, children }) => {
         style={{ color: activeTheme.back, background: activeTheme.fore }}
       >
         {parent}
-        <div className={styles.iconContainer}>
+        <div
+          className={styles.iconContainer}
+          style={{ color: activeTheme.back, background: activeTheme.fore }}
+        >
           {isExpanded ? (
             <FontAwesomeIcon icon={faCircleChevronUp} size="2x" />
           ) : (
