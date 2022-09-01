@@ -205,6 +205,23 @@ function MyApp({ Component, pageProps }) {
       fetchActiveKith();
     }
   }, []);
+  useEffect(() => {
+    if (!localStorage.getItem("counters")) {
+      setCounters({
+        Token: 0,
+        Sprout: 0,
+        Raindrop: 0,
+        Flower: 0,
+        Meteor: 0,
+        "Bug Shell": 0,
+        Moon: 0,
+        Leaf: 0,
+        Stone: 0,
+        Snowflake: 0,
+        Star: 0,
+      });
+    }
+  }, []);
   return (
     <GameContext.Provider
       value={{
