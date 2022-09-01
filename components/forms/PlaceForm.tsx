@@ -138,7 +138,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
         <ul className={styles.submittedList}>
           {residents.map((resident) => (
             <li
-              key={resident}
+              key={resident + uuid()}
               id={resident}
               className={styles.submittedListing}
             >
@@ -171,7 +171,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
         </div>
         <ul className={styles.submittedList}>
           {gods.map((god) => (
-            <li key={god} id={god} className={styles.submittedListing}>
+            <li key={god + uuid()} id={god} className={styles.submittedListing}>
               <button
                 className={styles.deleteBtn}
                 onClick={() => {
@@ -196,7 +196,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
     <form className={styles.pageTwo} onSubmit={(e) => e.preventDefault()}>
       {chosenNatures.map((nature) => {
         return (
-          <div>
+          <div key={"nature" + nature.id}>
             <h2>{nature.name}</h2>
             <h3>Choose 2 aesthetic elements</h3>
             <ul>
@@ -206,7 +206,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     nature.id.toString() === currNature.id.toString()
                 )
                 .aesthetic_set.map((aesthetic) => (
-                  <li>
+                  <li key={"aesthetic" + aesthetic.id}>
                     <input
                       onChange={() => {
                         setChosenAesthetics((prevState) => {
@@ -242,7 +242,7 @@ const PlaceForm = ({ natureCategories, submitHandler }) => {
                     nature.id.toString() === currNature.id.toString()
                 )
                 .lore_set.map((lore) => (
-                  <li>
+                  <li key={"lore" + lore.id}>
                     <input
                       onChange={() => {
                         setChosenLore((prevState) => {
