@@ -22,6 +22,17 @@ const NPCForm = ({ traitCategories, submitHandler }) => {
     detail.length > 0,
     traits.length > 1
   );
+  useEffect(() => {
+    setChoices((prevState) => {
+      const orphanedChoice = prevState.find(
+        (c) => !traits.find((t) => c.trait === t.id)
+      );
+      if (orphanedChoice) {
+        return prevState.filter((c) => c.id !== orphanedChoice.id);
+      }
+      return prevState;
+    });
+  }, [traits]);
   const pageTwoValid = useValidation(
     choices
       .map((choice) => choice.trait)
